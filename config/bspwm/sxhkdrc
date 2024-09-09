@@ -7,10 +7,6 @@
 #	z0mbi3			https://github.com/gh0stzk/dotfiles
 #
 
-# Show help
-F1
-	OpenApps --KeyHelp
-
 #|||----- Applications -----|||#
 
 # Open Terminal (alacritty)
@@ -18,7 +14,7 @@ super + Return
 	OpenApps --terminal
 
 # Open floating Terminal
-super + alt + Return
+super + shift + Return
 	OpenApps --floating
 
 # Application menu
@@ -28,12 +24,12 @@ super + @space
 #####
 
 # Apps (browser, editor, filemanager)
-shift + alt + {b,g,n}
-	OpenApps {--browser,--editor,--filemanager}
+shift + alt + {f,o,t}
+  {firefox,opera,thunar}
 
 # Terminal apps (ranger, nvim, ncmpcpp)
-shift + alt + {r,v,k}
-	OpenApps {--ranger,--nvim,--music}
+shift + alt + {h,m,n,r}
+	OpenApps --{htop,music,nvim,ranger}
 
 # Pavucontrol
 shift + alt + p
@@ -55,12 +51,12 @@ super + alt + t
   xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/src/jgmenu/menu.txt --config-file=~/.config/bspwm/jgmenurc
 
 # Scratchpad
-super + alt + o
-	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
+super + n
+  ~/.config/bspwm/src/Scratch
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
 ctrl + super + alt + {p,r,q,l,k}
-	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
+	{systemctl poweroff, systemctl reboot,bspc quit,systemctl suspend,xkill}
 
 # Hide/Show Bar (Polybar and/or eww)
 super + alt + {h,u}
@@ -129,15 +125,14 @@ super + Escape
 
 # alternate between the tiled and monocle layout
 super + m
-	bspc desktop -l next
+  bspm monocle --toggle
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,shift + t,s}
+	bspc node -t {tiled,pseudo_tiled,floating}
 
-# set the node flags
-ctrl + alt {m,x,s,p}
-	bspc node -g {marked,locked,sticky,private}
+F11
+ bspc node -t fullscreen
 
 # Hide/Unhide Window
 ctrl + alt + h
@@ -149,25 +144,33 @@ ctrl + alt + h
 super + r
 	bspc node @/ --rotate {90,-90}
 
-# Change focus of the Node or Swap Nodes
-shift + super {_,ctrl + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
-
-# Switch workspace
+# Switch workspace directionally
 super + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
-# focus or send to the given desktop
-super + {_,alt + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
 # Send focused Node to workspace directionally
-super + alt + {Left,Right}
+super + shift + {Left,Right}
 	bspc node -d {prev,next} '--follow'
 
-# focus the last node/desktop
-super + {comma,Tab}
-	bspc {node,desktop} -f last
+# focus or send to the given desktop, then follow
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} '^{1-6}' '--follow'
+
+# send to the given desktop without following
+super + shift + alt + {1-6}
+  bspc node -d '^{1-6}'
+
+# focus the last node
+super + comma
+	bspc node -f last
+
+# Focus {next,prev} window
+super + {_,shift +} Tab
+  bspm monocle --{next,prev} || bspc node -f {next,prev}.local.!hidden.window
+
+# hide/unhide node
+ctrl + alt + h
+  BspHideNode
 
 #####
 

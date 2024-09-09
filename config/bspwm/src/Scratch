@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+id=$(xdotool search --class scratch)
+
+if [ -z "$id" ]; then
+  tdrop -a -w 80% -h 50% -y 0 -x 10% --class scratch alacritty --class=scratch &
+else
+  bspc node "$id" -g hidden -d focused -f
+fi
