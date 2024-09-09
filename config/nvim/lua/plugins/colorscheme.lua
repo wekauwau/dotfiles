@@ -1,0 +1,1 @@
+/home/wekauwau/dotfiles/config/bspwm/rices/isabel/nvim-colorscheme.lua
