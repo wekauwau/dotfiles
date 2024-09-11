@@ -156,8 +156,8 @@ set_picom_config() {
     -e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
     -e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
     -e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
-    -e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
-    -e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
+    -e "s/\".*:class_g = 'Alacritty'\"/\"90:class_g = 'Alacritty'\"/g" \
+    -e "s/\".*:class_g = 'kitty'\"/\"90:class_g = 'kitty'\"/g" \
     -e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
 }
 
