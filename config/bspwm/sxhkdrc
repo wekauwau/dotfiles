@@ -78,6 +78,10 @@ super + alt + a
 super + alt + n
 	OpenApps --netmanager
 
+# Usercard
+super + alt + i
+	OpenApps --usercard
+
 # Clipboard
 super + alt + c
 	OpenApps --clipboard
