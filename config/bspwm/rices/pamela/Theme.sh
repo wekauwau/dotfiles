@@ -14,37 +14,37 @@
 . "${HOME}"/.config/bspwm/src/Process.bash
 
 # Current Rice
-read -r RICE < "$HOME"/.config/bspwm/.rice
+read -r RICE <"$HOME"/.config/bspwm/.rice
 
 # Vars config for Pamela Rice
 # Bspwm border		# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color
-BORDER_WIDTH="0"	P_FADE="true"		P_SHADOWS="true"		P_CORNER_R="6"		SHADOW_C="#000000"
+BORDER_WIDTH="0" P_FADE="true" P_SHADOWS="true" P_CORNER_R="6" SHADOW_C="#000000"
 
 # (Lovelace) colorscheme from Elenapan
-bg="#1D1F28"  fg="#FDFDFD"
+bg="#1D1F28" fg="#FDFDFD"
 
-black="#282A36"   red="#F37F97"   green="#5ADECD"   yellow="#F2A272"
-blackb="#414458"  redb="#FF4971"  greenb="#18E3C8"  yellowb="#FF8037"
+black="#282A36" red="#F37F97" green="#5ADECD" yellow="#F2A272"
+blackb="#414458" redb="#FF4971" greenb="#18E3C8" yellowb="#FF8037"
 
-blue="#8897F4"   magenta="#C574DD"   cyan="#79E6F3"   white="#FDFDFD"
-blueb="#556FFF"  magentab="#B043D1"  cyanb="#3FDCEE"  whiteb="#BEBEC1"
+blue="#8897F4" magenta="#C574DD" cyan="#79E6F3" white="#FDFDFD"
+blueb="#556FFF" magentab="#B043D1" cyanb="#3FDCEE" whiteb="#BEBEC1"
 
 # Set bspwm configuration
 set_bspwm_config() {
-	bspc config border_width ${BORDER_WIDTH}
-	bspc config top_padding 53
-	bspc config bottom_padding 1
-	bspc config left_padding 1
-	bspc config right_padding 1
-	bspc config normal_border_color "${magenta}"
-	bspc config active_border_color "${green}"
-	bspc config focused_border_color "${blue}"
-	bspc config presel_feedback_color "${redb}"
+  bspc config border_width ${BORDER_WIDTH}
+  bspc config top_padding 53
+  bspc config bottom_padding 1
+  bspc config left_padding 1
+  bspc config right_padding 1
+  bspc config normal_border_color "${magenta}"
+  bspc config active_border_color "${green}"
+  bspc config focused_border_color "${blue}"
+  bspc config presel_feedback_color "${redb}"
 }
 
 # Terminal colors
 set_term_config() {
-	cat >"$HOME"/.config/alacritty/rice-colors.toml <<EOF
+  cat >"$HOME"/.config/alacritty/rice-colors.toml <<EOF
 # Default colors
 [colors.primary]
 background = "${bg}"
@@ -140,32 +140,32 @@ color7  ${white}
 color15 ${whiteb}
 EOF
 
-pidof -x kitty && killall -USR1 kitty
+  pidof -x kitty && killall -USR1 kitty
 }
 
 # Set compositor configuration
 set_picom_config() {
-	sed -i "$HOME"/.config/bspwm/picom.conf \
-		-e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
-		-e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
-		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
-		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
-		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
-		-e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
-		-e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
+  sed -i "$HOME"/.config/bspwm/picom.conf \
+    -e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
+    -e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
+    -e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
+    -e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
+    -e "s/\".*:class_g = 'Alacritty'\"/\"90:class_g = 'Alacritty'\"/g" \
+    -e "s/\".*:class_g = 'kitty'\"/\"90:class_g = 'kitty'\"/g" \
+    -e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
 }
 
 # Set dunst config
 set_dunst_config() {
-	sed -i "$HOME"/.config/bspwm/dunstrc \
-		-e "s/transparency = .*/transparency = 9/g" \
-		-e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
-		-e "s/separator_color = .*/separator_color = \"${blue}\"/g" \
-		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
-		-e "s/foreground='.*'/foreground='${cyan}'/g"
+  sed -i "$HOME"/.config/bspwm/dunstrc \
+    -e "s/transparency = .*/transparency = 9/g" \
+    -e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
+    -e "s/separator_color = .*/separator_color = \"${blue}\"/g" \
+    -e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
+    -e "s/foreground='.*'/foreground='${cyan}'/g"
 
-	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
-	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
+  sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+  cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
 		[urgency_low]
 		timeout = 3
 		background = "${bg}"
@@ -185,7 +185,7 @@ set_dunst_config() {
 
 # Set eww colors
 set_eww_colors() {
-	cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
+  cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
 \$bg: ${bg};
 \$bg-alt: #1F222B;
 \$fg: ${fg};
@@ -201,16 +201,16 @@ EOF
 }
 
 set_launchers() {
-	# Jgmenu
-	sed -i "$HOME"/.config/bspwm/jgmenurc \
-		-e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
-		-e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
-		-e "s/color_sel_bg = .*/color_sel_bg = #1F222B/" \
-		-e "s/color_sel_fg = .*/color_sel_fg = ${fg}/" \
-		-e "s/color_sep_fg = .*/color_sep_fg = ${blueb}/"
+  # Jgmenu
+  sed -i "$HOME"/.config/bspwm/jgmenurc \
+    -e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
+    -e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
+    -e "s/color_sel_bg = .*/color_sel_bg = #1F222B/" \
+    -e "s/color_sel_fg = .*/color_sel_fg = ${fg}/" \
+    -e "s/color_sep_fg = .*/color_sep_fg = ${blueb}/"
 
-	# Rofi launchers
-	cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
+  # Rofi launchers
+  cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
 // Rofi colors for Pamela
 
 * {
@@ -231,22 +231,22 @@ EOF
 # Launch theme
 launch_theme() {
 
-	# Set random wallpaper for actual rice
-	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
+  # Set random wallpaper for actual rice
+  feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
 
-	# Launch dunst notification daemon
-	dunst -config "${HOME}"/.config/bspwm/dunstrc &
+  # Launch dunst notification daemon
+  dunst -config "${HOME}"/.config/bspwm/dunstrc &
 
-	# Launch polybar
-	sleep 0.1
-	for mon in $(polybar --list-monitors | cut -d":" -f1); do
-		(MONITOR=$mon polybar -q pam1 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-		(MONITOR=$mon polybar -q pam2 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-		(MONITOR=$mon polybar -q pam3 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-		(MONITOR=$mon polybar -q pam4 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-		(MONITOR=$mon polybar -q pam5 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-		(MONITOR=$mon polybar -q pam6 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
-	done
+  # Launch polybar
+  sleep 0.1
+  for mon in $(polybar --list-monitors | cut -d":" -f1); do
+    (MONITOR=$mon polybar -q pam1 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+    (MONITOR=$mon polybar -q pam2 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+    (MONITOR=$mon polybar -q pam3 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+    (MONITOR=$mon polybar -q pam4 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+    (MONITOR=$mon polybar -q pam5 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+    (MONITOR=$mon polybar -q pam6 -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini) &
+  done
 }
 
 ### Apply Configurations
