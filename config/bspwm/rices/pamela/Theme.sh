@@ -143,6 +143,11 @@ EOF
   pidof -x kitty && killall -USR1 kitty
 }
 
+set_neovim_config() {
+  rm ~/.config/nvim/lua/plugins/colorscheme.lua
+  ln -s ~/dotfiles/config/bspwm/rices/pamela/nvim-colorscheme.lua ~/.config/nvim/lua/plugins/colorscheme.lua
+}
+
 # Set compositor configuration
 set_picom_config() {
   sed -i "$HOME"/.config/bspwm/picom.conf \
@@ -253,6 +258,7 @@ launch_theme() {
 
 set_bspwm_config
 set_term_config
+set_neovim_config
 set_picom_config
 set_dunst_config
 set_eww_colors
