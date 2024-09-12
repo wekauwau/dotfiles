@@ -74,9 +74,6 @@ case "$1" in
   pavucontrol
   ;;
   # Eww Widgets
---KeyHelp)
-  eww -c "$WIDGET_DIR" open --toggle csheet
-  ;;
 --usercard)
   eww -c "$WIDGET_DIR" open --toggle launchermenu
   ;;
