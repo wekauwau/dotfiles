@@ -214,7 +214,7 @@ set_launchers() {
 // Rofi colors for Pamela
 
 * {
-    font: "Terminess Nerd Font Mono Bold 10";
+    font: "JetBrainsMono NF Bold 9";
     background: ${bg};
     bg-alt: #1F222B;
     background-alt: ${bg}E0;
