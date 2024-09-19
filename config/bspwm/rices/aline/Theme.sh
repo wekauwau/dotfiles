@@ -14,37 +14,37 @@
 . "${HOME}"/.config/bspwm/src/Process.bash
 
 # Current Rice
-read -r RICE < "$HOME"/.config/bspwm/.rice
+read -r RICE <"$HOME"/.config/bspwm/.rice
 
 # Vars config for Aline Rice
 # Bspwm border		# Fade true|false	# Shadows true|false	# Corner radius		# Shadow color
-BORDER_WIDTH="0"	P_FADE="true"		P_SHADOWS="true"		P_CORNER_R="6"		SHADOW_C="#000000"
+BORDER_WIDTH="0" P_FADE="true" P_SHADOWS="true" P_CORNER_R="6" SHADOW_C="#000000"
 
 # (Rose Pine Dawn) colorscheme
-bg="#faf4ed"  fg="#575279"
+bg="#faf4ed" fg="#575279"
 
-black="#f2e9e1"   red="#b4637a"   green="#286983"   yellow="#ea9d34"
-blackb="#9893a5"  redb="#b4637a"  greenb="#286983"  yellowb="#ea9d34"
+black="#f2e9e1" red="#b4637a" green="#286983" yellow="#ea9d34"
+blackb="#9893a5" redb="#b4637a" greenb="#286983" yellowb="#ea9d34"
 
-blue="#56949f"   magenta="#907aa9"   cyan="#d7827e"   white="#575279"
-blueb="#56949f"  magentab="#907aa9"  cyanb="#d7827e"  whiteb="#575279"
+blue="#56949f" magenta="#907aa9" cyan="#d7827e" white="#575279"
+blueb="#56949f" magentab="#907aa9" cyanb="#d7827e" whiteb="#575279"
 
 # Set bspwm configuration
 set_bspwm_config() {
-	bspc config border_width ${BORDER_WIDTH}
-	bspc config top_padding 51
-	bspc config bottom_padding 1
-	bspc config left_padding 1
-	bspc config right_padding 1
-	bspc config normal_border_color "${green}"
-	bspc config active_border_color "${blue}"
-	bspc config focused_border_color "${magenta}"
-	bspc config presel_feedback_color "${red}"
+  bspc config border_width ${BORDER_WIDTH}
+  bspc config top_padding 51
+  bspc config bottom_padding 1
+  bspc config left_padding 1
+  bspc config right_padding 1
+  bspc config normal_border_color "${green}"
+  bspc config active_border_color "${blue}"
+  bspc config focused_border_color "${magenta}"
+  bspc config presel_feedback_color "${red}"
 }
 
 # Terminal colors
 set_term_config() {
-	cat >"$HOME"/.config/alacritty/rice-colors.toml <<EOF
+  cat >"$HOME"/.config/alacritty/rice-colors.toml <<EOF
 # Default colors
 [colors.primary]
 background = "${bg}"
@@ -78,8 +78,8 @@ cyan = "${cyanb}"
 white = "${whiteb}"
 EOF
 
-	# Kitty config
-	cat >"$HOME"/.config/kitty/current-theme.conf <<EOF
+  # Kitty config
+  cat >"$HOME"/.config/kitty/current-theme.conf <<EOF
 # The basic colors
 foreground              ${fg}
 background              ${bg}
@@ -140,32 +140,38 @@ color7  ${white}
 color15 ${whiteb}
 EOF
 
-pidof -x kitty && killall -USR1 kitty
+  pidof -x kitty && killall -USR1 kitty
+}
+
+# Change neovim colorscheme
+set_neovim_config() {
+  rm ~/.config/nvim/lua/plugins/colorscheme.lua
+  ln -s ~/dotfiles/config/bspwm/rices/aline/nvim-colorscheme.lua ~/.config/nvim/lua/plugins/colorscheme.lua
 }
 
 # Set compositor configuration
 set_picom_config() {
-	sed -i "$HOME"/.config/bspwm/picom.conf \
-		-e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
-		-e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
-		-e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
-		-e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
-		-e "s/\".*:class_g = 'Alacritty'\"/\"100:class_g = 'Alacritty'\"/g" \
-		-e "s/\".*:class_g = 'kitty'\"/\"100:class_g = 'kitty'\"/g" \
-		-e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
+  sed -i "$HOME"/.config/bspwm/picom.conf \
+    -e "s/normal = .*/normal =  { fade = ${P_FADE}; shadow = ${P_SHADOWS}; }/g" \
+    -e "s/dock = .*/dock =  { fade = ${P_FADE}; }/g" \
+    -e "s/shadow-color = .*/shadow-color = \"${SHADOW_C}\"/g" \
+    -e "s/corner-radius = .*/corner-radius = ${P_CORNER_R}/g" \
+    -e "s/\".*:class_g = 'Alacritty'\"/\"90:class_g = 'Alacritty'\"/g" \
+    -e "s/\".*:class_g = 'kitty'\"/\"90:class_g = 'kitty'\"/g" \
+    -e "s/\".*:class_g = 'FloaTerm'\"/\"100:class_g = 'FloaTerm'\"/g"
 }
 
 # Set dunst config
 set_dunst_config() {
-	sed -i "$HOME"/.config/bspwm/dunstrc \
-		-e "s/transparency = .*/transparency = 3/g" \
-		-e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
-		-e "s/separator_color = .*/separator_color = \"${magenta}\"/g" \
-		-e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
-		-e "s/foreground='.*'/foreground='${white}'/g"
+  sed -i "$HOME"/.config/bspwm/dunstrc \
+    -e "s/transparency = .*/transparency = 3/g" \
+    -e "s/frame_color = .*/frame_color = \"${bg}\"/g" \
+    -e "s/separator_color = .*/separator_color = \"${magenta}\"/g" \
+    -e "s/font = .*/font = JetBrainsMono NF Medium 9/g" \
+    -e "s/foreground='.*'/foreground='${white}'/g"
 
-	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
-	cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
+  sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+  cat >>"$HOME"/.config/bspwm/dunstrc <<-_EOF_
 		[urgency_low]
 		timeout = 3
 		background = "${bg}"
@@ -185,7 +191,7 @@ set_dunst_config() {
 
 # Set eww colors
 set_eww_colors() {
-	cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
+  cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
 \$bg: ${bg};
 \$bg-alt: ${black};
 \$fg: ${fg};
@@ -201,16 +207,16 @@ EOF
 }
 
 set_launchers() {
-	# Jgmenu
-	sed -i "$HOME"/.config/bspwm/jgmenurc \
-		-e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
-		-e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
-		-e "s/color_sel_bg = .*/color_sel_bg = ${black}/" \
-		-e "s/color_sel_fg = .*/color_sel_fg = ${fg}/" \
-		-e "s/color_sep_fg = .*/color_sep_fg = ${magenta}/"
+  # Jgmenu
+  sed -i "$HOME"/.config/bspwm/jgmenurc \
+    -e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
+    -e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
+    -e "s/color_sel_bg = .*/color_sel_bg = ${black}/" \
+    -e "s/color_sel_fg = .*/color_sel_fg = ${fg}/" \
+    -e "s/color_sep_fg = .*/color_sep_fg = ${magenta}/"
 
-	# Rofi launchers
-	cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
+  # Rofi launchers
+  cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
 // Rofi colors for Aline
 
 * {
@@ -230,24 +236,25 @@ EOF
 
 # Launch theme
 launch_theme() {
-	
-	# Set random wallpaper for actual rice
-	feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
 
-	# Launch dunst notification daemon
-	dunst -config "${HOME}"/.config/bspwm/dunstrc &
+  # Set random wallpaper for actual rice
+  feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
 
-	# Launch polybar
-	sleep 0.1
-	for mon in $(polybar --list-monitors | cut -d":" -f1); do
-		MONITOR=$mon polybar -q aline-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
-	done
+  # Launch dunst notification daemon
+  dunst -config "${HOME}"/.config/bspwm/dunstrc &
+
+  # Launch polybar
+  sleep 0.1
+  for mon in $(polybar --list-monitors | cut -d":" -f1); do
+    MONITOR=$mon polybar -q aline-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
+  done
 }
 
 ### Apply Configurations
 
 set_bspwm_config
 set_term_config
+set_neovim_config
 set_picom_config
 set_dunst_config
 set_eww_colors
