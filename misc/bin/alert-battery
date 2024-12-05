@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+treshold0=20
+treshold1=10
+icon="$HOME/.config/bspwm/src/assets/zombie.png"
+
+CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+if [ "${STATUS}" = Discharging ]; then
+  if [ "${CAPACITY}" -lt "${treshold0}" -a "${CAPACITY}" -gt "${treshold1}" ]; then
+    # capacity < treshold0 && capacity > treshold1
+    dunstify "Lowbat boskuhh!" -i "$icon" -r 2169 -u critical
+
+  elif [ "${CAPACITY}" -lt ${treshold1} ]; then
+    # capacity < treshold1
+    dunstify "LOWBAT BOSKUHH!" -i "$icon" -r 2169 -u critical
+  fi
+fi

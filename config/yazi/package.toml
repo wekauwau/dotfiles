@@ -1,0 +1,14 @@
+[plugin]
+deps = [
+  { use = "dedukun/bookmarks", rev = "600f87c" },
+  { use = "yazi-rs/plugins:full-border", rev = "a53d544" },
+  { use = "imsi32/yatline", rev = "e255f5c" },
+  { use = "lpanebr/yazi-plugins:yatline-symlink", rev = "4e0fc1b" },
+  { use = "wekauwau/yatline-created-time", rev = "8f567b0" },
+  { use = "wekauwau/yatline-modified-time", rev = "0fa938b" },
+  { use = "wekauwau/yatline-rose-pine", rev = "2be09f1" },
+  { use = "wekauwau/yatline-tokyo-night", rev = "f246d35" },
+]
+
+[flavor]
+deps = []

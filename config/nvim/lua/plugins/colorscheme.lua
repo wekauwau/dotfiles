@@ -1,0 +1,1 @@
+/home/wekauwau/.config/bspwm/rices/aline/colorschemes/nvim.lua

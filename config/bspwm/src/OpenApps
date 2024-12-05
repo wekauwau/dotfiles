@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+WIDGET_DIR="$HOME/.config/bspwm/eww"
+
+case "$1" in
+--menu)
+  rofi -show drun -theme "$HOME"/.config/bspwm/src/rofi-themes/Launcher.rasi
+  ;;
+--rice)
+  RiceSelector
+  ;;
+--terminal)
+  Term --terminal
+  ;;
+--floating)
+  Term --floating
+  ;;
+--scratch)
+  Term --scratch
+  ;;
+--netmanager)
+  NetManagerDM
+  ;;
+--bluetooth)
+  rofi-bluetooth
+  ;;
+--clipboard)
+  rofi -modi "clipboard:greenclip print" -theme "$HOME"/.config/bspwm/src/rofi-themes/Clipboard.rasi -show clipboard -run-command '{cmd}'
+  ;;
+--screenshot)
+  ScreenShoTer
+  ;;
+--powermenu)
+  PowerMenu
+  ;;
+--android)
+  AndroidMount
+  ;;
+--keyboard)
+  KeyBoardL
+  ;;
+--nvim)
+  Term --nvim
+  ;;
+--music)
+  Term --music
+  ;;
+--tui-filemanager)
+  Term --filemanager
+  ;;
+--gui-filemanager)
+  thunar
+  ;;
+--browser)
+  opera
+  ;;
+--editor)
+  Term --editor
+  ;;
+--taskmanager)
+  Term --taskmanager
+  ;;
+  # --telegram)
+  #   telegram-desktop
+  #   ;;
+  # TODO: use it or not?
+# --whats)
+#   whatsdesk --disable-gpu
+#   ;;
+--soundcontrol)
+  pavucontrol
+  ;;
+--player)
+  eww -c "$WIDGET_DIR" open --toggle music
+  ;;
+--calendar)
+  eww -c "$WIDGET_DIR" open --toggle date
+  ;;
+*)
+  echo "Invalid Option"
+  ;;
+esac

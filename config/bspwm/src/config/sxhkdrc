@@ -1,0 +1,180 @@
+#|||----- Applications -----|||#
+
+# Open Terminal (tiled, floating)
+super + Return + {_,shift}
+  OpenApps --{terminal,floating}
+
+# TODO: customize displayed apps
+# Application menu
+super + @space
+	OpenApps --menu
+
+#####
+
+# Apps
+shift + alt + {b,n,f,e,m,s,t}
+	OpenApps {--browser,--editor,--tui-filemanager,--gui-filemanager,--music,--soundcontrol,--taskmanager}
+
+#|||----- System Keybindings -----|||#
+
+# Theme Selector
+alt + @space
+	RiceSelector
+
+#Terminal Selector
+super + alt + t
+	Term --selecterm
+
+# jgmenu
+~button3
+  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/src/config/jgmenu.txt --config-file=~/.config/bspwm/src/config/jgmenurc
+
+# Scratchpad
+super + n
+  OpenApps --scratch
+
+# Power off, Reboot, Log out (bspwm), Lockscreen, lock and suspend, kill an app
+ctrl + super + alt + {p, r, q, l, s, k}
+	{systemctl poweroff, systemctl reboot, bspc quit, betterlockscreen -l, systemctl suspend, xkill}
+
+# Hide/Show Bar (Polybar and/or eww)
+super + alt + {h,u}
+	HideBar {-h,-u}
+
+# NOTE: no need maybe
+# Change transparency on focused window
+# ctrl + alt + {plus,minus,t}
+# 	picom-trans {-c -o +3,-c -o -1,-c -d}
+
+# Random wallpaper
+super + alt + w
+	WallSelect
+
+# Mount Android phones
+super + alt + a
+	OpenApps --android
+
+# Network Manager
+super + alt + n
+	OpenApps --netmanager
+
+# Clipboard
+super + alt + c
+	OpenApps --clipboard
+
+# Screenshot
+super + alt + s
+	OpenApps --screenshot
+
+# FIX: not work even after installing rofi, bluez-utils (contains bluetoothctl)
+# Bluetooth
+# super + alt + b
+# 	OpenApps --bluetooth
+
+# PowerMenu
+super + alt + p
+	OpenApps --powermenu
+
+# Keyboard Layout Applet
+super + alt + k
+	OpenApps --keyboard
+
+# Manage brightness
+XF86MonBrightness{Up,Down}
+    sh Brightness {up,down}
+
+# Volume control
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	Volume{ --inc, --dec, --toggle}
+
+# Music Control
+XF86Audio{Next,Prev,Play,Stop}
+	MediaControl {--next,--previous,--toggle,--stop}
+
+
+#|||----- Bspwm hotkeys -----|||#
+
+# Reload BSPWM
+super + alt + r
+	bspc wm -r
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# Reload Keybindings
+super + Escape
+	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/src/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
+
+#####
+
+# alternate between the tiled and monocle layout
+super + m
+  bspm monocle --toggle
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# NOTE: don't know what for
+# set the node flags
+# ctrl + alt {m,x,s,p}
+# 	bspc node -g {marked,locked,sticky,private}
+
+# Hide/Unhide Window
+ctrl + alt + h
+	BspHideNode
+
+#####
+
+# rotate desktop
+super + r
+	bspc node @/ --rotate {90,-90}
+
+# Switch workspace directionally
+super + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# Send focused Node to workspace directionally
+super + shift + {Left,Right}
+	bspc node -d {prev,next} '--follow'
+
+# focus or send to the given desktop, then follow
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} '^{1-6}' '--follow'
+
+# send to the given desktop without following
+super + shift + alt + {1-6}
+  bspc node -d '^{1-6}'
+
+# focus the last node/desktop
+super + {_,shift +} comma
+	bspc {desktop,node} -f last
+
+# Focus {next,prev} window
+super + {_,shift +} Tab
+  bspm monocle --{next,prev} || bspc node -f {next,prev}.local.!hidden.window
+
+#####
+
+# preselect the direction
+super + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel
+
+#####
+
+# expand a window
+ctrl + alt {Left,Down,Up,Right}
+	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
+
+# contract a window
+ctrl + shift + alt + {Left,Down,Up,Right}
+	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+
+# move a floating window
+alt + shift {Left,Down,Up,Right}
+	bspc node -v {-10 0,0 10,0 -10,10 0}
