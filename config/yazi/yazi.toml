@@ -56,7 +56,7 @@ play = [
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
-image = [{ run = 'feh -F "$@"', desc = "Open", for = "linux" }]
+image = [{ run = 'feh -F --start-at "$@"', desc = "Open", for = "linux" }]
 video = [{ run = 'mpv --force-window "$@"', desc = "Open", for = "linux" }]
 
 [open]
