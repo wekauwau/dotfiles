@@ -28,7 +28,7 @@ require("bookmarks"):setup({
 	},
 })
 
-local yatline_theme = require("yatline-rose-pine"):setup("dawn")
+local yatline_theme = require("yatline-tokyo-night"):setup("night")
 
 require("yatline"):setup({
 	theme = yatline_theme,

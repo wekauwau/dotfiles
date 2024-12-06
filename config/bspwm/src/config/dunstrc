@@ -12,27 +12,27 @@ scale = 0
 notification_limit = 20
 indicate_hidden = yes
 
-transparency = 3
+transparency = 0
 
 gap_size = 3
 separator_height = 1
-separator_color = "#907aa9"
+separator_color = "#bb9af7"
 
 padding = 15
 horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 0
-frame_color = "#faf4ed"
+frame_color = "#1a1b26"
 
 sort = no
 idle_threshold = 0
 
-font = Inconsolata Semi Condensed Bold 9
+font = JetBrainsMono NF Medium 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#575279'>%s</span>\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#7aa2f7'>%s</span>\n%b"
 alignment = center
 vertical_alignment = center
 
@@ -45,7 +45,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-icon_theme = "Gruvbox-Plus-Dark, Adwaita"
+icon_theme = "TokyoNight-SE, Adwaita"
 icon_position = left
 min_icon_size = 60
 max_icon_size = 90
@@ -79,15 +79,15 @@ class = Dunst
 
 [urgency_low]
 timeout = 1
-background = "#faf4ed"
-foreground = "#286983"
+background = "#1a1b26"
+foreground = "#9ece6a"
 
 [urgency_normal]
 timeout = 3
-background = "#faf4ed"
-foreground = "#9893a5"
+background = "#1a1b26"
+foreground = "#a9b1d6"
 
 [urgency_critical]
 timeout = 0
-background = "#faf4ed"
-foreground = "#b4637a"
+background = "#1a1b26"
+foreground = "#f7768e"
