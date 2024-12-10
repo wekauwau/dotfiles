@@ -15,6 +15,9 @@ super + @space
 shift + alt + {b,n,f,e,m,s,t}
 	OpenApps {--browser,--editor,--tui-filemanager,--gui-filemanager,--music,--soundcontrol,--taskmanager}
 
+# INFO: emoji picker
+# super + .
+
 #|||----- System Keybindings -----|||#
 
 # Theme Selector
