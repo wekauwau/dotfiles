@@ -52,7 +52,7 @@ case "$1" in
   thunar
   ;;
 --browser)
-  opera
+  firefox
   ;;
 --editor)
   Term --editor
