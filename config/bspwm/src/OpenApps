@@ -3,6 +3,9 @@
 WIDGET_DIR="$HOME/.config/bspwm/eww"
 
 case "$1" in
+--reload-bspwm)
+  bspc wm -r
+  ;;
 --menu)
   rofi -show drun -theme "$HOME"/.config/bspwm/src/rofi-themes/Launcher.rasi
   ;;
