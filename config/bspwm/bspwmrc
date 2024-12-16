@@ -53,6 +53,7 @@ bspc rule -a scratch sticky=on state=floating focus=on
 "$HOME"/.config/bspwm/src/SetSysVars
 
 # Launch sxhkd daemon
+pkill -x sxhkd
 pidof -q sxhkd || { sxhkd -c "${HOME}"/.config/bspwm/src/config/sxhkdrc & }
 
 # Load current theme
