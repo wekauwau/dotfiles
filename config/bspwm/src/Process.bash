@@ -24,8 +24,8 @@ sleep 0.30
 processes=("bspm" "picom" "xidlehook")
 
 for process in "${processes[@]}"; do
-  if pgrep -f "$process"; then
-    pkill -f "$process" >/dev/null
+  if pgrep -x "$process"; then
+    pkill -x "$process" >/dev/null
     sleep 0.25
   fi
 done
