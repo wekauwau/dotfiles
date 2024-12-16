@@ -32,12 +32,8 @@ fi
 
 # Set keyboard layout to US
 setxkbmap us &
-
-# Start LXSession (lightweight session manager)
-# lxsession &
-
 # Set default cursor style
 xsetroot -cursor_name left_ptr
-
 # Start bspwm (window manager)
+sxhkd &
 exec bspwm
