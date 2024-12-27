@@ -1,0 +1,3 @@
+yazi change keymap to move between tab to H, L
+
+modify yatline-tokyo-night.yazi
