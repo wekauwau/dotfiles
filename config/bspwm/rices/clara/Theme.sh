@@ -203,8 +203,9 @@ set_neovim() {
 
 set_yazi() {
   yazi_init_file="$HOME/.config/yazi/init.lua"
-  yatline_theme="yatline-catppuccin"
-  yatline_theme_variant="latte"
+  # TODO: temporary for testing yatline-tokyo-night. Revert after done
+  yatline_theme="yatline-tokyo-night"
+  yatline_theme_variant="night"
 
   sed -i "$yazi_init_file" \
     -e "s/yatline_theme = .*/yatline_theme = require(\"${yatline_theme}\"):setup(\"${yatline_theme_variant}\")/"

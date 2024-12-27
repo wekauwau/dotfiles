@@ -16,7 +16,7 @@ require("bookmarks"):setup({
 	notify = { enable = false },
 })
 
-local yatline_theme = require("yatline-catppuccin"):setup("latte")
+local yatline_theme = require("yatline-tokyo-night"):setup("night")
 
 require("yatline"):setup({
 	theme = yatline_theme,
@@ -103,13 +103,15 @@ require("yatline"):setup({
 				{ type = "coloreds", custom = false, name = "modified_time" },
 			},
 			section_c = {
-				{ type = "coloreds", custom = false, name = "githead" },
+				-- INFO: Disabled
+				-- { type = "coloreds", custom = false, name = "githead" },
 			},
 		},
 	},
 })
 
-require("yatline-githead"):setup()
-require("yatline-symlink"):setup()
 require("yatline-created-time"):setup()
+-- INFO: Seems not working
+-- require("yatline-githead"):setup()
 require("yatline-modified-time"):setup()
+require("yatline-symlink"):setup()

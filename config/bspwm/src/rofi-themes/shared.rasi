@@ -1,14 +1,14 @@
-// Rofi colors for Aline
+// Rofi colors for Emilia
 
 * {
     font: "JetBrainsMono NF Bold 9";
-    background: #eff1f5;
-    bg-alt: #e6e9ef;
-    background-alt: #e6e9efE0;
-    foreground: #4c4f69;
-    selected: #1e66f5;
-    active: #e64553;
-    urgent: #8839ef;
+    background: #1a1b26;
+    bg-alt: #222330;
+    background-alt: #1a1b26E0;
+    foreground: #c0caf5;
+    selected: #7aa2f7;
+    active: #9ece6a;
+    urgent: #f7768e;
 
-    img-background: url("~/.config/bspwm/rices/clara/rofi.webp", width);
+    img-background: url("~/.config/bspwm/rices/emilia/rofi.webp", width);
 }

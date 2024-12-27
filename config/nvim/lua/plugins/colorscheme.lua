@@ -1,1 +1,1 @@
-/home/wekauwau/.config/bspwm/rices/clara/colorschemes/nvim.lua
+/home/wekauwau/.config/bspwm/rices/emilia/colorschemes/nvim.lua

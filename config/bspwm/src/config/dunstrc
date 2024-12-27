@@ -31,7 +31,7 @@ font = JetBrainsMono NF Medium 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='JetBrainsMono NF Medium 9' foreground='#4c4f69'>%s</span>\n%b"
+format = "<span size='xx-large' font_desc='JetBrainsMono NF Medium 9' foreground='#7aa2f7'>%s</span>\n%b"
 alignment = center
 vertical_alignment = center
 
@@ -80,17 +80,16 @@ separator_color = frame
 highlight = "#1e66f5"
 
 [urgency_low]
-timeout = 3
-background = "#eff1f5"
-foreground = "#4c4f69"
+timeout = 1
+background = "#1a1b26"
+foreground = "#9ece6a"
 
 [urgency_normal]
-timeout = 5
-background = "#eff1f5"
-foreground = "#4c4f69"
+timeout = 3
+background = "#1a1b26"
+foreground = "#a9b1d6"
 
 [urgency_critical]
 timeout = 0
-background = "#eff1f5"
-foreground = "#4c4f69"
-frame_color = "#e64553"
+background = "#1a1b26"
+foreground = "#f7768e"
