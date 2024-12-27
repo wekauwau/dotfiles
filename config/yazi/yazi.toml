@@ -9,7 +9,9 @@ image_delay = 5
 
 [opener]
 ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
-image = [{ run = 'feh -F -| "$@"', desc = "Open", for = "linux" }]
+image = [
+  { run = 'feh --fullscreen --start-at "$@"', desc = "Open", for = "linux" },
+]
 video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
 
 [open]
