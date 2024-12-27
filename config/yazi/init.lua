@@ -20,9 +20,6 @@ local yatline_theme = require("yatline-tokyo-night"):setup("night")
 
 require("yatline"):setup({
 	theme = yatline_theme,
-	section_separator = { open = "", close = "" },
-	part_separator = { open = "", close = "" },
-	inverse_separator = { open = "", close = "" },
 
 	style_a = {
 		fg = "black",
