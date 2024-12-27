@@ -1,5 +1,17 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
+[[manager.prepend_keymap]]
+on = "H"
+run = "tab_switch -1 --relative"
+desc = "Switch to the previous tab"
+# { on = "H", run = "back",    desc = "Go back to the previous directory" },
+
+[[manager.prepend_keymap]]
+on = "L"
+run = "tab_switch 1 --relative"
+desc = "Switch to the next tab"
+# { on = "L", run = "forward", desc = "Go forward to the next directory" },
+
 # yazi-rs/plugins:smart-enter
 [[manager.prepend_keymap]]
 on = "l"
@@ -15,10 +27,9 @@ desc = "Maximize or restore preview"
 
 # yazi-rs/plugins:hide-preview
 [[manager.prepend_keymap]]
-on = "H"
+on = "U"
 run = "plugin hide-preview"
 desc = "Hide or show preview"
-# { on = "H", run = "back",    desc = "Go back to the previous directory" },
 
 # yazi-rs/plugins:smart-filter
 [[manager.prepend_keymap]]
