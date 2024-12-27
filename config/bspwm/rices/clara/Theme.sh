@@ -61,6 +61,7 @@ set_bspwm_config() {
 # Terminal colors
 set_term_config() {
   ln -sf ~/.config/bspwm/rices/clara/colorschemes/alacritty.toml ~/.config/alacritty/rice-colors.toml
+
   ln -sf ~/.config/bspwm/rices/clara/colorschemes/kitty.conf ~/.config/kitty/current-theme.conf
   pidof -q kitty && killall -USR1 kitty
 }
@@ -147,7 +148,7 @@ set_launchers() {
 
   # Rofi launchers
   cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
-// Rofi colors for Aline
+// Rofi colors for Clara
 
 * {
     font: "JetBrainsMono NF Bold 9";
@@ -203,9 +204,8 @@ set_neovim() {
 
 set_yazi() {
   yazi_init_file="$HOME/.config/yazi/init.lua"
-  # TODO: temporary for testing yatline-tokyo-night. Revert after done
-  yatline_theme="yatline-tokyo-night"
-  yatline_theme_variant="night"
+  yatline_theme="yatline-catppuccin"
+  yatline_theme_variant="latte"
 
   sed -i "$yazi_init_file" \
     -e "s/yatline_theme = .*/yatline_theme = require(\"${yatline_theme}\"):setup(\"${yatline_theme_variant}\")/"
@@ -220,7 +220,7 @@ launch_theme() {
   # Launch polybar
   sleep 0.1
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
-    MONITOR=$mon polybar -q aline-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
+    MONITOR=$mon polybar -q clara-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
   done
 }
 

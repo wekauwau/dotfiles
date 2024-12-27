@@ -40,6 +40,7 @@ set_bspwm_config() {
 # Terminal colors
 set_term_config() {
   ln -sf ~/.config/bspwm/rices/emilia/colorschemes/alacritty.toml ~/.config/alacritty/rice-colors.toml
+
   ln -sf ~/.config/bspwm/rices/emilia/colorschemes/kitty.conf ~/.config/kitty/current-theme.conf
   pidof -q kitty && killall -USR1 kitty
 }
