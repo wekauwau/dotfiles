@@ -6,14 +6,13 @@ read -r RICE <"$HOME"/.config/bspwm/.rice
 # Terminate or reload existing processes if necessary.
 . "${HOME}"/.config/bspwm/src/Process.bash
 
-# Vars config for Clara
 # Bspwm border		# Normal border color	# Focused border color
 BORDER_WIDTH="0" NORMAL_BC="#286983" FOCUSED_BC="#907aa9"
 
 # Fade true|false	# Shadows true|false	# Corner radius		# Shadow color			# Animations true|false
-P_FADE="true" P_SHADOWS="true" P_CORNER_R="6" SHADOW_C="#000000" ANIMATIONS="true"
+P_FADE="true" P_SHADOWS="false" P_CORNER_R="6" SHADOW_C="#000000" ANIMATIONS="true"
 
-# Catppuccin-latte
+# Catppuccin-Latte
 bg="#eff1f5"
 bg_0="#e6e9ef"
 fg="#4c4f69"

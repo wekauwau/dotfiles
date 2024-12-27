@@ -6,21 +6,25 @@ read -r RICE <"$HOME"/.config/bspwm/.rice
 # Terminate or reload existing processes if necessary.
 . "${HOME}"/.config/bspwm/src/Process.bash
 
-# Vars config for Emilia Rice
 # Bspwm border		# Normal border color	# Focused border color
 BORDER_WIDTH="0" NORMAL_BC="#414868" FOCUSED_BC="#bb9af7"
 
 # Fade true|false	# Shadows true|false	# Corner radius		# Shadow color			# Animations true|false
 P_FADE="true" P_SHADOWS="false" P_CORNER_R="6" SHADOW_C="#000000" ANIMATIONS="true"
 
-# (Tokyo Night) colorscheme
-bg="#1a1b26" fg="#c0caf5"
+# TokyoNight-Night
+bg="#1a1b26"
+bg_0="#292e42"
+fg="#c0caf5"
+fg_0="#a9b1d6"
 
-black="#15161e" red="#f7768e" green="#9ece6a" yellow="#e0af68"
-blackb="#414868" redb="#f7768e" greenb="#9ece6a" yellowb="#e0af68"
-
-blue="#7aa2f7" magenta="#bb9af7" cyan="#7dcfff" white="#a9b1d6"
-blueb="#7aa2f7" magentab="#bb9af7" cyanb="#7dcfff" whiteb="#c0caf5"
+magenta="#bb9af7"
+red="#f7768e"
+yellow="#e0af68"
+green="#9ece6a"
+sky="#2ac3de"
+blue="#7aa2f7"
+arch="#0f94d2"
 
 # Gtk theme vars
 gtk_theme="TokyoNight-zk" gtk_icons="TokyoNight-SE" gtk_cursor="Qogirr-Dark" geany_theme="z0mbi3-TokyoNight"
@@ -75,22 +79,27 @@ set_dunst_config() {
   sed -i "$dunst_config_file" \
     -e "s/foreground='.*'/foreground='${blue}'/g"
 
-  sed -i '/urgency_low/Q' "$dunst_config_file"
+  sed -i '/frame_color/Q' "$dunst_config_file"
   cat >>"$dunst_config_file" <<-_EOF_
-		[urgency_low]
-		timeout = 1
-		background = "${bg}"
-		foreground = "${green}"
+frame_color = "${blue}"
+separator_color = frame
+highlight = "${blue}"
 
-		[urgency_normal]
-		timeout = 3
-		background = "${bg}"
-		foreground = "${white}"
+[urgency_low]
+timeout = 3
+background = "${bg}"
+foreground = "${fg}"
 
-		[urgency_critical]
-		timeout = 0
-		background = "${bg}"
-		foreground = "${red}"
+[urgency_normal]
+timeout = 5
+background = "${bg}"
+foreground = "${fg}"
+
+[urgency_critical]
+timeout = 0
+background = "${bg}"
+foreground = "${fg}"
+frame_color = "${red}"
 	_EOF_
 }
 
@@ -98,16 +107,16 @@ set_dunst_config() {
 set_eww_colors() {
   cat >"$HOME"/.config/bspwm/eww/colors.scss <<EOF
 \$bg: ${bg};
-\$bg-alt: #222330;
+\$bg-alt: ${bg_0};
 \$fg: ${fg};
-\$black: ${blackb};
+\$black: ${fg_0};
 \$red: ${red};
 \$green: ${green};
 \$yellow: ${yellow};
 \$blue: ${blue};
 \$magenta: ${magenta};
-\$cyan: ${cyan};
-\$archicon: #0f94d2;
+\$cyan: ${sky};
+\$archicon: ${arch};
 EOF
 }
 
@@ -116,9 +125,9 @@ set_launchers() {
   sed -i "$HOME"/.config/bspwm/src/config/jgmenurc \
     -e "s/color_menu_bg = .*/color_menu_bg = ${bg}/" \
     -e "s/color_norm_fg = .*/color_norm_fg = ${fg}/" \
-    -e "s/color_sel_bg = .*/color_sel_bg = #222330/" \
+    -e "s/color_sel_bg = .*/color_sel_bg = ${bg_0}/" \
     -e "s/color_sel_fg = .*/color_sel_fg = ${fg}/" \
-    -e "s/color_sep_fg = .*/color_sep_fg = ${blackb}/"
+    -e "s/color_sep_fg = .*/color_sep_fg = ${magenta}/"
 
   # Rofi launchers
   cat >"$HOME"/.config/bspwm/src/rofi-themes/shared.rasi <<EOF
@@ -127,12 +136,12 @@ set_launchers() {
 * {
     font: "JetBrainsMono NF Bold 9";
     background: ${bg};
-    bg-alt: #222330;
-    background-alt: ${bg}E0;
+    bg-alt: ${bg_0};
+    background-alt: ${bg_0}E0;
     foreground: ${fg};
     selected: ${blue};
-    active: ${green};
-    urgent: ${red};
+    active: ${red};
+    urgent: ${magenta};
 
     img-background: url("~/.config/bspwm/rices/${RICE}/rofi.webp", width);
 }
@@ -167,7 +176,7 @@ set_appearance() {
 
 # Apply Geany Theme
 set_geany() {
-  sed -i ${HOME}/.config/geany/geany.conf \
+  sed -i "${HOME}"/.config/geany/geany.conf \
     -e "s/color_scheme=.*/color_scheme=$geany_theme.conf/g"
 }
 
