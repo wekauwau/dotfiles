@@ -27,7 +27,7 @@ blue="#7aa2f7"
 arch="#0f94d2"
 
 # Gtk theme vars
-gtk_theme="TokyoNight-zk" gtk_icons="TokyoNight-SE" gtk_cursor="Qogirr-Dark" geany_theme="z0mbi3-TokyoNight"
+gtk_theme="TokyoNight-zk" gtk_icons="TokyoNight-SE" gtk_cursor="Qogirr-Dark"
 
 # Set bspwm configuration
 set_bspwm_config() {
@@ -174,12 +174,6 @@ set_appearance() {
   xsetroot -cursor_name left_ptr
 }
 
-# Apply Geany Theme
-set_geany() {
-  sed -i "${HOME}"/.config/geany/geany.conf \
-    -e "s/color_scheme=.*/color_scheme=$geany_theme.conf/g"
-}
-
 set_neovim() {
   rm ~/.config/nvim/lua/plugins/colorscheme.lua
   ln -s ~/.config/bspwm/rices/emilia/colorschemes/nvim.lua ~/.config/nvim/lua/plugins/colorscheme.lua
@@ -216,7 +210,6 @@ set_dunst_config
 set_eww_colors
 set_launchers
 set_appearance
-set_geany
 set_neovim
 set_yazi
 launch_theme

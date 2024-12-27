@@ -102,8 +102,7 @@ deps+=(tlp tlp-rdw xidlehook)
 # emoji picker
 deps+=(emote)
 # misc
-# TODO: remove geany
-deps+=(betterlockscreen git python python-gobject bat eza feh gvfs-mtp firefox geany git jq jgmenu libwebp maim mpc mpd ncmpcpp npm pamixer pacman-contrib papirus-icon-theme playerctl polkit-gnome rustup tmux webp-pixbuf-loader xclip xdg-user-dirs xdo xdotool xsettingsd xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo)
+deps+=(betterlockscreen git python python-gobject bat eza feh gvfs-mtp firefox git jq jgmenu libwebp maim mpc mpd ncmpcpp npm pamixer pacman-contrib papirus-icon-theme playerctl polkit-gnome rustup tmux webp-pixbuf-loader xclip xdg-user-dirs xdo xdotool xsettingsd xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo)
 
 printf "Checking for required packages...\n\n"
 
@@ -238,7 +237,7 @@ sleep 10
 
 [ ! -d "$backup_folder" ] && mkdir -p "$backup_folder"
 
-for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar geany gtk-3.0 ncmpcpp ranger tmux zsh mpd paru; do
+for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar gtk-3.0 ncmpcpp ranger tmux zsh mpd paru; do
   if [ -d "$HOME/.config/$folder" ]; then
     if mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date" 2>>RiceError.log; then
       echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"

@@ -43,7 +43,7 @@ arch="#0f94d2"
 # crust="#dce0e8"
 
 # Gtk theme vars
-gtk_theme="deepin" gtk_icons="Luv-Folders" gtk_cursor="Qogirr" geany_theme="z0mbi3-RosePineDawn"
+gtk_theme="deepin" gtk_icons="Luv-Folders" gtk_cursor="Qogirr"
 
 # Set bspwm configuration
 set_bspwm_config() {
@@ -190,12 +190,6 @@ set_appearance() {
   xsetroot -cursor_name left_ptr
 }
 
-# Apply Geany Theme
-set_geany() {
-  sed -i "${HOME}"/.config/geany/geany.conf \
-    -e "s/color_scheme=.*/color_scheme=$geany_theme.conf/g"
-}
-
 set_neovim() {
   rm ~/.config/nvim/lua/plugins/colorscheme.lua
   ln -s ~/.config/bspwm/rices/clara/colorschemes/nvim.lua ~/.config/nvim/lua/plugins/colorscheme.lua
@@ -232,7 +226,6 @@ set_dunst_config
 set_eww_colors
 set_launchers
 set_appearance
-set_geany
 set_neovim
 set_yazi
 launch_theme
