@@ -10,7 +10,7 @@ read -r RICE <"$HOME"/.config/bspwm/.rice
 BORDER_WIDTH="0" NORMAL_BC="#414868" FOCUSED_BC="#bb9af7"
 
 # Fade true|false	# Shadows true|false	# Corner radius		# Shadow color			# Animations true|false
-P_FADE="true" P_SHADOWS="false" P_CORNER_R="6" SHADOW_C="#000000" ANIMATIONS="true"
+P_FADE="true" P_SHADOWS="false" P_CORNER_R="0" SHADOW_C="#000000" ANIMATIONS="true"
 
 # TokyoNight-Night
 bg="#1a1b26"
@@ -32,10 +32,10 @@ gtk_theme="TokyoNight-zk" gtk_icons="TokyoNight-SE" gtk_cursor="Qogirr-Dark"
 # Set bspwm configuration
 set_bspwm_config() {
   bspc config border_width ${BORDER_WIDTH}
-  bspc config top_padding 26
-  bspc config bottom_padding 1
-  bspc config left_padding 1
-  bspc config right_padding 1
+  bspc config top_padding 27
+  bspc config bottom_padding 0
+  bspc config left_padding 0
+  bspc config right_padding 0
   bspc config normal_border_color "${NORMAL_BC}"
   bspc config focused_border_color "${FOCUSED_BC}"
   bspc config presel_feedback_color "${blue}"

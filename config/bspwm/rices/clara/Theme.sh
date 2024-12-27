@@ -10,7 +10,7 @@ read -r RICE <"$HOME"/.config/bspwm/.rice
 BORDER_WIDTH="0" NORMAL_BC="#286983" FOCUSED_BC="#907aa9"
 
 # Fade true|false	# Shadows true|false	# Corner radius		# Shadow color			# Animations true|false
-P_FADE="true" P_SHADOWS="false" P_CORNER_R="6" SHADOW_C="#000000" ANIMATIONS="true"
+P_FADE="true" P_SHADOWS="false" P_CORNER_R="0" SHADOW_C="#000000" ANIMATIONS="true"
 
 # Catppuccin-Latte
 bg="#eff1f5"
@@ -48,10 +48,10 @@ gtk_theme="deepin" gtk_icons="Luv-Folders" gtk_cursor="Qogirr"
 # Set bspwm configuration
 set_bspwm_config() {
   bspc config border_width ${BORDER_WIDTH}
-  bspc config top_padding 26
-  bspc config bottom_padding 1
-  bspc config left_padding 1
-  bspc config right_padding 1
+  bspc config top_padding 27
+  bspc config bottom_padding 0
+  bspc config left_padding 0
+  bspc config right_padding 0
   bspc config normal_border_color "${NORMAL_BC}"
   bspc config focused_border_color "${FOCUSED_BC}"
   bspc config presel_feedback_color "${red}"
