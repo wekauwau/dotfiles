@@ -17,7 +17,7 @@ deps = [
   { use = "wekauwau/yatline-created-time", rev = "6b44de5" },
   { use = "wekauwau/yatline-modified-time", rev = "17a3077" },
   { use = "wekauwau/yatline-rose-pine", rev = "2be09f1" },
-  { use = "wekauwau/yatline-tokyo-night", rev = "c00a6a7" },
+  { use = "wekauwau/yatline-tokyo-night", rev = "5a8d026" },
 ]
 
 [flavor]
