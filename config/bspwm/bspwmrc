@@ -86,10 +86,10 @@ pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-g
 xidlehook \
   --not-when-fullscreen \
   --not-when-audio \
-  --timer 300 \
+  --timer 600 \
   "xrandr --output \"$PRIMARY_DISPLAY\" --brightness .1" \
   "xrandr --output \"$PRIMARY_DISPLAY\" --brightness 1" \
-  --timer 600 \
+  --timer 300 \
   "xrandr --output \"$PRIMARY_DISPLAY\" --brightness 1; betterlockscreen -l" \
   "" \
   --timer 1800 \
