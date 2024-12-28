@@ -67,13 +67,12 @@ require("yatline"):setup({
 		right = {
 			section_a = {
 				{ type = "string", custom = false, name = "cursor_position" },
-				{ type = "string", custom = false, name = "cursor_percentage" },
 			},
 			section_b = {
-				{ type = "coloreds", custom = false, name = "count" },
+				{ type = "string", custom = false, name = "cursor_percentage" },
 			},
 			section_c = {
-				{ type = "coloreds", custom = false, name = "permissions" },
+				{ type = "coloreds", custom = false, name = "count" },
 			},
 		},
 	},
@@ -84,31 +83,26 @@ require("yatline"):setup({
 				{ type = "string", custom = false, name = "tab_mode" },
 			},
 			section_b = {
-				{ type = "coloreds", custom = false, name = "created_time" },
+				{ type = "string", custom = false, name = "hovered_name" },
 			},
 			section_c = {
-				{ type = "string", custom = false, name = "hovered_name" },
 				{ type = "coloreds", custom = false, name = "symlink" },
 			},
 		},
 		right = {
 			section_a = {
 				{ type = "string", custom = false, name = "hovered_file_extension", params = { true } },
-				{ type = "string", custom = false, name = "hovered_size" },
 			},
 			section_b = {
-				{ type = "coloreds", custom = false, name = "modified_time" },
+				{ type = "string", custom = false, name = "hovered_size" },
 			},
 			section_c = {
-				-- INFO: Disabled
-				-- { type = "coloreds", custom = false, name = "githead" },
+				{ type = "coloreds", custom = false, name = "permissions" },
 			},
 		},
 	},
 })
 
-require("yatline-created-time"):setup()
--- INFO: Seems not working
--- require("yatline-githead"):setup()
-require("yatline-modified-time"):setup()
-require("yatline-symlink"):setup()
+require("yatline-symlink"):setup({
+	symlink_color = "#4c4f69",
+})
