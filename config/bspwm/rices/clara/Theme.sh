@@ -62,6 +62,16 @@ set_term_config() {
   ln -sf ~/.config/bspwm/rices/clara/colorschemes/alacritty.toml ~/.config/alacritty/rice-colors.toml
 
   ln -sf ~/.config/bspwm/rices/clara/colorschemes/kitty.conf ~/.config/kitty/current-theme.conf
+
+  kitty_conf="$HOME/.config/kitty/kitty.conf"
+  sed -i '/font_family/Q' "$kitty_conf"
+  cat >>"$kitty_conf" <<-_EOF_
+font_family      family='JetBrainsMono Nerd Font' style=SemiBold
+bold_font        family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-Bold
+italic_font      family='JetBrainsMono Nerd Font' style='SemiBold Italic'
+bold_italic_font family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-BoldItalic
+	_EOF_
+
   pidof -q kitty && killall -USR1 kitty
 }
 
