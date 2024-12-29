@@ -9,10 +9,13 @@ super + @space
 
 #|||----- Apps -----|||#
 
+shift + alt + t
+  telegram-desktop
+
 shift + alt + {b,e,m,s}
 	OpenApps --{browser,filemanager,music,soundcontrol}
 
-shift + alt + {n,f,t}
+shift + alt + {n,f,h}
   Term --{editor,filemanager,taskmanager}
 
 # INFO: emoji picker: super + .
