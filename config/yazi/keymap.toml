@@ -1,6 +1,11 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
 [[manager.prepend_keymap]]
+on = "!"
+run = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+[[manager.prepend_keymap]]
 on = "H"
 run = "tab_switch -1 --relative"
 desc = "Switch to the previous tab"
