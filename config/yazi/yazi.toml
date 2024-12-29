@@ -8,6 +8,9 @@ wrap = "yes"
 image_delay = 5
 
 [opener]
+edit = [
+  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "linux" },
+]
 ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
 image = [
   { run = 'feh --fullscreen --start-at "$@"', desc = "Open", for = "linux" },
