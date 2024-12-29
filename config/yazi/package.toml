@@ -11,9 +11,9 @@ deps = [
   { use = "yazi-rs/plugins:smart-filter", rev = "71c4fc2" },
 
   { use = "imsi32/yatline", rev = "600ed1f" },
+  { use = "imsi32/yatline-catppuccin", rev = "dc575da" },
 
-  { use = "wekauwau/yatline-catppuccin", rev = "628dab2" },
-  { use = "wekauwau/yatline-tokyo-night", rev = "c632d55" },
+  { use = "wekauwau/yatline-tokyo-night", rev = "5a8d026" },
 ]
 
 [flavor]
