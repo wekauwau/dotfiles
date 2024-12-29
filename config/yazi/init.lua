@@ -107,5 +107,5 @@ require("yatline"):setup({
 })
 
 require("yatline-symlink"):setup({
-	symlink_color = "#4c4f69",
+	symlink_color = "#c0caf5",
 })

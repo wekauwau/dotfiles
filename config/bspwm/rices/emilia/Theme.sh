@@ -195,7 +195,8 @@ set_yazi() {
   yatline_theme_variant="night"
 
   sed -i "$yazi_init_file" \
-    -e "s/yatline_theme = .*/yatline_theme = require(\"${yatline_theme}\"):setup(\"${yatline_theme_variant}\")/"
+    -e "s/yatline_theme = .*/yatline_theme = require(\"${yatline_theme}\"):setup(\"${yatline_theme_variant}\")/" \
+    -e "s/symlink_color = .*/symlink_color = \"${fg}\",/"
 }
 
 # Launch theme
