@@ -191,12 +191,16 @@ set_neovim() {
 
 set_yazi() {
   yazi_init_file="$HOME/.config/yazi/init.lua"
+  yazi_theme_toml="$HOME/.config/yazi/theme.toml"
   yatline_theme="yatline-tokyo-night"
   yatline_theme_variant="night"
 
   sed -i "$yazi_init_file" \
     -e "s/yatline_theme = .*/yatline_theme = require(\"${yatline_theme}\"):setup(\"${yatline_theme_variant}\")/" \
     -e "s/symlink_color = .*/symlink_color = \"${fg}\",/"
+
+  sed -i "$yazi_theme_toml" \
+    -e "s/mask = .*/mask = { bg = \"#292e42\" }/"
 }
 
 # Launch theme

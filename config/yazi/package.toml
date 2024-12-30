@@ -16,7 +16,13 @@ deps = [
 
   { use = "wekauwau/yatline-tokyo-night", rev = "5a8d026" },
   { use = "wekauwau/smart-tab", rev = "ffa142c" },
+
+  # INFO: Looks good
+  # https://github.com/AnirudhG07/rich-preview.yazi
 ]
 
 [flavor]
-deps = []
+deps = [
+  { use = "yazi-rs/flavors:catppuccin-latte", rev = "fc8eeaa" },
+  { use = "BennyOe/tokyo-night", rev = "024fb09" },
+]
