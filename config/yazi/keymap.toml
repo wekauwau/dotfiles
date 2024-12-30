@@ -2,8 +2,8 @@
 
 [[manager.prepend_keymap]]
 on = "!"
-run = 'shell "$SHELL" --block'
-desc = "Open shell here"
+run = 'shell "Term --terminal"'
+desc = "Open terminal here"
 
 [[manager.prepend_keymap]]
 on = "H"

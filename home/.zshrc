@@ -4,8 +4,8 @@
 #  ┬  ┬┌─┐┬─┐┌─┐
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
-export VISUAL="${EDITOR}"
 export EDITOR='nvim'
+export VISUAL="${EDITOR}"
 export BROWSER='firefox'
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|touch|rustc|cargo new|git clone|aria2c)"
 export SUDO_PROMPT="Deploying root access for %u. Password pls: "
@@ -132,9 +132,6 @@ fi
 #  ┌─┐┬  ┬┌─┐┌─┐
 #  ├─┤│  │├─┤└─┐
 #  ┴ ┴┴─┘┴┴ ┴└─┘
-# alias aa="alacritty"
-# sudo ln -s /usr/bin/alacritty /usr/bin/aa
-alias kk="kitty"
 
 alias ls="eza --icons=always --color=always -a --group-directories-first"
 alias ll="eza --icons=always --color=always -la --group-directories-first"
