@@ -84,7 +84,7 @@ deps+=(zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlight
 # text editor
 deps+=(neovim)
 # terminal file manager
-deps+=(yazi ffmpegthumbnailer ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick)
+deps+=(yazi ffmpegthumbnailer ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick dragon-drop)
 # alacritty img previewer for yazi
 deps+=(ueberzugpp)
 # archiver
