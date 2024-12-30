@@ -14,6 +14,7 @@ deps = [
   { use = "imsi32/yatline-catppuccin", rev = "dc575da" },
 
   { use = "wekauwau/yatline-tokyo-night", rev = "5a8d026" },
+  { use = "wekauwau/smart-tab", rev = "ffa142c" },
 ]
 
 [flavor]

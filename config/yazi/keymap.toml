@@ -6,6 +6,11 @@ run = 'shell "Term --terminal"'
 desc = "Open terminal here"
 
 [[manager.prepend_keymap]]
+on = "t"
+run = "plugin smart-tab"
+desc = "Create a tab and enter the hovered directory"
+
+[[manager.prepend_keymap]]
 on = "H"
 run = "tab_switch -1 --relative"
 desc = "Switch to the previous tab"
