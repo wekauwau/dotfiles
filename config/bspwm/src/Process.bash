@@ -21,7 +21,7 @@ fi
 sleep 0.30
 
 # processes=("picom" "bspm")
-processes=("bspm" "picom" "xidlehook")
+processes=("bspm")
 
 for process in "${processes[@]}"; do
   if pgrep -f "$process"; then

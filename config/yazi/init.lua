@@ -18,7 +18,7 @@ require("bookmarks"):setup({
 
 local yatline_theme = require("yatline-tokyo-night"):setup("night")
 yatline_theme.section_separator = { open = "", close = "" }
-yatline_theme.part_separator = { open = "┃", close = "┃" }
+yatline_theme.part_separator = { open = "|", close = "|" }
 yatline_theme.inverse_separator = { open = "", close = "" }
 
 require("yatline"):setup({
