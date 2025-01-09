@@ -83,3 +83,9 @@ run = '''
 on = ["C"]
 run = "plugin ouch --args=zip"
 desc = "Compress with ouch"
+
+# { on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+[[manager.prepend_keymap]]
+on = ["R"]
+run = "rename --empty=stem --cursor=start"
+desc = "Rename (emptied)"
