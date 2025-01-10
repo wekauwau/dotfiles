@@ -1,21 +1,21 @@
 [plugin]
 deps = [
-  { use = "dedukun/bookmarks", rev = "35da107" },
+  { use = "dedukun/bookmarks", rev = "202e450" },
   { use = "lpanebr/yazi-plugins:yatline-symlink", rev = "7af4fed" },
   { use = "ndtoan96/ouch", rev = "b869886" },
 
-  { use = "yazi-rs/plugins:smart-enter", rev = "71c4fc2" },
-  { use = "yazi-rs/plugins:full-border", rev = "71c4fc2" },
-  { use = "yazi-rs/plugins:max-preview", rev = "71c4fc2" },
-  { use = "yazi-rs/plugins:hide-preview", rev = "71c4fc2" },
-  { use = "yazi-rs/plugins:git", rev = "71c4fc2" },
-  { use = "yazi-rs/plugins:smart-filter", rev = "71c4fc2" },
+  { use = "yazi-rs/plugins:smart-enter", rev = "600614a" },
+  { use = "yazi-rs/plugins:full-border", rev = "600614a" },
+  { use = "yazi-rs/plugins:max-preview", rev = "600614a" },
+  { use = "yazi-rs/plugins:hide-preview", rev = "600614a" },
+  { use = "yazi-rs/plugins:git", rev = "600614a" },
+  { use = "yazi-rs/plugins:smart-filter", rev = "600614a" },
 
-  { use = "imsi32/yatline", rev = "600ed1f" },
+  { use = "imsi32/yatline", rev = "9328205" },
   { use = "imsi32/yatline-catppuccin", rev = "dc575da" },
 
   { use = "wekauwau/yatline-tokyo-night", rev = "5a8d026" },
-  { use = "wekauwau/smart-tab", rev = "ffa142c" },
+  { use = "wekauwau/smart-tab", rev = "16d2911" },
 
   # INFO: Looks good
   # https://github.com/AnirudhG07/rich-preview.yazi
@@ -24,5 +24,5 @@ deps = [
 [flavor]
 deps = [
   { use = "yazi-rs/flavors:catppuccin-latte", rev = "fc8eeaa" },
-  { use = "BennyOe/tokyo-night", rev = "024fb09" },
+  { use = "BennyOe/tokyo-night", rev = "caa00ab" },
 ]
