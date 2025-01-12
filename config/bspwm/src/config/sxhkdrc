@@ -78,12 +78,14 @@ super + n
   Term --scratch
 
 # Power off, reboot, lock and suspend
-ctrl + super + alt + {p,r,s}
-	systemctl {poweroff,reboot,suspend}
+# ctrl + super + alt + {p,r,s}
+# 	systemctl {poweroff,reboot,suspend}
 
-# Log out (bspwm), Lockscreen, kill an app
-ctrl + super + alt + {q,l,k}
-	{bspc quit,betterlockscreen -l,xkill}
+# Kill an app
+ctrl + super + alt + k
+	xkill
+# ctrl + super + alt + {q,l,k}
+# 	{bspc quit,betterlockscreen -l,xkill}
 
 # NOTE: no need maybe
 # Change transparency on focused window
