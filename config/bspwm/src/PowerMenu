@@ -19,21 +19,21 @@ rofi_cmd() {
 chosen=$(printf "%s\n" "${options[@]}" | rofi_cmd)
 
 case $chosen in
-"󰐥")
-  systemctl poweroff
-  ;;
-"󰜉")
-  systemctl reboot
-  ;;
 "󰍁")
   betterlockscreen -l
   ;;
 "")
-  mpc -q pause
-  amixer set Master mute
+  # mpc -q pause
+  # amixer set Master mute
   systemctl suspend
   ;;
 "󰗽")
   bspc quit
+  ;;
+"󰜉")
+  systemctl reboot
+  ;;
+"󰐥")
+  systemctl poweroff
   ;;
 esac
