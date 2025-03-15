@@ -1,0 +1,505 @@
+#!/usr/bin/env bash
+
+if [ "$(id -u)" = 0 ]; then
+  echo "This script MUST NOT be run as root user"
+  exit 1
+fi
+
+backup_folder=~/.RiceBackup
+date=$(date +%Y%m%d-%H%M%S)
+ERROR_LOG="$HOME/RiceError.log"
+home_dir=$HOME
+current_dir=$(pwd)
+
+log_error() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >>"$ERROR_LOG"
+}
+
+is_installed() {
+  paru -Qq "$1" &>/dev/null
+}
+
+ask_continue() {
+  while true; do
+    read -rp " Continue? [y/N]: " yn
+    case $yn in
+    [Yy]*) break ;;
+    [Nn]*) exit ;;
+    *) printf " Error: just write 'y' or 'n'\n\n" ;;
+    esac
+  done
+  clear
+}
+
+title() {
+  printf '%s\n\n' "${1:?}"
+}
+
+if [ "$current_dir" != "$home_dir" ]; then
+  echo "The script must be executed from the HOME directory"
+  exit 1
+fi
+
+########## ---------- Welcome ---------- ##########
+
+logo "Welcome!"
+printf "This script will check if you have the necessary dependencies, and if not, it will install them. Then, it will clone wekauwau/dotfiles to your HOME directory.\nAfter that, it will create a backup of your dotfiles, and then setting up the dotfiles.\n\nThis script DOES NOT modify any of your system configurations.\nYou will be prompted for your root password to install missing dependencies and/or to switch to zsh shell if it's not your default.\n\nThis script doesn't have the potential power to break your system, it only copies files from wekauwau/dotfiles to your HOME directory.\n\n"
+
+ask_continue
+
+########## ---------- Installing Paru ---------- ##########
+
+logo "Installing Paru"
+
+if command -v paru >/dev/null 2>&1; then
+  echo "Paru is already installed"
+else
+  echo "Installing paru..."
+  {
+    cd "$HOME" || exit
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/paru.git
+    cd paru || exit
+    makepkg -si --noconfirm
+  } || {
+    printf "\nFailed to install paru. You may need to install it manually\n"
+  }
+fi
+sleep 3
+clear
+
+########## ---------- Install packages ---------- ##########
+
+logo "Installing Needed Packages"
+
+deps=()
+# img duplicate finder
+deps+=(dupeguru)
+# terminal
+deps+=(alacritty kitty)
+# window manager related
+deps+=(bspwm brightnessctl dunst picom redshift rofi sxhkd xqp rofi-greenclip ttf-maple simple-mtpfs eww polybar)
+# zsh shell
+deps+=(zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+# text editor
+deps+=(neovim)
+# terminal file manager
+deps+=(yazi ffmpegthumbnailer ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick dragon-drop)
+# alacritty img previewer for yazi
+deps+=(ueberzugpp)
+# archiver
+deps+=(7-zip-full)
+# fonts
+deps+=(ttf-inconsolata ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-joypixels ttf-terminus-nerd ttf-ubuntu-mono-nerd)
+# download
+deps+=(aria2)
+# github
+deps+=(github-cli)
+# img edit
+deps+=(gthumb)
+# power management
+deps+=(tlp tlp-rdw xidlehook)
+# emoji picker
+deps+=(emote)
+# misc
+deps+=(betterlockscreen git python python-gobject bat eza feh gvfs-mtp firefox git jq jgmenu libwebp maim mpc mpd ncmpcpp npm pamixer pacman-contrib papirus-icon-theme playerctl polkit-gnome rustup tmux webp-pixbuf-loader xclip xdg-user-dirs xdo xdotool xsettingsd xorg-xdpyinfo xorg-xkill xorg-xprop xorg-xrandr xorg-xsetroot xorg-xwininfo)
+
+printf "Checking for required packages...\n\n"
+
+for dep in "${deps[@]}"; do
+  if ! is_installed "$dep"; then
+    # Check if the package is in the official pacman repositories
+    if pacman -Ss "^$dep$" >/dev/null 2>&1; then
+      echo "Installing $dep from pacman..."
+      if sudo pacman -S "$dep" --noconfirm >/dev/null 2>>RiceError.log; then
+        echo "$dep has been installed succesfully"
+        sleep 1
+      else
+        echo "Failed to install $dep. See RiceError.log for more details"
+        sleep 1
+      fi
+    else
+      echo "$dep not found in pacman. Installing from AUR..."
+      # Install from AUR
+      if paru -S --needed --skipreview --noconfirm "$dep" >/dev/null 2>>RiceError.log; then
+        echo "$dep has been installed succesfully"
+        sleep 1
+      else
+        echo "Failed to install $dep. See RiceError.log for more details"
+        sleep 1
+      fi
+    fi
+  else
+    echo "$dep is already installed on your system!"
+    sleep 1
+  fi
+done
+sleep 3
+clear
+
+########## ---------- Add custom repo to pacman.conf ---------- ##########
+
+logo "Add gh0stzk-dotfiles Custom Repository"
+
+REPO_CONTENT="[gh0stzk-dotfiles]
+SigLevel = Optional TrustAll
+Server = http://gh0stzk.github.io/pkgs/x86_64"
+
+if ! grep -q "\[gh0stzk-dotfiles\]" /etc/pacman.conf; then
+  if echo -e "\n$REPO_CONTENT" | sudo tee -a /etc/pacman.conf >/dev/null 2>>RiceError.log; then
+    echo "Custom repo added succesfully"
+    sudo pacman -Syy
+  else
+    echo "Failed to add custom repo"
+  fi
+else
+  echo "Custom repo already exists in your pacman.conf"
+  sleep 1
+fi
+sleep 3
+clear
+
+########## ---------- Install needed packages from custom repo ---------- ##########
+
+logo "Installing Needed Packages From Custom Repo"
+
+customdeps=(gh0stzk-gtk-themes gh0stzk-cursor-qogirr gh0stzk-icons-dracula gh0stzk-icons-luv gh0stzk-icons-tokyo-night)
+
+printf "Checking for required custom packages...\n\n"
+
+for dep in "${customdeps[@]}"; do
+  if ! is_installed "$dep"; then
+    if sudo pacman -S "$dep" --noconfirm >/dev/null 2>>RiceError.log; then
+      echo "$dep has been installed succesfully"
+      sleep 1
+    else
+      echo "Failed to install $dep. See RiceError.log for more details"
+      sleep 1
+    fi
+  else
+    echo "$dep is already installed on your system!"
+    sleep 1
+  fi
+done
+sleep 5
+clear
+
+########## ---------- Preparing Folders ---------- ##########
+
+# Verifies if the archive user-dirs.dirs doesn't exist in ~/.config
+if [ ! -e "$HOME/.config/user-dirs.dirs" ]; then
+  xdg-user-dirs-update
+fi
+
+########## ---------- Cloning the Rice! ---------- ##########
+
+logo "Downloading Dotfiles"
+
+repo_url="https://github.com/wekauwau/dotfiles"
+repo_dir="$HOME/dotfiles"
+
+echo "Checking for existing HOME/dotfiles..."
+
+if [ -d "$repo_dir" ]; then
+  if mv "$repo_dir" "$backup_folder/dotfiles_$date" 2>>RiceError.log; then
+    echo "HOME/dotfiles backed up successfully at $backup_folder/dotfiles_$date"
+    sleep 1
+  else
+    echo "Failed to backup HOME/dotfiles. See RiceError.log"
+    sleep 1
+  fi
+else
+  echo "HOME/dotfiles doesn't exist, no backup needed"
+  sleep 1
+fi
+
+printf "Cloning dotfiles from %s\n" "$repo_url"
+git clone --depth=1 "$repo_url" "$repo_dir"
+sleep 3
+clear
+
+########## ---------- Backup files ---------- ##########
+
+logo "Backup Files"
+printf "If you already have a powerful and super Pro NEOVIM configuration, write 'n' in the next question. If you answer 'y' your neovim configuration will be moved to the backup directory.\n\n"
+
+while true; do
+  read -rp "Do you want to try my nvim config? (y/n): " try_nvim
+  if [[ "$try_nvim" == "y" || "$try_nvim" == "n" ]]; then
+    break
+  else
+    echo "Invalid input. Please enter 'y' or 'n'."
+  fi
+done
+
+printf "\nBackup files will be stored in %s/.RiceBackup \n\n" "$HOME"
+sleep 10
+
+[ ! -d "$backup_folder" ] && mkdir -p "$backup_folder"
+
+for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar gtk-3.0 ncmpcpp ranger tmux zsh mpd paru; do
+  if [ -d "$HOME/.config/$folder" ]; then
+    if mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date" 2>>RiceError.log; then
+      echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+      sleep 1
+    else
+      echo "Failed to backup $folder folder. See RiceError.log"
+      sleep 1
+    fi
+  fi
+done
+
+if [[ $try_nvim == "y" ]]; then
+  # Backup nvim
+  if [ -d "$HOME/.config/nvim" ]; then
+    if mv "$HOME/.config/nvim" "$backup_folder/nvim_$date" 2>>RiceError.log; then
+      echo "nvim folder backed up successfully at $backup_folder/nvim_$date"
+      sleep 1
+    else
+      echo "Failed to backup nvim folder. See RiceError.log"
+      sleep 1
+    fi
+  else
+    echo "nvim folder does not exist, no backup needed"
+    sleep 1
+  fi
+fi
+
+if [ -f ~/.zshrc ]; then
+  if mv ~/.zshrc "$backup_folder/.zshrc_$date" 2>>RiceError.log; then
+    echo ".zshrc file backed up successfully at $backup_folder/.zshrc_$date"
+  else
+    echo "Failed to backup .zshrc file. See RiceError.log"
+  fi
+else
+  echo ".zshrc file doesn't exist, no backup needed"
+fi
+
+if [ -f ~/.gtkrc-2.0 ]; then
+  if mv ~/.gtkrc-2.0 "$backup_folder/.gtkrc-2.0_$date" 2>>RiceError.log; then
+    echo ".gtkrc-2.0 file backed up successfully at $backup_folder/.gtkrc-2.0_$date"
+  else
+    echo "Failed to backup .gtkrc-2.0 file. See RiceError.log"
+  fi
+else
+  echo ".gtkrc-2.0 file doesn't exist, no backup needed"
+fi
+
+if [ -d ~/.icons ]; then
+  if mv ~/.icons "$backup_folder/.icons_$date" 2>>RiceError.log; then
+    echo ".icons folder backed up successfully at $backup_folder/.icons_$date"
+  else
+    echo "Failed to backup .icons folder. See RiceError.log"
+  fi
+else
+  echo ".icons folder doesn't exist, no backup needed"
+fi
+
+printf "Done!!\n\n"
+sleep 3
+clear
+
+########## ---------- Copy the Rice! ---------- ##########
+
+logo "Installing Dotfiles"
+echo "Setting up dotfiles..."
+
+[ ! -d ~/.config ] && mkdir -p ~/.config
+[ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
+[ ! -d ~/.local/share ] && mkdir -p ~/.local/share
+
+printf "\nInstalling .config/...\n\n"
+# Already backed up, installing
+for dir in ~/dotfiles/config/*; do
+  dir_name=$(basename "$dir")
+  # If the directory is nvim and the user doesn't want to try it, skip this loop
+  if [[ $dir_name == "nvim" && $try_nvim != "y" ]]; then
+    continue
+  fi
+
+  if ln -s "$dir" ~/.config/ 2>>RiceError.log; then
+    echo "$dir_name configuration installed successfully"
+    sleep 1
+  else
+    echo "Failed to install $dir_name configuration. See RiceError.log"
+    sleep 1
+  fi
+done
+
+printf "\nInstalling .local/share/...\n\n"
+# Backup and install
+for folder in applications fonts; do
+  share_dir="$HOME/.local/share/"
+
+  # Backup
+  if [ -d "${share_dir}/$folder" ]; then
+    if mv "${share_dir}/$folder" "$backup_folder/${folder}_$date" 2>>RiceError.log; then
+      echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+      sleep 1
+    else
+      echo "Failed to backup $folder folder. See RiceError.log"
+      sleep 1
+    fi
+  else
+    echo "$folder folder doesn't exist, no backup needed"
+    sleep 1
+  fi
+
+  # Install
+  if ln -s "$HOME/dotfiles/misc/$folder" ~/.local/share/ 2>>RiceError.log; then
+    echo "$folder folder installed successfully"
+    sleep 1
+  else
+    echo "Failed to install $folder. See RiceError.log"
+    sleep 1
+  fi
+done
+
+# Backup and install
+printf "\nInstalling .local/bin/...\n\n"
+# Backup
+if [ -d "$HOME/.local/bin" ]; then
+  if mv "$HOME/.local/bin" "$backup_folder/bin_$date" 2>>RiceError.log; then
+    echo "bin folder backed up successfully at $backup_folder/bin_$date"
+    sleep 1
+  else
+    echo "Failed to backup bin folder. See RiceError.log"
+    sleep 1
+  fi
+else
+  echo "bin folder doesn't exist, no backup needed"
+  sleep 1
+fi
+# Install
+if ln -s ~/dotfiles/misc/bin ~/.local/ 2>>RiceError.log; then
+  echo "bin folder installed successfully"
+  sleep 1
+else
+  echo "Failed to install bin folder. See RiceError.log"
+  sleep 1
+fi
+
+# Backup and install
+printf "\nInstalling .icons/...\n\n"
+# Backup
+if [ -d "$HOME/.icons" ]; then
+  if mv "$HOME/.icons" "$backup_folder/.icons_$date" 2>>RiceError.log; then
+    echo ".icons folder backed up successfully at $backup_folder/.icons_$date"
+    sleep 1
+  else
+    echo "Failed to backup .icons folder. See RiceError.log"
+    sleep 1
+  fi
+else
+  echo ".icons folder doesn't exist, no backup needed"
+  sleep 1
+fi
+# Install
+if ln -s ~/dotfiles/home/.icons ~ 2>>RiceError.log; then
+  echo ".icons folder installed successfully"
+  sleep 1
+else
+  echo "Failed to install .icons folder. See RiceError.log"
+  sleep 1
+fi
+
+printf "\n\nDotfiles installed succesfully!!\n"
+sleep 3
+clear
+
+########## ---------- Installing AUR dependencies ---------- ##########
+
+logo "Installing AUR Dependencies"
+
+aur_apps=(tdrop xqp rofi-greenclip ttf-maple simple-mtpfs eww)
+
+printf "Checking for required packages...\n\n"
+for package in "${aur_apps[@]}"; do
+  if ! is_installed "$package"; then
+    if paru -S --needed --skipreview --noconfirm "$package" 2> >(tee -a "$ERROR_LOG"); then
+      echo "$package installed successfully"
+    else
+      echo "Failed to install $package. See RiceError.log"
+      log_error "Failed to install package: $package"
+    fi
+    sleep 1
+  else
+    echo "$package is already installed!"
+    sleep 1
+  fi
+done
+sleep 3
+clear
+
+########## ---------- Enabling MPD service ---------- ##########
+
+logo "Enabling mpd Service"
+
+if systemctl is-enabled --quiet mpd.service; then
+  echo "Disabling and stopping the global mpd service"
+
+  if sudo systemctl disable --now mpd.service >/dev/null 2> >(tee -a "$ERROR_LOG"); then
+    sleep 1
+    printf "\n[OK] Global MPD service disabled successfully\n\n"
+  else
+    sleep 1
+    printf "[Error] Please check RiceError.log for details\n\n"
+    log_error "Failed to disable global MPD service"
+  fi
+fi
+
+printf "Enabling and starting the user-level mpd service\n\n"
+
+if systemctl --user enable --now mpd.service >/dev/null 2> >(tee -a "$ERROR_LOG"); then
+  sleep 1
+  printf "[OK] User-level MPD service enabled successfully\n\n"
+else
+  sleep 1
+  printf "[Error] Please check RiceError.log for details\n\n"
+  log_error "Failed to enable user-level MPD service"
+fi
+sleep 3
+clear
+
+########## --------- Changing shell to zsh ---------- ##########
+
+logo "Changing default shell to zsh"
+
+if [[ $SHELL != "/usr/bin/zsh" ]]; then
+  printf "Changing your shell to zsh...\n\n"
+
+  if chsh -s /usr/bin/zsh 2> >(tee -a "$ERROR_LOG"); then
+    printf "\n[OK] Shell changed to zsh successfully!\n\n"
+  else
+    printf "Error changing your shell to zsh. Please check RiceError.log for details\n\n"
+    log_error "Failed to change shell to zsh"
+  fi
+else
+  printf "Your shell is already zsh\n\n"
+fi
+sleep 3
+clear
+
+########## --------- exit ---------- ##########
+
+logo "Installation is compñete"
+printf "The installation is complete, you need to restart your machine.\n\n"
+
+while true; do
+  read -rp " Reboot now? [y/N]: " yn
+  case $yn in
+  [Yy]*)
+    printf "\nRebooting now...\n"
+    sleep 3
+    reboot
+    break
+    ;;
+  [Nn]*)
+    printf "\nOK, remember to restart later!\n\n"
+    break
+    ;;
+  *)
+    printf "\nPlease answer yes or no.\n\n"
+    ;;
+  esac
+done
