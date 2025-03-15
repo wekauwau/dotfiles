@@ -15,32 +15,32 @@ hash = "ed6c185514109d7c5463f609282b220c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "2bf70d8"
+rev = "cb6165b"
 hash = "7918aab6a71caf31b58411f789195677"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2bf70d8"
-hash = "9dce00232a0e0e2502565c7aa2b0ed4e"
+rev = "cb6165b"
+hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "2bf70d8"
+rev = "cb6165b"
 hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:hide-preview"
-rev = "2bf70d8"
+rev = "cb6165b"
 hash = "53f826884e2c7e521cecc492a7f31d7e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "2bf70d8"
-hash = "806cb2842b64e976ba2c65a3e3724518"
+rev = "cb6165b"
+hash = "ee5fa7e64db72d6b10c2315de97c9cc7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "2bf70d8"
+rev = "cb6165b"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
 
 [[plugin.deps]]
@@ -55,8 +55,8 @@ hash = "fd03fb015a28040bca0c0f9a8fe6fd8d"
 
 [[plugin.deps]]
 use = "wekauwau/yatline-tokyo-night"
-rev = "5a8d026"
-hash = "60e83a7a6d5f6dc00480bc33dbbf3888"
+rev = "19dbd25"
+hash = "5f00a80a79b9f7fd8e24d6fa5dbb3ae"
 
 [[plugin.deps]]
 use = "wekauwau/smart-tab"
@@ -65,7 +65,7 @@ hash = "e3a427c29732ad5b2b8fecf18fb82e3d"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "b929df6"
+rev = "68326b4"
 hash = "5dffea1e87c50b18b8bb1599f6d4881a"
 
 [[flavor.deps]]
