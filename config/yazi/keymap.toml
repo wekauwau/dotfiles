@@ -29,17 +29,17 @@ run = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 # { on = "l", run = "enter", desc = "Enter the child directory" },
 
-# yazi-rs/plugins:max-preview
-[[manager.prepend_keymap]]
-on = "T"
-run = "plugin max-preview"
-desc = "Maximize or restore preview"
-
-# yazi-rs/plugins:hide-preview
+# keymap.toml
 [[manager.prepend_keymap]]
 on = "U"
-run = "plugin hide-preview"
-desc = "Hide or show preview"
+run = "plugin toggle-pane min-preview"
+desc = "Show or hide the preview pane"
+
+# keymap.toml
+[[manager.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
 
 # yazi-rs/plugins:smart-filter
 [[manager.prepend_keymap]]
