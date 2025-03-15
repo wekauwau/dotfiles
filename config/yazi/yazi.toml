@@ -16,6 +16,9 @@ image = [
   { run = 'feh --fullscreen --start-at "$@"', desc = "Open", for = "linux" },
 ]
 video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
+extract = [
+  { run = 'ouch decompress "$1" -d "${1%.*}" -y', desc = "Extract to dir with ouch", for = "unix" },
+]
 
 [open]
 prepend_rules = [
