@@ -17,11 +17,6 @@ Aline,echo aline > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/aline/Theme.sh,
 Emilia,echo emilia > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/emilia/Theme.sh,colors
 Yael,echo yael > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/yael/Theme.sh,colors
 
-^tag(favorites)
-Editor,OpenApps --editor,editor
-Opera,OpenApps --browser,opera
-Retroarch,retroarch,retroarch
-
 ^tag(wg)
 Music Player,OpenApps --player,musique
 Power Menu,OpenApps --powermenu,changes-allow
