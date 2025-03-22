@@ -89,3 +89,8 @@ desc = "Compress with ouch"
 on = ["R"]
 run = "rename --empty=stem --cursor=start"
 desc = "Rename (emptied)"
+
+[[manager.prepend_keymap]]
+on = ["g", "r"]
+run = "cd /"
+desc = "Goto /"
