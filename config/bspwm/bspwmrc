@@ -67,7 +67,8 @@ pidof -q picom || { picom --config "${HOME}"/.config/bspwm/src/config/picom.conf
 pidof -q xsettings || { xsettingsd --config="${HOME}"/.config/bspwm/src/config/xsettingsd >/dev/null 2>&1 & }
 
 # Launch bspm for true transparent monocle
-bspm -d &
+pidof -q bspm || { bspm -d & }
+# pgrep -x bspm > /dev/null || bspm -d &
 
 # Launch eww daemon
 pidof -q eww || { eww -c "${HOME}"/.config/bspwm/eww daemon & }

@@ -20,15 +20,14 @@ if pgrep -f "bspc subscribe node_state" >/dev/null; then
 fi
 sleep 0.30
 
-processes=("picom" "bspm")
-processes=("bspm")
-
-for process in "${processes[@]}"; do
-  if pgrep -f "$process"; then
-    pkill -f "$process" >/dev/null
-    sleep 0.25
-  fi
-done
+# processes=("bspm")
+#
+# for process in "${processes[@]}"; do
+#   if pgrep -f "$process"; then
+#     pkill -f "$process" >/dev/null
+#     sleep 0.25
+#   fi
+# done
 # pidof -q bspm
 
 # Load random wallpaper depending on the theme you are.
