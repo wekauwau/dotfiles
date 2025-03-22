@@ -13,9 +13,8 @@ BSPWM,^checkout(wm),gnome-windows
 Exit,^checkout(exit),system-shutdown
 
 ^tag(rices)
-Aline,echo aline > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/aline/Theme.sh,colors
+Clara,echo clara > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/clara/Theme.sh,colors
 Emilia,echo emilia > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/emilia/Theme.sh,colors
-Yael,echo yael > ~/.config/bspwm/.rice ; ~/.config/bspwm/rices/yael/Theme.sh,colors
 
 ^tag(wg)
 Music Player,OpenApps --player,musique
