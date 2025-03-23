@@ -127,6 +127,8 @@ background = "${bg}"
 foreground = "${fg}"
 frame_color = "${red}"
 	_EOF_
+
+  dunstctl reload "$dunst_config_file"
 }
 
 # Set eww colors
@@ -219,12 +221,7 @@ set_yazi() {
     -e "s/mask = .*/mask = { bg = \"#e6e9ef\" }/"
 }
 
-# Launch theme
 launch_theme() {
-
-  # Launch dunst notification daemon
-  dunst -config "${HOME}"/.config/bspwm/src/config/dunstrc &
-
   # Launch polybar
   sleep 0.1
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
