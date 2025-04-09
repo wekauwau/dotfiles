@@ -144,7 +144,7 @@ alias paru-clean="paru -Sccd"
 alias paru-install="paru -S --needed $@"
 alias paru-update="paru -Syu --needed --nocombinedupgrade"
 alias ssh-me="source ssh-agent-reuse"
-alias list-packages="expac -s '%-30n %m' | sort -rhk 2 | less"
+alias list-packages="expac -s '%-30n %m' | sort -rhk 2 | nvim"
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
