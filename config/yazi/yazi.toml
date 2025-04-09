@@ -39,9 +39,9 @@ id = "git"
 name = "*/"
 run = "git"
 
-# https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#preview
 [plugin]
 prepend_previewers = [
+  # https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#preview
   # Archive previewer
   { mime = "application/*zip", run = "ouch" },
   { mime = "application/x-tar", run = "ouch" },
@@ -49,4 +49,12 @@ prepend_previewers = [
   { mime = "application/x-7z-compressed", run = "ouch" },
   { mime = "application/x-rar", run = "ouch" },
   { mime = "application/x-xz", run = "ouch" },
+
+  # Disable video
+  { mime = "video/*", run = "noop" },
+]
+
+prepend_preloaders = [
+  # Disable video
+  { mime = "video/*", run = "noop" },
 ]
