@@ -1,42 +1,27 @@
 [[plugin.deps]]
-use = "dedukun/bookmarks"
-rev = "95b2c58"
-hash = "17a094653b7d0db4ac68ed531d2e1412"
-
-[[plugin.deps]]
-use = "lpanebr/yazi-plugins:yatline-symlink"
-rev = "ca18a2c"
-hash = "32939ad5b4738c2595a904997fd30ea6"
-
-[[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "ce6fb75"
-hash = "ed6c185514109d7c5463f609282b220c"
+rev = "2496cd9"
+hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "cb6165b"
+rev = "b12a9ab"
 hash = "7918aab6a71caf31b58411f789195677"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "cb6165b"
+rev = "b12a9ab"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "cb6165b"
-hash = "ee5fa7e64db72d6b10c2315de97c9cc7"
+rev = "b12a9ab"
+hash = "e0ada736ea676c2bbb3ec705a49526ef"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "cb6165b"
+rev = "b12a9ab"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
-
-[[plugin.deps]]
-use = "imsi32/yatline"
-rev = "6b0fc1e"
-hash = "ab115c6cc77f5710c27f39dfa2f3d4d"
 
 [[plugin.deps]]
 use = "imsi32/yatline-catppuccin"
@@ -49,14 +34,29 @@ rev = "19dbd25"
 hash = "5f00a80a79b9f7fd8e24d6fa5dbb3ae"
 
 [[plugin.deps]]
-use = "wekauwau/smart-tab"
-rev = "16d2911"
-hash = "e3a427c29732ad5b2b8fecf18fb82e3d"
+use = "yazi-rs/plugins:toggle-pane"
+rev = "b12a9ab"
+hash = "5c9dda1a587b8f5b6f63e3d5375bda88"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:toggle-pane"
-rev = "cb6165b"
-hash = "812fd49667ab6823250f0411f8cf793a"
+use = "wekauwau/smart-tab"
+rev = "bf863cb"
+hash = "f9c1e66eb490e17f88659034cbc6fb10"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "90e0284"
+hash = "8d4cb2dfadcbda045ddaa5c274441f9c"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "a70648a"
+hash = "b836fb264381f35dec79930438a906d5"
+
+[[plugin.deps]]
+use = "wekauwau/yatline-symlink"
+rev = "2718ca6"
+hash = "a729291ad787624548dcb2d752da1a26"
 
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
