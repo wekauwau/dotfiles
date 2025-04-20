@@ -6,7 +6,7 @@ require("full-border"):setup({
 	type = ui.Border.ROUNDED,
 })
 
-require("git"):setup()
+-- require("git"):setup()
 
 require("bookmarks"):setup({
 	last_directory = { enable = true, persist = false },

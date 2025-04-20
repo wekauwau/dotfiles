@@ -27,17 +27,17 @@ prepend_rules = [
   { mime = "video/*", use = "video" },
 ]
 
-# yazi-rs/plugins:git
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
-run = "git"
-
-# yazi-rs/plugins:git
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
-run = "git"
+# # yazi-rs/plugins:git
+# [[plugin.prepend_fetchers]]
+# id = "git"
+# name = "*"
+# run = "git"
+#
+# # yazi-rs/plugins:git
+# [[plugin.prepend_fetchers]]
+# id = "git"
+# name = "*/"
+# run = "git"
 
 [plugin]
 prepend_previewers = [
