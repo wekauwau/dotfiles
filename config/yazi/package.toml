@@ -5,22 +5,22 @@ hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "7918aab6a71caf31b58411f789195677"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "e0ada736ea676c2bbb3ec705a49526ef"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "b12a9ab"
+rev = "4b027c7"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
 
 [[plugin.deps]]
@@ -35,8 +35,8 @@ hash = "5f00a80a79b9f7fd8e24d6fa5dbb3ae"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "b12a9ab"
-hash = "5c9dda1a587b8f5b6f63e3d5375bda88"
+rev = "4b027c7"
+hash = "f3853bbdd1da2fad09d059ab5464abfd"
 
 [[plugin.deps]]
 use = "wekauwau/smart-tab"
@@ -45,8 +45,8 @@ hash = "f9c1e66eb490e17f88659034cbc6fb10"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "90e0284"
-hash = "8d4cb2dfadcbda045ddaa5c274441f9c"
+rev = "2ecf715"
+hash = "38e2ea4703ea606d4eef574e8e8b8fd7"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
