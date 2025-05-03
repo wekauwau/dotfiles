@@ -22,16 +22,11 @@ yatline_theme.part_separator = { open = "|", close = "|" }
 yatline_theme.inverse_separator = { open = "", close = "" }
 
 require("yatline"):setup({
+	-- https://github.com/imsi32/yatline.yazi/wiki/Configuration
 	theme = yatline_theme,
-
 	tab_width = 25,
-	tab_use_inverse = false,
 
-	show_background = true,
-
-	display_header_line = true,
-	display_status_line = true,
-
+	-- https://github.com/imsi32/yatline.yazi/wiki/Components
 	header_line = {
 		left = {
 			section_a = {
@@ -73,13 +68,13 @@ require("yatline"):setup({
 		right = {
 			section_a = {
 				{ type = "string", custom = false, name = "hovered_file_extension", params = { true } },
-			},
-			section_b = {
 				{ type = "string", custom = false, name = "hovered_size" },
 			},
-			section_c = {
+			section_b = {
 				{ type = "coloreds", custom = false, name = "permissions" },
+				{ type = "string", custom = false, name = "hovered_ownership" },
 			},
+			section_c = {},
 		},
 	},
 })
