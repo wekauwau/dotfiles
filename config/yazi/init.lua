@@ -59,11 +59,16 @@ require("yatline"):setup({
 				{ type = "string", custom = false, name = "tab_mode" },
 			},
 			section_b = {
-				{ type = "string", custom = false, name = "hovered_name" },
+				{
+					type = "string",
+					custom = false,
+					name = "hovered_name",
+					params = {
+						{ trimed = false, show_symlink = true, max_length = 24, trim_length = 10 },
+					},
+				},
 			},
-			section_c = {
-				{ type = "coloreds", custom = false, name = "symlink" },
-			},
+			section_c = {},
 		},
 		right = {
 			section_a = {
@@ -77,8 +82,4 @@ require("yatline"):setup({
 			},
 		},
 	},
-})
-
-require("yatline-symlink"):setup({
-	symlink_color = "#c0caf5",
 })

@@ -53,11 +53,6 @@ use = "dedukun/bookmarks"
 rev = "a70648a"
 hash = "b836fb264381f35dec79930438a906d5"
 
-[[plugin.deps]]
-use = "wekauwau/yatline-symlink"
-rev = "2718ca6"
-hash = "a729291ad787624548dcb2d752da1a26"
-
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "695dac6"
