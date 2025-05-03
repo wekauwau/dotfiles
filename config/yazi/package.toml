@@ -54,11 +54,11 @@ rev = "a70648a"
 hash = "b836fb264381f35dec79930438a906d5"
 
 [[flavor.deps]]
-use = "BennyOe/tokyo-night"
-rev = "695dac6"
-hash = "a8f426ea0d9cb843b081d62ab01364c8"
-
-[[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
 rev = "68326b4"
 hash = "5dffea1e87c50b18b8bb1599f6d4881a"
+
+[[flavor.deps]]
+use = "wekauwau/tokyo-night"
+rev = "7b82857"
+hash = "57349be7e477205e319f19c05a12036"
