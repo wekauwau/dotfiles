@@ -60,5 +60,5 @@ hash = "5dffea1e87c50b18b8bb1599f6d4881a"
 
 [[flavor.deps]]
 use = "wekauwau/tokyo-night"
-rev = "7b82857"
-hash = "57349be7e477205e319f19c05a12036"
+rev = "1e71217"
+hash = "319ce574cdb2865baf4323db90456504"
