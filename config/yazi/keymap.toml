@@ -94,3 +94,7 @@ desc = "Rename (emptied)"
 on = ["g", "r"]
 run = "cd /"
 desc = "Goto /"
+
+[[manager.prepend_keymap]]
+on = "M"
+run = "plugin mount"
