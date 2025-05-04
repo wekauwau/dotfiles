@@ -17,15 +17,9 @@ if pgrep -f "bspc subscribe node_state" >/dev/null; then
 fi
 sleep 0.30
 
-# processes=("bspm")
-#
-# for process in "${processes[@]}"; do
-#   if pgrep -f "$process"; then
-#     pkill -f "$process" >/dev/null
-#     sleep 0.25
-#   fi
-# done
-# pidof -q bspm
+# Kill current bspm
+pkill -x bspm
+kill -9 "$(pidof bspm)"
 
 # Load random wallpaper depending on the theme you are.
 feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls

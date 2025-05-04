@@ -227,6 +227,9 @@ launch_theme() {
   for mon in $(polybar --list-monitors | cut -d":" -f1); do
     MONITOR=$mon polybar -q clara-bar -c "${HOME}"/.config/bspwm/rices/"${RICE}"/config.ini &
   done
+
+  # Launch bspm for true transparent monocle
+  pidof -q bspm || { bspm -d & }
 }
 
 ### Apply Configurations
