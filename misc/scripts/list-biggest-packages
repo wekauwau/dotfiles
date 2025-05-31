@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+expac -s "%-30n %m" | sort -rhk 2 | nvim
