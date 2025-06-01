@@ -99,6 +99,8 @@ deps+=(github-cli)
 deps+=(gthumb)
 # power management
 deps+=(tlp tlp-rdw xidlehook)
+# ebook viewer
+deps+=(evince foliate)
 # emoji picker
 deps+=(emote)
 # misc
