@@ -1,100 +1,100 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "!"
 run = 'shell "Term --terminal"'
 desc = "Open terminal here"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "t"
 run = "plugin smart-tab"
 desc = "Create a tab and enter the hovered directory"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "H"
 run = "tab_switch -1 --relative"
 desc = "Switch to the previous tab"
 # { on = "H", run = "back",    desc = "Go back to the previous directory" },
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "L"
 run = "tab_switch 1 --relative"
 desc = "Switch to the next tab"
 # { on = "L", run = "forward", desc = "Go forward to the next directory" },
 
 # yazi-rs/plugins:smart-enter
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "l"
 run = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 # { on = "l", run = "enter", desc = "Enter the child directory" },
 
 # keymap.toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "U"
 run = "plugin toggle-pane min-preview"
 desc = "Show or hide the preview pane"
 
 # keymap.toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "T"
 run = "plugin toggle-pane max-preview"
 desc = "Maximize or restore the preview pane"
 
 # yazi-rs/plugins:smart-filter
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "F"
 run = "plugin smart-filter"
 desc = "Smart filter"
 
 # dedukun/bookmarks
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "a"]
 run = "plugin bookmarks save"
 desc = "Save current position as a bookmark"
 
 # dedukun/bookmarks
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["'"]
 run = "plugin bookmarks jump"
 desc = "Jump to a bookmark"
 
 # dedukun/bookmarks
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["b", "d"]
 run = "plugin bookmarks delete"
 desc = "Delete a bookmark"
 
 # dedukun/bookmarks
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["b", "D"]
 run = "plugin bookmarks delete_all"
 desc = "Delete all bookmarks"
 
 # https://yazi-rs.github.io/docs/tips/#drag-and-drop
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<C-n>"
 run = '''
 	shell 'dragon-drop -x -i -A -T "$@"'
 '''
 
 # https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#compression
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["C"]
 run = "plugin ouch --args=zip"
 desc = "Compress with ouch"
 
 # { on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["R"]
 run = "rename --empty=stem --cursor=start"
 desc = "Rename (emptied)"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "r"]
 run = "cd /"
 desc = "Goto /"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "M"
 run = "plugin mount"
