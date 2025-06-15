@@ -27,10 +27,6 @@ case "$1" in
   # --telegram)
   #   telegram-desktop
   #   ;;
-  # TODO: use it or not?
-# --whats)
-#   whatsdesk --disable-gpu
-#   ;;
 --soundcontrol)
   pavucontrol
   ;;
