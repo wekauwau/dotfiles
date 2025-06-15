@@ -13,6 +13,6 @@ target="${!#}"
 
 feh --geometry 800x600 --scale-down --image-bg black --sort filename "${options[@]}" --start-at "$target"
 
-# INFO: OPTIONS
+# OPTIONS
 # -F | --fullscreen
 # -z | --randomize
