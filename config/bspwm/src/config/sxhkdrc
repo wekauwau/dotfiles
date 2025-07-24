@@ -10,7 +10,7 @@ super + @space
 #|||----- Apps -----|||#
 
 shift + alt + t
-  telegram-desktop
+  Telegram
 
 shift + alt + {b,e,m,s}
 	OpenApps --{browser,filemanager,music,soundcontrol}
