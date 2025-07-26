@@ -22,7 +22,7 @@ case "$1" in
   thunar
   ;;
 --browser)
-  brave
+  firefox
   ;;
   # --telegram)
   #   telegram-desktop
