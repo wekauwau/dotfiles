@@ -1,7 +1,7 @@
 Device	S-state	  Status   Sysfs node
 LID	  S4	*enabled   platform:PNP0C0D:00
 SLPB	  S3	*enabled   platform:PNP0C0E:00
-IGBE	  S4	*enabled   pci:0000:00:19.0
-EXP2	  S4	*enabled   pci:0000:00:1c.1
-XHCI	  S3	*enabled   pci:0000:00:14.0
-EHC1	  S3	*enabled   pci:0000:00:1d.0
+IGBE	  S4	disabled   pci:0000:00:19.0
+EXP2	  S4	disabled   pci:0000:00:1c.1
+XHCI	  S3	disabled   pci:0000:00:14.0
+EHC1	  S3	disabled   pci:0000:00:1d.0
