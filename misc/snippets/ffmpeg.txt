@@ -1,0 +1,13 @@
+FFMPEG
+=====================================================
+show duration, size
+ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 -sexagesimal input.mp4
+-----------------------------------------------------
+cut video
+fast
+ffmpeg -ss 00:01:00 -to 00:02:00 -i input.mp4 -c copy output.mp4
+slow
+ffmpeg -ss 00:01:00 -to 00:02:00 -i input.mp4 -c:v libx264 -crf 23 -preset fast -c:a aac output.mp4
+x to end
+ffmpeg -ss 02:07:30 -i input.mp4 -c:v libx264 -crf 23 -preset fast -c:a aac output.mp4
+-----------------------------------------------------
