@@ -63,23 +63,22 @@ HISTFILE=~/.config/zsh/zhistory
 HISTSIZE=5000
 SAVEHIST=5000
 HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt APPEND_HISTORY
+# setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+# setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+# setopt HIST_IGNORE_DUPS
+# setopt HIST_FIND_NO_DUPS
 
 #  ┌─┐┌─┐┬ ┬  ┌─┐┌─┐┌─┐┬    ┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
 #  ┌─┘└─┐├─┤  │  │ ││ ││    │ │├─┘ │ ││ ││││└─┐
 #  └─┘└─┘┴ ┴  └─┘└─┘└─┘┴─┘  └─┘┴   ┴ ┴└─┘┘└┘└─┘
-setopt AUTOCD              # change directory just by typing its name
-setopt PROMPT_SUBST        # enable command substitution in prompt
-setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
-setopt LIST_PACKED		   # The completion menu takes less space.
-setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
+setopt AUTO_LIST
+setopt COMPLETE_IN_WORD
+setopt LIST_PACKED
+setopt MENU_COMPLETE
+setopt PROMPT_SUBST
 
 #  ┌┬┐┬ ┬┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┌┬┐
 #   │ ├─┤├┤   ├─┘├┬┘│ ││││├─┘ │
@@ -142,6 +141,17 @@ alias paru-clean="paru -Sccd"
 alias paru-install="paru -S --needed $@"
 alias paru-update="paru -Syu --needed --nocombinedupgrade"
 alias ssh-me="source ssh-agent-reuse"
+
+# Do not add some commands to history
+setopt EXTENDED_GLOB
+function zshaddhistory() {
+  local cmd=$1
+  # Ignore empty input
+  [[ -z $cmd ]] && return 1
+  [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|man|nvim|pacman|paru|pidof|vim)\ * ]] && return 1
+
+  return 0
+}
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
