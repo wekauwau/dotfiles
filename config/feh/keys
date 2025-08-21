@@ -1,0 +1,13 @@
+# unsetting keys
+action_0
+toggle_pause
+toggle_keep_vp
+
+
+
+# custom key mapping:
+action_0 c
+scroll_left h
+scroll_down j
+scroll_up k
+scroll_right l
