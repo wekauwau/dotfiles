@@ -29,13 +29,13 @@ run = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 # { on = "l", run = "enter", desc = "Enter the child directory" },
 
-# keymap.toml
+# yazi-rs/plugins:toggle-pane
 [[mgr.prepend_keymap]]
 on = "U"
 run = "plugin toggle-pane min-preview"
 desc = "Show or hide the preview pane"
 
-# keymap.toml
+# yazi-rs/plugins:toggle-pane
 [[mgr.prepend_keymap]]
 on = "T"
 run = "plugin toggle-pane max-preview"

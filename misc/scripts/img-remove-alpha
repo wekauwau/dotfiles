@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Create output directory
+mkdir -p flattened
+
+# Loop over all files in current directory
+for img in ./*; do
+  [ -f "$img" ] || continue
+
+  # Get filename only (no path)
+  filename="$(basename "$img")"
+
+  # Output path
+  out="flattened/$filename"
+
+  # Flatten image (remove alpha if any)
+  magick "$img" -background white -alpha remove -alpha off "$out"
+done

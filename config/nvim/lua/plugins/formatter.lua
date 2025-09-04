@@ -7,6 +7,8 @@ return {
           timeout_ms = 3000,
         },
         formatters_by_ft = {
+          c = { "clang_format" },
+          cpp = { "clang_format" },
           lua = { "stylua" },
           fish = { "fish_indent" },
           sh = { "shfmt" },

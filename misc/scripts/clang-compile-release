@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# clang++ -std=c++17 -O2 -DNDEBUG -flto main.cpp -o main
+clang++ -std=c++17 -O2 -DNDEBUG -flto "$@"

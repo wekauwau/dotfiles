@@ -21,6 +21,9 @@ sleep 0.30
 pkill -x bspm
 kill -9 "$(pidof bspm)"
 
+pkill -x picom
+kill -9 "$(pidof picom)"
+
 # Load random wallpaper depending on the theme you are.
 feh -z --no-fehbg --bg-fill "${HOME}"/.config/bspwm/rices/"${RICE}"/walls
 

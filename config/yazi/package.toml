@@ -1,42 +1,27 @@
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "2496cd9"
-hash = "5b9dea47776a30946cfbf83232d18fb1"
+rev = "0742fff"
+hash = "2bd799b42b8e42b8ef100310be71f8d1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "63f9650"
-hash = "a7ab702e1ef0c097defbc976ed34c186"
+rev = "d7588f6"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "63f9650"
+rev = "d7588f6"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "63f9650"
-hash = "bf6f074cd41ee33c3360341d168f9733"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "63f9650"
-hash = "4d82cd9e7534d976f000edf9c0f68d8f"
-
-[[plugin.deps]]
-use = "imsi32/yatline-catppuccin"
-rev = "8cc4773"
-hash = "fd03fb015a28040bca0c0f9a8fe6fd8d"
-
-[[plugin.deps]]
-use = "wekauwau/yatline-tokyo-night"
-rev = "19dbd25"
-hash = "5f00a80a79b9f7fd8e24d6fa5dbb3ae"
+rev = "d7588f6"
+hash = "e56b7abf3c06e8ce496eadcca168c093"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "63f9650"
-hash = "d5d4f3527592da5fbe77fd6f51815f80"
+rev = "d7588f6"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
 use = "wekauwau/smart-tab"
@@ -44,26 +29,21 @@ rev = "bf863cb"
 hash = "f9c1e66eb490e17f88659034cbc6fb10"
 
 [[plugin.deps]]
-use = "imsi32/yatline"
-rev = "4872af0"
-hash = "d32742ded0e73146a8ca590fdc4fb404"
-
-[[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "fbb7c00"
-hash = "1d231a808d3344546380df33daf43e91"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "63f9650"
-hash = "c0b6cd7dc830b96e77e5c8a71eec7926"
+rev = "d7588f6"
+hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "d04a298"
-hash = "a4d508772dc7b20d739a2f9a1d2d396f"
+rev = "26fac8f"
+hash = "8bc144da7080bf91b559188bfe431032"
 
 [[flavor.deps]]
-use = "wekauwau/tokyo-night"
-rev = "1e71217"
-hash = "319ce574cdb2865baf4323db90456504"
+use = "BennyOe/tokyo-night"
+rev = "5f56364"
+hash = "c0bf69ad2c44005892d586e9693993c6"

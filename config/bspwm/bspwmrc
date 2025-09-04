@@ -90,7 +90,7 @@ xidlehook \
   --timer 300 \
   "xrandr --output \"$PRIMARY_DISPLAY\" --brightness 1; betterlockscreen -l" \
   "" \
-  --timer 1800 \
+  --timer 2700 \
   "systemctl suspend" \
   "" \
   &
