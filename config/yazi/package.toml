@@ -38,6 +38,11 @@ use = "yazi-rs/plugins:mount"
 rev = "d7588f6"
 hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
 
+[[plugin.deps]]
+use = "wekauwau/confirm-quit"
+rev = "5804134"
+hash = "97216749f574e56f01cc5c8d446a3a84"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
 rev = "26fac8f"

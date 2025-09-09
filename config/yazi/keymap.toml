@@ -98,3 +98,8 @@ desc = "Goto /"
 [[mgr.prepend_keymap]]
 on = "M"
 run = "plugin mount"
+
+# wekauwau/confirm-quit
+[[mgr.prepend_keymap]]
+on  = "q"
+run = "plugin confirm-quit"

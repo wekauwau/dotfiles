@@ -1,0 +1,1 @@
+aircrack-ng wireshark-qt tcpdump mysql seahorse socat
