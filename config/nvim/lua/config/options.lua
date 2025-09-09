@@ -11,3 +11,5 @@ vim.g.snacks_animate = false
 -- LSP Server to use for PHP.
 -- Set to "intelephense" to use intelephense instead of phpactor.
 vim.g.lazyvim_php_lsp = "intelephense"
+-- Disable autoformat on save
+vim.g.autoformat = false
