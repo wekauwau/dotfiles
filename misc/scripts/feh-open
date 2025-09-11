@@ -11,9 +11,8 @@ options=("${@:1:$#-1}")
 # The last argument
 target="${!#}"
 
-feh --image-bg black --sort filename --action 'basename "%f" | xclip -selection clipboard' "${options[@]}" "$target"
+feh --fullscreen --image-bg black --sort filename --action 'basename "%f" | xclip -selection clipboard' "${options[@]}" "$target"
 
 # OPTIONS
-# -F | --fullscreen
 # -r | --recursive
 # -z | --randomize
