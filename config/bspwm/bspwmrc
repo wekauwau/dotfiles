@@ -79,7 +79,8 @@ pidof -q greenclip || { greenclip daemon & }
 pidof -q polkit-gnome-authentication-agent-1 || { /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & }
 
 # disk auto-mount
-udiskie -a &
+# udiskie -a &
+# prefer manual-mount
 
 # Run xidlehook
 xidlehook \
