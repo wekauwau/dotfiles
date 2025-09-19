@@ -11,7 +11,10 @@ options=("${@:1:$#-1}")
 # The last argument
 target="${!#}"
 
-feh --fullscreen --image-bg black --sort filename --action 'basename "%f" | xclip -selection clipboard' "${options[@]}" "$target"
+feh --fullscreen --image-bg black --sort filename \
+  --action 'basename "%f" | xclip -selection clipboard' \
+  --action1 'realpath --relative-to=. "%f" | xclip -selection clipboard' \
+  "${options[@]}" "$target"
 
 # OPTIONS
 # -r | --recursive
