@@ -1,1 +1,1 @@
-aircrack-ng wireshark-qt tcpdump mysql seahorse socat
+aircrack-ng wireshark-qt tcpdump mysql seahorse socat czkawka-gui-bin tree-sitter-cli

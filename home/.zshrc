@@ -7,7 +7,7 @@
 export EDITOR='nvim'
 export VISUAL="${EDITOR}"
 export BROWSER='firefox'
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|touch|rustc|cargo new|git clone|aria2c)"
+# export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|touch|rustc|cargo new|git clone|aria2c)"
 export SUDO_PROMPT="Deploying root access for %u. Password pls: "
 # Only exported variables can be used within the timer's command.
 
@@ -148,7 +148,7 @@ function zshaddhistory() {
   local cmd=$1
   # Ignore empty input
   [[ -z $cmd ]] && return 1
-  [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|man|nvim|pacman|paru|pidof|vim)\ * ]] && return 1
+  [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|man|nvim|pidof|vim|which)\ * ]] && return 1
 
   return 0
 }
