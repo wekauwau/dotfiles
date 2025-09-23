@@ -16,9 +16,13 @@ edit = [
 extract = [
   { run = 'ouch decompress "$1" -d "${1%.*}" -y', desc = "Extract to dir with ouch", for = "unix" },
 ]
-image = [{ run = '~/.scripts/feh-open "$@"', desc = "Open", for = "linux" }]
+image = [
+  { run = 'feh-open -Sname --start-at "$@"', desc = "Open", for = "linux" },
+]
 video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
-add-sub = [{ run=''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" }]
+add-sub = [
+  { run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" },
+]
 
 [open]
 prepend_rules = [
@@ -26,7 +30,10 @@ prepend_rules = [
   { name = "*.epub", use = "epub" },
   { mime = "image/*", use = "image" },
   { mime = "video/*", use = "video" },
-  { name = "*.{ass,srt,ssa,sty,sup,vtt}", use  = [ "add-sub", "edit" ] },
+  { name = "*.{ass,srt,ssa,sty,sup,vtt}", use = [
+    "add-sub",
+    "edit",
+  ] },
 ]
 
 # # yazi-rs/plugins:git

@@ -1,23 +1,10 @@
 #!/usr/bin/env bash
 
-# Check if at least one argument is provided
-if [ $# -lt 1 ]; then
-  echo 'Usage: feh-open [options] {files | directories | URLs ...}'
-  echo 'See  : nvim $(which feh-open)'
-  exit 1
-fi
-
-feh --fullscreen --image-bg black \
+feh --scale-down --auto-zoom --image-bg black \
   --action 'basename "%f" | xclip -selection clipboard' \
-  --action1 'realpath --relative-to=. "%f" | xclip -selection clipboard'
+  --action1 'realpath --relative-to=. "%f" | xclip -selection clipboard' \
+  "$@"
 
 # ACTIONS
 # c | copy filename
 # C | copy relative filepath
-
-# OPTIONS
-# --start-at {}
-# -r | --recursive
-# -z | --randomize
-# -S{} | --sort {}
-# -nS{} | -S {} --reverse
