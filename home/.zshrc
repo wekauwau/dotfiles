@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -6,7 +13,6 @@
 # ------------------------------------------------------------------------------
 export EDITOR='nvim'
 export VISUAL="${EDITOR}"
-# export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|touch|rustc|cargo new|git clone|aria2c)"
 export SUDO_PROMPT="Deploying root access for %u. Password pls: "
 
 if [ -d "$HOME/.local/bin" ] ;
@@ -20,28 +26,28 @@ PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 # ------------------------------------------------------------------------------
 # LOAD ENGINE
 # ------------------------------------------------------------------------------
-# autoload -Uz compinit
-#
-# for dump in ~/.config/zsh/zcompdump(N.mh+24); do
-#   compinit -d ~/.config/zsh/zcompdump
-# done
-#
-# compinit -C -d ~/.config/zsh/zcompdump
-#
-# autoload -Uz add-zsh-hook
-# autoload -Uz vcs_info
-# precmd () { vcs_info }
-# _comp_options+=(globdots)
-#
-# zstyle ':completion:*' verbose true
-# zstyle ':completion:*:*:*:*:*' menu select
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} 'ma=48;5;197;1'
-# zstyle ':completion:*' matcher-list \
-# 		'm:{a-zA-Z}={A-Za-z}' \
-# 		'+r:|[._-]=* r:|=*' \
-# 		'+l:|=*'
-# zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
-# zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
+autoload -Uz compinit
+
+for dump in ~/.config/zsh/zcompdump(N.mh+24); do
+  compinit -d ~/.config/zsh/zcompdump
+done
+
+compinit -C -d ~/.config/zsh/zcompdump
+
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
+precmd () { vcs_info }
+_comp_options+=(globdots)
+
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} 'ma=48;5;61;1'
+zstyle ':completion:*' matcher-list \
+		'm:{a-zA-Z}={A-Za-z}' \
+		'+r:|[._-]=* r:|=*' \
+		'+l:|=*'
+zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
+zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
 # zstyle ':vcs_info:*' formats ' %B%s-[%F{magenta}%f %F{yellow}%b%f]-'
 
 # zoxide setup
@@ -69,27 +75,19 @@ setopt APPEND_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 
-#  ┌─┐┌─┐┬ ┬  ┌─┐┌─┐┌─┐┬    ┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
-#  ┌─┘└─┐├─┤  │  │ ││ ││    │ │├─┘ │ ││ ││││└─┐
-#  └─┘└─┘┴ ┴  └─┘└─┘└─┘┴─┘  └─┘┴   ┴ ┴└─┘┘└┘└─┘
+# Ignore certain commands when saving (but still recallable in-session)
+HISTORY_IGNORE="(exit|pwd|xx)"
+HISTORY_IGNORE+="|(aria2c|chmod|chown|git clone|ll|ls|nvim|touch)*"
+
+# ------------------------------------------------------------------------------
+# ZSH COOL OPTIONS
+# ------------------------------------------------------------------------------
 setopt AUTO_LIST
 setopt COMPLETE_IN_WORD
+setopt EXTENDED_GLOB
 setopt LIST_PACKED
 setopt MENU_COMPLETE
 setopt PROMPT_SUBST
-
-#  ┌┬┐┬ ┬┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┌┬┐
-#   │ ├─┤├┤   ├─┘├┬┘│ ││││├─┘ │
-#   ┴ ┴ ┴└─┘  ┴  ┴└─└─┘┴ ┴┴   ┴
-function dir_icon {
-  if [[ "$PWD" == "$HOME" ]]; then
-    echo "%B%F{cyan}%f%b"
-  else
-    echo "%B%F{cyan}%f%b"
-  fi
-}
-
-PS1='%B%F{blue}%f%b  %B%F{magenta}%n%f%b $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} %(?.%B%F{green}.%F{red})%f%b '
 
 # ------------------------------------------------------------------------------
 # PLUGINS
@@ -99,6 +97,12 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+# ------------------------------------------------------------------------------
+# KEYS
+# ------------------------------------------------------------------------------
+
+# <S-Tab> to go backward
+bindkey "^[[Z" reverse-menu-complete
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
@@ -121,9 +125,9 @@ bindkey '^[[3~' delete-char
 # 	add-zsh-hook -Uz preexec xterm_title_preexec
 # fi
 
-#  ┌─┐┬  ┬┌─┐┌─┐
-#  ├─┤│  │├─┤└─┐
-#  ┴ ┴┴─┘┴┴ ┴└─┘
+# ------------------------------------------------------------------------------
+# ALIAS
+# ------------------------------------------------------------------------------
 
 # zoxide
 alias cd="z"
@@ -139,16 +143,18 @@ alias ssh-me="source ssh-agent-reuse"
 alias xx="exit"
 
 # Do not add some commands to history
-setopt EXTENDED_GLOB
-function zshaddhistory() {
-  local cmd=$1
-  # Ignore empty input
-  [[ -z $cmd ]] && return 1
-  [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|git clone|man|nvim|pidof|vim|which)\ * ]] && return 1
+# function zshaddhistory() {
+#   local cmd=$1
+#   # Ignore empty input
+#   [[ -z $cmd ]] && return 1
+#   [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|git clone|man|nvim|pidof|vim|which)\ * ]] && return 1
+#
+#   return 0
+# }
 
-  return 0
-}
+# ------------------------------------------------------------------------------
+# AUTO START
+# --------------------------------------------------------------------------------
 
-#  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
-#  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │
-#  ┴ ┴└─┘ ┴ └─┘  └─┘ ┴ ┴ ┴┴└─ ┴
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
