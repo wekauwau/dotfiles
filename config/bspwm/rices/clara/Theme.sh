@@ -221,6 +221,10 @@ set_yazi() {
     -e "s/mask = .*/mask = { bg = \"#e6e9ef\" }/"
 }
 
+set_zsh() {
+  ln -sf ~/.config/bspwm/rices/clara/colorschemes/.p10k.zsh ~/
+}
+
 launch_theme() {
   # Launch polybar
   sleep 0.1
@@ -243,4 +247,5 @@ set_launchers
 set_appearance
 set_neovim
 set_yazi
+set_zsh
 launch_theme

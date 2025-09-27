@@ -77,7 +77,7 @@ setopt HIST_SAVE_NO_DUPS
 
 # Ignore certain commands when saving (but still recallable in-session)
 HISTORY_IGNORE="(exit|pwd|xx)"
-HISTORY_IGNORE+="|(aria2c|chmod|chown|git clone|ll|ls|nvim|touch)*"
+HISTORY_IGNORE+="|(aria2c|chmod|chown|feh-open|git clone|ll|ls|nvim|touch|which)*"
 
 # ------------------------------------------------------------------------------
 # ZSH COOL OPTIONS
@@ -142,15 +142,15 @@ alias paru-update="paru -Syu --needed --nocombinedupgrade"
 alias ssh-me="source ssh-agent-reuse"
 alias xx="exit"
 
-# Do not add some commands to history
-# function zshaddhistory() {
-#   local cmd=$1
-#   # Ignore empty input
-#   [[ -z $cmd ]] && return 1
-#   [[ $cmd == (cd|ll|ls|chmod|chown|clear|exit|feh|feh-open|git clone|man|nvim|pidof|vim|which)\ * ]] && return 1
-#
-#   return 0
-# }
+# ------------------------------------------------------------------------------
+# FUNCTION
+# ------------------------------------------------------------------------------
+
+function dot() {
+    ssh-me
+    cd ~/dotfiles || return
+    nvim
+}
 
 # ------------------------------------------------------------------------------
 # AUTO START
