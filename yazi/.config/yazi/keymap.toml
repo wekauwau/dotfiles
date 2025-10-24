@@ -1,0 +1,108 @@
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
+
+[[mgr.prepend_keymap]]
+on = "!"
+run = 'shell --orphan --confirm kitty'
+desc = "Open terminal here"
+
+[[mgr.prepend_keymap]]
+on = "t"
+run = "plugin smart-tab"
+desc = "Create a tab and enter the hovered directory"
+
+[[mgr.prepend_keymap]]
+on = "H"
+run = "tab_switch -1 --relative"
+desc = "Switch to the previous tab"
+# { on = "H", run = "back",    desc = "Go back to the previous directory" },
+
+[[mgr.prepend_keymap]]
+on = "L"
+run = "tab_switch 1 --relative"
+desc = "Switch to the next tab"
+# { on = "L", run = "forward", desc = "Go forward to the next directory" },
+
+# yazi-rs/plugins:smart-enter
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+# { on = "l", run = "enter", desc = "Enter the child directory" },
+
+# yazi-rs/plugins:toggle-pane
+[[mgr.prepend_keymap]]
+on = "U"
+run = "plugin toggle-pane min-preview"
+desc = "Show or hide the preview pane"
+
+# yazi-rs/plugins:toggle-pane
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
+
+# yazi-rs/plugins:smart-filter
+[[mgr.prepend_keymap]]
+on = "F"
+run = "plugin smart-filter"
+desc = "Smart filter"
+
+# dedukun/bookmarks
+[[mgr.prepend_keymap]]
+on = ["m", "a"]
+run = "plugin bookmarks save"
+desc = "Save current position as a bookmark"
+
+# dedukun/bookmarks
+[[mgr.prepend_keymap]]
+on = ["'"]
+run = "plugin bookmarks jump"
+desc = "Jump to a bookmark"
+
+# dedukun/bookmarks
+[[mgr.prepend_keymap]]
+on = ["b", "d"]
+run = "plugin bookmarks delete"
+desc = "Delete a bookmark"
+
+# dedukun/bookmarks
+[[mgr.prepend_keymap]]
+on = ["b", "D"]
+run = "plugin bookmarks delete_all"
+desc = "Delete all bookmarks"
+
+# https://yazi-rs.github.io/docs/tips/#drag-and-drop
+[[mgr.prepend_keymap]]
+on = "<C-n>"
+run = '''
+	shell 'dragon-drop -x -i -A -T "$@"'
+'''
+
+# https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#compression
+[[mgr.prepend_keymap]]
+on = ["C"]
+run = "plugin ouch --args=zip"
+desc = "Compress with ouch"
+
+# { on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+[[mgr.prepend_keymap]]
+on = ["R"]
+run = "rename --empty=stem --cursor=start"
+desc = "Rename (emptied)"
+
+[[mgr.prepend_keymap]]
+on = ["g", "r"]
+run = "cd /"
+desc = "Goto /"
+
+[[mgr.prepend_keymap]]
+on = "M"
+run = "plugin mount"
+
+# https://yazi-rs.github.io/docs/tips/#selected-files-to-clipboard
+[[mgr.prepend_keymap]]
+on = "y"
+run = [
+  'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list',
+  "yank",
+]

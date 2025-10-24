@@ -1,0 +1,6 @@
+[flavor]
+dark = "catppuccin-mocha"
+light = "catppuccin-latte"
+
+[which]
+mask = { bg = "#292e42" }

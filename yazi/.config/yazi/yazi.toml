@@ -1,0 +1,60 @@
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+
+[mgr]
+show_hidden = true
+
+[preview]
+wrap = "yes"
+image_delay = 5
+
+[opener]
+edit = [
+  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "linux" },
+]
+ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
+epub = [{ run = 'foliate "$@"', desc = "Open", for = "linux" }]
+image = [{ run = 'qview "$@"', desc = "Open", for = "linux" }]
+video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
+extract = [
+  { run = 'ouch decompress "$1" -d "${1%.*}" -y', desc = "Extract to dir with ouch", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  { name = "*.{cbz,pdf}", use = "ebook" },
+  { name = "*.epub", use = "epub" },
+  { mime = "image/*", use = "image" },
+  { mime = "video/*", use = "video" },
+]
+
+# yazi-rs/plugins:git
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+# yazi-rs/plugins:git
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"
+
+[plugin]
+prepend_previewers = [
+  # https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#preview
+  # Archive previewer
+  { mime = "application/*zip", run = "ouch" },
+  { mime = "application/x-tar", run = "ouch" },
+  { mime = "application/x-bzip2", run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar", run = "ouch" },
+  { mime = "application/x-xz", run = "ouch" },
+
+  # Disable video
+  { mime = "video/*", run = "noop" },
+]
+
+prepend_preloaders = [
+  # Disable video
+  { mime = "video/*", run = "noop" },
+]
