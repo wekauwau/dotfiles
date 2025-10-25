@@ -5,3 +5,4 @@
 truncation_length = 0
 truncate_to_repo = false
 repo_root_style = 'bold purple'
+use_logical_path = false
