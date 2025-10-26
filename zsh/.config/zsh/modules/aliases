@@ -1,0 +1,25 @@
+# vim:ft=zsh
+
+# ┌─┐┬  ┬┌─┐┌─┐
+# ├─┤│  │├─┤└─┐
+# ┴ ┴┴─┘┴┴ ┴└─┘
+
+alias cat="bat --theme=base16"
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# alias ls='eza -lh --group-directories-first --icons=auto'
+alias ls='eza --icons=always --color=always'
+alias lsa='ls -a'
+alias ll='eza --icons=always --color=always -l'
+alias lla='ll -a'
+# alias lt='eza --tree --level=2 --long --icons --git'
+# alias lta='lt -a'
+
+alias pinstall='paru -S --needed'
+alias pupdate='paru -Syu --needed'
+alias premove='paru -Rns'
+# alias cleanup="sudo pacman -Rsn $(pacman -Qtdq)"
