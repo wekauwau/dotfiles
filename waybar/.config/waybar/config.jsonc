@@ -1,0 +1,82 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 26,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "battery#bat0",
+    "battery#bat1",
+  ],
+  "hyprland/workspaces": {
+    "format": "{id}",
+  },
+  "clock": {
+    "format": "{:L%a %d %b %H:%M}",
+    "tooltip": false,
+  },
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "kitty --class gazelle -e gazelle"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon}(B) {volume}%",
+    "format-muted": "",
+    "on-click": "kitty --class=wiremix -e wiremix",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+  "battery#bat0": {
+    "bat": "BAT0",
+    "states": {
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "󰂅",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "tooltip-format": "{timeTo}\nHealth: {health}%",
+  },
+  "battery#bat1": {
+    "bat": "BAT1",
+    "format": "{icon} {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": "󰂅",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "tooltip-format": "{timeTo}\nHealth: {health}%",
+  },
+}

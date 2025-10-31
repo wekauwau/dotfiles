@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# List of processes to kill
+PROCESSES=(
+    "hypridle"
+    "mako"
+    "waybar"
+    "swayosd-server"
+    "elephant"
+    "walker"
+)
+
+# Kill each process
+for process in "${PROCESSES[@]}"; do
+    pkill "$process"
+done
+
+# Wait for graceful shutdown
+sleep 0.5
+
+# Force kill any remaining processes
+for process in "${PROCESSES[@]}"; do
+    pkill -9 "$process" 2>/dev/null
+done
+
+# Exit Hyprland
+hyprctl dispatch exit

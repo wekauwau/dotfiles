@@ -1,0 +1,39 @@
+#!/bin/bash
+
+show_help() {
+  echo "Usage: $(basename "$0") [opts] -d [paths...]"
+  echo
+  echo "Options:"
+  echo "  -h, --help      Show this help message and exit"
+  echo "  [opts]          Any options to pass to imv"
+  echo "  -d [paths...]   List of directories/files to open"
+}
+
+# Check for -h or --help
+for arg in "$@"; do
+  case "$arg" in
+  -h | --help)
+    show_help
+    exit 0
+    ;;
+  esac
+done
+
+opts=()
+dirs=()
+found_d_flag=false
+
+for arg in "$@"; do
+  if [[ "$arg" == "-d" ]]; then
+    found_d_flag=true
+    continue
+  fi
+
+  if [[ "$found_d_flag" == false ]]; then
+    opts+=("$arg")
+  else
+    dirs+=("$arg")
+  fi
+done
+
+find "${dirs[@]}" -type f -print0 | shuf -z | xargs -0 imv -s full "${opts[@]}"

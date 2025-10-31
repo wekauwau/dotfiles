@@ -1,0 +1,29 @@
+# vim:ft=hyprlang
+
+┌───────────────────────────────────────────────────────────┐
+│███████╗███████╗███╗   ██╗                                 │
+│╚══███╔╝██╔════╝████╗  ██║                                 │
+│  ███╔╝ █████╗  ██╔██╗ ██║                                 │
+│ ███╔╝  ██╔══╝  ██║╚██╗██║                                 │
+│███████╗███████╗██║ ╚████║                                 │
+│╚══════╝╚══════╝╚═╝  ╚═══╝                                 │
+│                                                           │
+│██████╗ ██████╗  ██████╗ ██╗    ██╗███████╗███████╗██████╗ │
+│██╔══██╗██╔══██╗██╔═══██╗██║    ██║██╔════╝██╔════╝██╔══██╗│
+│██████╔╝██████╔╝██║   ██║██║ █╗ ██║███████╗█████╗  ██████╔╝│
+│██╔══██╗██╔══██╗██║   ██║██║███╗██║╚════██║██╔══╝  ██╔══██╗│
+│██████╔╝██║  ██║╚██████╔╝╚███╔███╔╝███████║███████╗██║  ██║│
+│╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═╝│
+│about:config                                               │
+└───────────────────────────────────────────────────────────┘
+
+browser.cache.disk.enable = false
+browser.gesture.swipe.left =
+browser.gesture.swipe.right =
+browser.sessionstore.interval = 300000  # 5min
+browser.tabs.insertAfterCurrent = true
+browser.tabs.insertRelatedAfterCurrent = false
+# browser.tabs.loadBookmarksInTabs= true
+# browser.translations.enable = false
+toolkit.legacyUserProfileCustomizations.stylesheets = true
+zen.view.compact.toolbar-flash-popup.duration = 1500

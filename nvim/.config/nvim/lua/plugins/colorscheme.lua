@@ -1,1 +1,1 @@
-/home/wekauwau/.dotfiles/.themes/catppuccin-mocha/nvim/colorscheme.lua
+/home/wekauwau/.local/state/my-current-theme/nvim.lua
