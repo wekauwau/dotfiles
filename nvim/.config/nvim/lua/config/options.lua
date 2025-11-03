@@ -6,6 +6,7 @@
 -- vim.opt.scrolloff = 999
 
 vim.opt.colorcolumn = "80"
+vim.opt.equalalways = false
 vim.opt.linebreak = true
 vim.opt.wrap = true
 
