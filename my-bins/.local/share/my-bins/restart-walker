@@ -1,0 +1,4 @@
+#!/bin/bash
+
+killall walker
+walker --gapplication-service &

@@ -19,7 +19,7 @@ menu() {
     fi
   fi
 
-  echo -e "$options" | walker --dmenu --width 400 --minheight 100 --maxheight 300 -p "$prompt…" "${args[@]}" 2>/dev/null
+  echo -e "$options" | walker --dmenu --width 1366 --height 768 -p "$prompt…" "${args[@]}" 2>/dev/null
 }
 
 get_themes() {
