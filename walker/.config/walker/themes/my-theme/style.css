@@ -7,7 +7,7 @@
 * {
   font-family: monospace;
   font-size: 18px;
-  color: @text;
+  color: @foreground;
 }
 
 scrollbar {
@@ -23,19 +23,19 @@ scrollbar {
 }
 
 .box-wrapper {
-  background: alpha(@base, 0.95);
-  padding: 20px;
-  border: 2px solid @border;
+  background: @background;
+  padding: 100px 300px;
 }
 
 .preview-box {
 }
 
 .box {
+  padding: 20px;
 }
 
 .search-container {
-  background: @base;
+  background: @background;
   padding: 10px;
 }
 
