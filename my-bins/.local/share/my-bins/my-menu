@@ -28,11 +28,11 @@ get_themes() {
   done
 }
 
-get_theme_current(){
+get_theme_current() {
   basename "$(realpath "$CURRENT_THEME_DIR")"
 }
 
-set_theme_gnome(){
+set_theme_gnome() {
   if [[ -f "$CURRENT_THEME_DIR/light.mode" ]]; then
     gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Light"
@@ -43,7 +43,27 @@ set_theme_gnome(){
 
   GTK_THEME_FILE="$CURRENT_THEME_DIR/gtk"
   if [[ -f "$GTK_THEME_FILE" ]]; then
-    gsettings set org.gnome.desktop.interface gtk-theme "$(<"$GTK_THEME_FILE")"
+    THEME_NAME="$(tr -d '\n' <"$GTK_THEME_FILE")"
+
+    # GTK3
+    gsettings set org.gnome.desktop.interface gtk-theme "$THEME_NAME"
+
+    # GTK4
+    GTK4_SRC="$HOME/.themes/$THEME_NAME/gtk-4.0"
+    GTK4_DEST="$HOME/.config/gtk-4.0"
+
+    if [[ -d "$GTK4_SRC" ]]; then
+      # Remove old link or directory first
+      if [[ -L "$GTK4_DEST" || -d "$GTK4_DEST" ]]; then
+        rm -rf "$GTK4_DEST"
+      fi
+
+      ln -sf "$GTK4_SRC" "$GTK4_DEST"
+
+    else
+      echo "Warning: GTK4 directory not found for theme '$THEME_NAME'"
+    fi
+
   else
     echo "Warning: GTK theme file not found"
   fi
@@ -70,8 +90,10 @@ set_theme() {
   ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 
   # Restart components to apply new theme
-  pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar & disown
-  pkill -x swayosd-server && swayosd-server & disown
+  pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar &
+  disown
+  pkill -x swayosd-server && swayosd-server &
+  disown
   hyprctl reload
   pkill -SIGUSR2 btop
   makoctl reload
@@ -113,5 +135,5 @@ if [[ -n "$1" ]]; then
   BACK_TO_EXIT=true
   go_to_menu "$1"
 else
-  show_error_menu 
+  show_error_menu
 fi
