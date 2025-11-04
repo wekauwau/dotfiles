@@ -12,7 +12,7 @@
   ],
   "modules-right": [
     "tray",
-    "network",
+    // "network",
     "bluetooth",
     "pulseaudio",
     "battery#bat0",
@@ -27,8 +27,7 @@
   },
   "tray": {
     "icon-size": 12,
-    "show-passive-items": true,
-    "spacing": 1,
+    // "spacing": 17
   },
   "network": {
     "format-icons": [
@@ -47,7 +46,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "kitty --class gazelle -e gazelle"
+    "on-click": "kitty --class nmtui -e nmtui"
   },
   "bluetooth": {
     "format": "",
