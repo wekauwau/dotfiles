@@ -1,0 +1,77 @@
+#!/bin/bash
+
+deps=()
+
+# ┌┬┐┌─┐┌─┐┬  ┌─┐
+#  │ │ ││ ││  └─┐
+#  ┴ └─┘└─┘┴─┘└─┘
+#  tools
+
+deps+=(git wl-clipboard brightnessctl htop btop bitwarden base-devel cmake ninja)
+
+# ┌─┐┬ ┬┌─┐┬  ┬  
+# └─┐├─┤├┤ │  │  
+# └─┘┴ ┴└─┘┴─┘┴─┘
+# shell
+
+# deps+=(zsh fzf oh-my-zsh-git pkgfile powerline-fonts vim zsh zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh-theme-powerlevel10k)
+
+# idk this simpler
+deps+=(cachyos-zsh-config)
+deps+=(cachyos-fish-config starship)
+
+# ┌┬┐┌─┐┬─┐┌┬┐┬┌┐┌┌─┐┬  
+#  │ ├┤ ├┬┘│││││││├─┤│  
+#  ┴ └─┘┴└─┴ ┴┴┘└┘┴ ┴┴─┘
+#  terminal
+
+deps+=(kitty alacritty)
+
+# ┬ ┬┌┬┐
+# ││││││
+# └┴┘┴ ┴
+# wm
+
+deps+=(hyprland hypridle hyprlock)
+
+# ┌┐ ┌─┐┬─┐
+# ├┴┐├─┤├┬┘
+# └─┘┴ ┴┴└─
+# bar
+
+deps+=(waybar)
+
+# ┌┐┌┌─┐┌┬┐┬┌─┐┬┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
+# ││││ │ │ │├┤ ││  ├─┤ │ ││ ││││└─┐
+# ┘└┘└─┘ ┴ ┴└  ┴└─┘┴ ┴ ┴ ┴└─┘┘└┘└─┘
+# notifications
+
+deps+=(mako swayosd )
+
+# ┬  ┌─┐┬ ┬┌┐┌┌─┐┬ ┬┌─┐┬─┐
+# │  ├─┤│ │││││  ├─┤├┤ ├┬┘
+# ┴─┘┴ ┴└─┘┘└┘└─┘┴ ┴└─┘┴└─
+# launcher
+
+deps+=(elephant elephant-providerlist elephant-calc elephant-clipboard elephant-desktopapplications
+walker)
+
+deps+=(zen-browser-bin brave-bin)
+
+# ┌┬┐┌─┐─┐ ┬┌┬┐  ┌─┐┌┬┐┬┌┬┐┌─┐┬─┐
+#  │ ├┤ ┌┴┬┘ │   ├┤  │││ │ │ │├┬┘
+#  ┴ └─┘┴ └─ ┴   └─┘─┴┘┴ ┴ └─┘┴└─
+#  text editor
+
+deps+=(vim neovim)
+
+# ┌─┐┬┬  ┌─┐  ┌┬┐┌─┐┌┐┌┌─┐┌─┐┌─┐┬─┐
+# ├┤ ││  ├┤   │││├─┤│││├─┤│ ┬├┤ ├┬┘
+# └  ┴┴─┘└─┘  ┴ ┴┴ ┴┘└┘┴ ┴└─┘└─┘┴└─
+# file manager
+
+deps+=(yazi ouch util-linux starship dragon-drop)
+deps+=(dolphin)
+
+
+printf "%s " "${deps[@]}"
