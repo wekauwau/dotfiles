@@ -1,4 +1,8 @@
 #!/bin/bash
 
+killall elephant
 killall walker
+
+elephant &
+sleep 2
 walker --gapplication-service &

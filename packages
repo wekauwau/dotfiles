@@ -7,7 +7,7 @@ deps=()
 #  ┴ └─┘└─┘┴─┘└─┘
 #  tools
 
-deps+=(git wl-clipboard brightnessctl htop btop bitwarden base-devel cmake ninja)
+deps+=(git wl-clipboard brightnessctl htop btop bitwarden base-devel cmake ninja localsend ufw)
 
 # ┌─┐┬ ┬┌─┐┬  ┬  
 # └─┐├─┤├┤ │  │  
@@ -53,8 +53,8 @@ deps+=(mako swayosd )
 # ┴─┘┴ ┴└─┘┘└┘└─┘┴ ┴└─┘┴└─
 # launcher
 
-deps+=(elephant elephant-providerlist elephant-calc elephant-clipboard elephant-desktopapplications
-walker)
+deps+=(elephant elephant-desktopapplications elephant-clipboard elephant-symbols elephant-calc elephant-providerlist elephant-todo elephant-bookmarks)
+deps+=(walker)
 
 deps+=(zen-browser-bin brave-bin)
 

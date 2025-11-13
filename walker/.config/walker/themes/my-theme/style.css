@@ -1,11 +1,14 @@
-@define-color window_bg_color #1f1f28;
-@define-color accent_bg_color #54546d;
-@define-color theme_fg_color #f2ecbc;
-@define-color error_bg_color #C34043;
-@define-color error_fg_color #DCD7BA;
+@define-color window_bg_color #1e1e2e;
+@define-color accent_bg_color #585b70;
+@define-color theme_fg_color #cdd6f4;
+@define-color error_bg_color #f38ba8;
+@define-color error_fg_color #cdd6f4;
+@define-color border_color #89b4fa;
 
 * {
   all: unset;
+  /* font-family: "Noto Sans"; */
+  /* font-family: "JetBrainsMonoNL Nerd Font"; */
 }
 
 .normal-icons {
@@ -26,8 +29,8 @@ scrollbar {
     0 15px 12px rgba(0, 0, 0, 0.22);
   background: @window_bg_color;
   padding: 20px;
-  border-radius: 20px;
-  border: 1px solid darker(@accent_bg_color);
+  border-radius: 10px;
+  border: 2px solid @border_color;
 }
 
 .preview-box,
@@ -40,7 +43,7 @@ scrollbar {
 }
 
 .search-container {
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .input placeholder {
@@ -79,7 +82,7 @@ child {
 }
 
 .item-box {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
 }
 
@@ -112,10 +115,12 @@ child:selected .item-box {
 }
 
 .preview {
-  border: 1px solid alpha(@accent_bg_color, 0.25);
+  /* border: 2px solid @border_preview_color; */
   /* padding: 10px; */
-  border-radius: 10px;
+  border-radius: 5px;
   color: @theme_fg_color;
+  padding: 10px;
+  background: alpha(@accent_bg_color, 0.25);
 }
 
 .calc .item-text {
@@ -179,8 +184,4 @@ child:selected .item-box {
 
 :not(.calc).current {
   font-style: italic;
-}
-
-.preview-content.archlinuxpkgs {
-  font-family: monospace;
 }
