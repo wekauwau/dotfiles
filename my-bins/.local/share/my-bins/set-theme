@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+  echo "Usage: set-theme <theme-name>"
+  exit 1
+fi
+
+CURRENT_THEME_DIR="$HOME/.local/state/my-current-theme"
+THEMES_DIR="$HOME/.local/share/my-themes"
+THEME_PATH="$THEMES_DIR/$1"
+
+# Check if the theme entered exists
+if [[ ! -d "$THEME_PATH" ]]; then
+  echo "Theme '$1' does not exist in $THEMES_DIR"
+  exit 1
+fi
+
+# Update theme symlinks
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+# Restart components to apply new theme
+pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar &
+disown
+pkill -x swayosd-server && swayosd-server &
+disown
+hyprctl reload
+pkill -SIGUSR2 btop
+makoctl reload
+
+# Kitty
+kitten themes --reload-in=all "$1"
+set_theme_gnome
+# omarchy-theme-set-browser
+
+notify-send "Theme set to $1"

@@ -44,16 +44,12 @@ runner = " "
 [providers.max_results_provider] # define max results per provider in here
 
 [[providers.prefixes]]
-prefix = ";"
-provider = "clipboard"
-
-[[providers.prefixes]]
 prefix = "="
 provider = "calc"
 
 [[providers.prefixes]]
-prefix = "."
-provider = "symbols"
+prefix = "!"
+provider = "todo"
 
 [[providers.prefixes]]
 prefix = ">"
@@ -64,12 +60,28 @@ prefix = "/"
 provider = "providerlist"
 
 [[providers.prefixes]]
-prefix = "!"
-provider = "todo"
+prefix = ";c"
+provider = "clipboard"
 
 [[providers.prefixes]]
-prefix = "%"
+prefix = ";s"
+provider = "symbols"
+
+[[providers.prefixes]]
+prefix = ";b"
 provider = "bookmarks"
+
+[[providers.prefixes]]
+prefix = ";r"
+provider = "menus:restart"
+
+[[providers.prefixes]]
+prefix = ";t"
+provider = "menus:theme"
+
+[[providers.prefixes]]
+prefix = ";x"
+provider = "menus:system"
 
 [providers.clipboard]
 time_format = "%d.%m. - %H:%M" # format for the clipboard item date

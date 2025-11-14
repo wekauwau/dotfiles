@@ -1,0 +1,27 @@
+name = "system"
+name_pretty = "System Menu"
+icon = "system"
+
+[[entries]]
+text = "Lock"
+icon = "system-lock-screen"
+keywords = ["lock"]
+actions = { "lock" = "pidof hyprlock || hyprlock &" }
+
+[[entries]]
+text = "Suspend"
+icon = "system-suspend"
+keywords = ["suspend", "sleep"]
+actions = { "suspend" = "systemctl suspend" }
+
+[[entries]]
+text = "Restart"
+icon = "system-restart"
+keywords = ["restart", "reboot"]
+actions = { "restart" = "systemctl reboot --no-wall" }
+
+[[entries]]
+text = "Shutdown"
+icon = "system-shutdown"
+keywords = ["shutdown", "off"]
+actions = { "shutdown" = "systemctl poweroff --no-wall" }

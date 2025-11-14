@@ -43,4 +43,5 @@ pacman -Qq | fzf \
   --ansi \
   --bind "enter:execute(${SHELL} -lc \"pacman $MODE {} | ${PAGER:-less} -R\")" \
   --bind 'alt-k:preview-up,alt-j:preview-down' \
+  --color 'pointer:green,marker:green' \
   --prompt="pkg> "

@@ -1,0 +1,9 @@
+name = "restart"
+name_pretty = "Restart Apps"
+icon = "view-refresh"
+
+[[entries]]
+text = "Restart Waybar"
+icon = "top_bar-symbolic"
+keywords = ["restart", "waybar"]
+actions = { "restart" = "restart-waybar" }

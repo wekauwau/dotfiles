@@ -53,7 +53,7 @@ deps+=(mako swayosd )
 # ┴─┘┴ ┴└─┘┘└┘└─┘┴ ┴└─┘┴└─
 # launcher
 
-deps+=(elephant elephant-desktopapplications elephant-clipboard elephant-symbols elephant-calc elephant-providerlist elephant-todo elephant-bookmarks)
+deps+=(elephant elephant-desktopapplications elephant-clipboard elephant-symbols elephant-calc elephant-providerlist elephant-todo elephant-menus)
 deps+=(walker)
 
 deps+=(zen-browser-bin brave-bin)

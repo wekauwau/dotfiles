@@ -1,4 +1,4 @@
 #!/bin/bash
 
-killall waybar
+pidof waybar >/dev/null && killall waybar
 waybar &

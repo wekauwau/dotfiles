@@ -1,7 +1,7 @@
 #!/bin/bash
 
-killall elephant
-killall walker
+pidof walker >/dev/null && killall walker
+pidof elephant >/dev/null && killall elephant
 
 elephant &
 sleep 2
