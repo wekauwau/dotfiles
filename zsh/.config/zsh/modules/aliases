@@ -20,7 +20,6 @@ alias lla='ll -a'
 # alias lta='lt -a'
 
 alias pinfo='paru -Si'
-alias plinfo='paru -Qi'
 alias pinstall='paru -S --needed'
 alias pupdate='paru -Syu --needed'
 alias premove='paru -Rns'

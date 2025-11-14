@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# pkgview — interactive package info viewer using fzf + pacman
+# Usage:
+#   pkgview       → show installed packages with basic info (-Qi)
+#   pkgview -f    → include file list too (-Qii)
+#   pkgview -h    → show help
+
+set -euo pipefail
+
+usage() {
+  echo "Usage: $(basename "$0") [-f|-h]"
+  echo
+  echo "  -f   show full info (pacman -Qii, includes file list)"
+  echo "  -h   show this help message"
+  exit 0
+}
+
+MODE="-Qi"
+while getopts ":fh" opt; do
+  case "$opt" in
+    f) MODE="-Qii" ;;
+    h) usage ;;
+    *) usage ;;
+  esac
+done
+
+# check dependencies
+for dep in pacman fzf; do
+  command -v "$dep" &>/dev/null || {
+    echo "Error: $dep not found in PATH" >&2
+    exit 1
+  }
+done
+
+# main interface
+pacman -Qq | fzf \
+  --preview "pacman $MODE {}" \
+  --preview-label='ENTER: Show selection, alt-j/k: Scroll' \
+  --preview-label-pos='bottom' \
+  --preview-window 'down:80%:wrap' \
+  --border \
+  --ansi \
+  --bind "enter:execute(${SHELL} -lc \"pacman $MODE {} | ${PAGER:-less} -R\")" \
+  --bind 'alt-k:preview-up,alt-j:preview-down' \
+  --prompt="pkg> "
