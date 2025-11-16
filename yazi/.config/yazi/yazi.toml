@@ -13,7 +13,10 @@ edit = [
 ]
 ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
 epub = [{ run = 'foliate "$@"', desc = "Open", for = "linux" }]
-image = [{ run = 'qview "$@"', desc = "Open", for = "linux" }]
+
+imv = [{ run = 'imv-dir "$@"', desc = "imv", for = "linux" }]
+qview = [{ run = 'qview "$@"', desc = "qview", for = "linux" }]
+
 video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
 extract = [
   { run = 'ouch decompress "$1" -d "${1%.*}" -y', desc = "Extract to dir with ouch", for = "unix" },
@@ -23,7 +26,8 @@ extract = [
 prepend_rules = [
   { name = "*.{cbz,pdf}", use = "ebook" },
   { name = "*.epub", use = "epub" },
-  { mime = "image/*", use = "image" },
+  { mime = "image/*", use = "imv" },
+  { mime = "image/*", use = "qview" },
   { mime = "video/*", use = "video" },
 ]
 

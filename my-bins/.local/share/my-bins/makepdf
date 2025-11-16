@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+OUTPUT="comic.pdf"
+TMPDIR="$(mktemp -d)"
+
+shopt -s nullglob
+IMAGES=( *.png *.jpg *.jpeg *.webp *.avif )
+
+if (( ${#IMAGES[@]} == 0 )); then
+    echo "No images found in current directory."
+    exit 1
+fi
+
+echo "Checking images for alpha channel..."
+
+HAS_ALPHA=false
+FLATTENED_IMAGES=()
+
+for img in "${IMAGES[@]}"; do
+    # Pixel-level alpha check:
+    # Returns "True" if fully opaque, "False" if any transparency exists
+    OPAQUE=$(magick identify -format "%[opaque]" "$img")
+
+    if [[ "$OPAQUE" == "False" ]]; then
+        HAS_ALPHA=true
+        break
+    fi
+done
+
+if $HAS_ALPHA; then
+    echo "Alpha detected! Flattening images..."
+    for img in "${IMAGES[@]}"; do
+        base="${img%.*}"
+        out="$TMPDIR/$base.jpg"
+
+        # Actually flatten
+        magick "$img" -background white -alpha remove -alpha off "$out"
+
+        FLATTENED_IMAGES+=("$out")
+    done
+    FINAL_IMAGES=( "${FLATTENED_IMAGES[@]}" )
+else
+    echo "No alpha detected, using images directly."
+    FINAL_IMAGES=( "${IMAGES[@]}" )
+fi
+
+echo "Creating PDF: $OUTPUT"
+img2pdf "${FINAL_IMAGES[@]}" -o "$OUTPUT"
+
+echo "PDF created: $OUTPUT"
+
+rm -rf "$TMPDIR"

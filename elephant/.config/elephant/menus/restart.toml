@@ -7,3 +7,9 @@ text = "Restart Waybar"
 icon = "top_bar-symbolic"
 keywords = ["restart", "waybar"]
 actions = { "restart" = "restart-waybar" }
+
+[[entries]]
+text = "Restart Hypridle"
+icon = "user-idle"
+keywords = ["restart", "hypridle"]
+actions = { "restart" = "restart-hypridle" }

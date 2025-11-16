@@ -7,7 +7,14 @@ deps=()
 #  ┴ └─┘└─┘┴─┘└─┘
 #  tools
 
-deps+=(git wl-clipboard brightnessctl htop btop bitwarden base-devel cmake ninja localsend ufw)
+deps+=(git wl-clipboard brightnessctl htop btop bitwarden base-devel cmake ninja localsend ufw magick img2pdf)
+
+# ┌┐ ┌─┐┌┬┐┌┬┐┌─┐┬─┐┬ ┬
+# ├┴┐├─┤ │  │ ├┤ ├┬┘└┬┘
+# └─┘┴ ┴ ┴  ┴ └─┘┴└─ ┴ 
+# battery
+
+deps+=(tlp tlp-rdw)
 
 # ┌─┐┬ ┬┌─┐┬  ┬  
 # └─┐├─┤├┤ │  │  
@@ -32,7 +39,7 @@ deps+=(kitty alacritty)
 # └┴┘┴ ┴
 # wm
 
-deps+=(hyprland hypridle hyprlock)
+deps+=(hyprland hypridle hyprlock hyprpaper xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland noto-fonts)
 
 # ┌┐ ┌─┐┬─┐
 # ├┴┐├─┤├┬┘
@@ -46,7 +53,7 @@ deps+=(waybar)
 # ┘└┘└─┘ ┴ ┴└  ┴└─┘┴ ┴ ┴ ┴└─┘┘└┘└─┘
 # notifications
 
-deps+=(mako swayosd )
+deps+=(mako swayosd)
 
 # ┬  ┌─┐┬ ┬┌┐┌┌─┐┬ ┬┌─┐┬─┐
 # │  ├─┤│ │││││  ├─┤├┤ ├┬┘
@@ -71,7 +78,7 @@ deps+=(vim neovim)
 # file manager
 
 deps+=(yazi ouch util-linux starship dragon-drop)
-deps+=(dolphin)
+deps+=(nautilus nautilus-admin-gtk4 nautilus-open-any-terminal)
 
 
 printf "%s " "${deps[@]}"
