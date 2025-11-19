@@ -16,18 +16,18 @@
     "bluetooth",
     "pulseaudio",
     "battery#bat0",
-    "battery#bat1",
+    "battery#bat1"
   ],
   "hyprland/workspaces": {
-    "format": "{id}",
+    "format": "{id}"
   },
   "clock": {
     "format": "{:L%a %d %b %H:%M}",
-    "tooltip": false,
+    "tooltip": false
   },
   "tray": {
     "icon-size": 12,
-    // "spacing": 17
+    "spacing": 15
   },
   "network": {
     "format-icons": [
