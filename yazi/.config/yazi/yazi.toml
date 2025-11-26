@@ -14,7 +14,8 @@ edit = [
 ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
 epub = [{ run = 'foliate "$@"', desc = "Open", for = "linux" }]
 
-imv = [{ run = 'imv-dir "$@"', desc = "imv", for = "linux" }]
+imv = [{ run = 'imv "$@"', desc = "imv", for = "linux" }]
+imv-dir = [{ run = 'imv-dir "$@"', desc = "imv-dir", for = "linux" }]
 qview = [{ run = 'qview "$@"', desc = "qview", for = "linux" }]
 
 video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
