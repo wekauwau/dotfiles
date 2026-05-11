@@ -4,24 +4,24 @@ icon = "system"
 
 [[entries]]
 text = "Lock"
-icon = "system-lock-screen"
+icon = "system-lock-screen-symbolic"
 keywords = ["lock"]
 actions = { "lock" = "pidof hyprlock || hyprlock &" }
 
 [[entries]]
 text = "Suspend"
-icon = "system-suspend"
+icon = "system-suspend-symbolic"
 keywords = ["suspend", "sleep"]
 actions = { "suspend" = "systemctl suspend" }
 
 [[entries]]
 text = "Restart"
-icon = "system-restart"
+icon = "system-restart-symbolic"
 keywords = ["restart", "reboot"]
 actions = { "restart" = "systemctl reboot --no-wall" }
 
 [[entries]]
 text = "Shutdown"
-icon = "system-shutdown"
+icon = "system-shutdown-symbolic"
 keywords = ["shutdown", "off"]
 actions = { "shutdown" = "systemctl poweroff --no-wall" }

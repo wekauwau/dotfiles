@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# --- helpers ---
+pause_exit() {
+  echo
+  read -rn1 -p "Press any key to exit..." _
+  echo
+  exit 1
+}
+
+# --- get monitors ---
+mapfile -t MONITORS < <(hyprctl monitors | awk '/Monitor/ {print $2}')
+
+if [ "${#MONITORS[@]}" -lt 2 ]; then
+  echo "[ERROR] Projector not detected (need at least 2 monitors)"
+  pause_exit
+fi
+
+# assume:
+LAPTOP="${MONITORS[0]}"
+PROJECTOR="${MONITORS[1]}"
+
+echo "Laptop: $LAPTOP"
+echo "Projector: $PROJECTOR"
+echo
+
+# --- get available modes ---
+MODES_RAW=$(hyprctl monitors all | awk -v mon="$PROJECTOR" '
+  $0 ~ "Monitor "mon {found=1}
+  found && /availableModes:/ {sub("availableModes: ",""); print; exit}
+')
+
+IFS=' ' read -r -a MODES <<<"$MODES_RAW"
+
+if [ "${#MODES[@]}" -eq 0 ]; then
+  echo "[ERROR] No modes found for $PROJECTOR"
+  pause_exit
+fi
+
+# --- choose mode ---
+echo "Available resolutions:"
+if [ "${#MODES[@]}" -eq 1 ]; then
+  MODE="${MODES[0]}"
+  echo "Only one mode available: $MODE (auto-selected)"
+else
+  select MODE in "${MODES[@]}"; do
+    [ -n "$MODE" ] && break
+  done
+fi
+
+echo "Selected mode: $MODE"
+echo
+
+# --- choose behavior ---
+echo "Choose mode:"
+echo "1) Mirror (scale laptop → projector)"
+echo "2) Force laptop resolution to match projector"
+
+read -rp "Enter choice [1/2]: " CHOICE
+
+case "$CHOICE" in
+1)
+  echo "→ Applying mirror (scaled)"
+  hyprctl keyword monitor "$PROJECTOR,$MODE,auto,1,mirror,$LAPTOP"
+  ;;
+2)
+  echo "→ Forcing both screens to $MODE"
+  hyprctl keyword monitor "$LAPTOP,$MODE,auto,1"
+  hyprctl keyword monitor "$PROJECTOR,$MODE,auto,1,mirror,$LAPTOP"
+  ;;
+*)
+  echo "[ERROR] Invalid choice"
+  pause_exit
+  ;;
+esac
+
+echo "Done."
+read -rn1 -p "Press any key to exit..." _
+echo

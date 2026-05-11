@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Config (tune here)
+AGE=12                                # hours
+LATEST=10                             # number of mirrors
+TIMEOUT=10                            # seconds per mirror
+COUNTRIES="Indonesia,Japan,Singapore" # optional, set "" to disable
+OUTPUT="/etc/pacman.d/mirrorlist"
+
+# Build base command
+cmd=(
+  reflector
+  --age "$AGE"
+  --latest "$LATEST"
+  --sort rate
+  --download-timeout "$TIMEOUT"
+)
+
+# Add country filter if set
+if [[ -n "$COUNTRIES" ]]; then
+  cmd+=(--country "$COUNTRIES")
+fi
+
+cmd+=(--save "$OUTPUT")
+
+echo "[*] Updating mirrorlist..."
+if sudo "${cmd[@]}"; then
+  echo "[+] Done"
+else
+  echo "[!] Failed, retrying with relaxed settings..."
+
+  # Fallback: more mirrors, older allowed
+  sudo reflector \
+    --age 24 \
+    --latest 20 \
+    --sort rate \
+    --download-timeout 10 \
+    --save "$OUTPUT"
+fi
+
+# Optional: show top mirrors
+echo
+echo "[*] Top mirrors:"
+head -n 10 "$OUTPUT"

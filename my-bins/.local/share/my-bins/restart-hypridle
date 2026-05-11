@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pidof hypridle >/dev/null && killall hypridle
+hypridle &

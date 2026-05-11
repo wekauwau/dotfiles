@@ -1,0 +1,13 @@
+# ┬─┐┬ ┬┌─┐┌┬┐
+# ├┬┘│ │└─┐ │ 
+# ┴└─└─┘└─┘ ┴ 
+
+# Remove if not installed via rustup
+# paru -Rns rust cargo
+paru -S rustup
+rustup default stable
+rustc -V
+rustup toolchain list
+rustup component add clippy rustfmt rust-analyzer rust-src
+rustup component list --installed --toolchain stable
+rustup update

@@ -1,7 +1,7 @@
 force_keyboard_focus = false    # forces keyboard forcus to stay in Walker
 close_when_open = true          # close walker when invoking while already opened
 click_to_close = true           # closes walker if clicking outside of the main content area
-selection_wrap = false          # wrap list if at bottom or top
+selection_wrap = true           # wrap list if at bottom or top
 global_argument_delimiter = "#" # query: firefox#https://benz.dev => part after delimiter will be ignored when querying. this should be the same as in the elephant config
 exact_search_prefix = "'"       # disable fuzzy searching
 theme = "my-theme"              # theme to use
@@ -33,9 +33,9 @@ page_up = ["Page_Up"]
 
 [providers]
 default = ["desktopapplications"] # providers to be queried by default
-empty = ["desktopapplications"]           # providers to be queried when query is empty
-ignore_preview = []                       # providers that should not show previews
-max_results = 50                          # global max results
+empty = ["desktopapplications"]   # providers to be queried when query is empty
+ignore_preview = []               # providers that should not show previews
+max_results = 50                  # global max results
 
 [providers.argument_delimiter] # define the argument delimiter per provider
 runner = " "

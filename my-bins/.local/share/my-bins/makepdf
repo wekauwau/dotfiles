@@ -1,54 +1,111 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
-OUTPUT="comic.pdf"
+OUTPUT="${1:-$(basename "$PWD").pdf}"
+if [[ "${1:-}" == *.pdf ]]; then
+  shift
+fi
 TMPDIR="$(mktemp -d)"
 
-shopt -s nullglob
-IMAGES=( *.png *.jpg *.jpeg *.webp *.avif )
+NATURAL_SORT=false
+NO_ALPHA_CHECK=false
+QUALITY=85
+WIDTH=""
+MAX_HEIGHT=""
 
-if (( ${#IMAGES[@]} == 0 )); then
-    echo "No images found in current directory."
+cleanup() {
+  rm -rf "$TMPDIR"
+}
+trap cleanup EXIT
+
+# Parse flags
+for arg in "$@"; do
+  case "$arg" in
+  -n | --natural)
+    NATURAL_SORT=true
+    ;;
+  -A | --no-alpha-check)
+    NO_ALPHA_CHECK=true
+    ;;
+  -q=*)
+    QUALITY="${arg#*=}"
+    ;;
+  --width=*)
+    WIDTH="${arg#*=}"
+    ;;
+  --max-height=*)
+    MAX_HEIGHT="${arg#*=}"
+    ;;
+  *)
+    echo "Unknown option: $arg" >&2
     exit 1
-fi
-
-echo "Checking images for alpha channel..."
-
-HAS_ALPHA=false
-FLATTENED_IMAGES=()
-
-for img in "${IMAGES[@]}"; do
-    # Pixel-level alpha check:
-    # Returns "True" if fully opaque, "False" if any transparency exists
-    OPAQUE=$(magick identify -format "%[opaque]" "$img")
-
-    if [[ "$OPAQUE" == "False" ]]; then
-        HAS_ALPHA=true
-        break
-    fi
+    ;;
+  esac
 done
 
-if $HAS_ALPHA; then
-    echo "Alpha detected! Flattening images..."
-    for img in "${IMAGES[@]}"; do
-        base="${img%.*}"
-        out="$TMPDIR/$base.jpg"
+shopt -s nullglob
+GLOBS=(*.png *.jpg *.jpeg *.webp *.avif)
 
-        # Actually flatten
-        magick "$img" -background white -alpha remove -alpha off "$out"
-
-        FLATTENED_IMAGES+=("$out")
-    done
-    FINAL_IMAGES=( "${FLATTENED_IMAGES[@]}" )
-else
-    echo "No alpha detected, using images directly."
-    FINAL_IMAGES=( "${IMAGES[@]}" )
+if ((${#GLOBS[@]} == 0)); then
+  echo "No images found."
+  exit 1
 fi
+
+# Sorting
+if $NATURAL_SORT; then
+  mapfile -d '' -t IMAGES < <(printf '%s\0' "${GLOBS[@]}" | sort -z -V)
+else
+  IMAGES=("${GLOBS[@]}")
+fi
+
+FINAL_IMAGES=()
+
+echo "Processing images..."
+
+for img in "${IMAGES[@]}"; do
+  needs_flatten=false
+
+  if ! $NO_ALPHA_CHECK; then
+    opaque=$(magick identify -format "%[opaque]" "$img" || echo "True")
+    if [[ "$opaque" == "False" ]]; then
+      needs_flatten=true
+    fi
+  fi
+
+  # Build output path only if needed
+  if $needs_flatten || [[ -n "$WIDTH" || -n "$MAX_HEIGHT" ]]; then
+    base="$(basename "${img%.*}")"
+    out="$TMPDIR/$base.jpg"
+
+    resize_args=()
+
+    # Enlarge without upscale
+    # -resize "${WIDTH}x<"
+    if [[ -n "$WIDTH" && -n "$MAX_HEIGHT" ]]; then
+      resize_args=(-resize "${WIDTH}x${MAX_HEIGHT}")
+    elif [[ -n "$WIDTH" ]]; then
+      resize_args=(-resize "${WIDTH}x")
+    elif [[ -n "$MAX_HEIGHT" ]]; then
+      resize_args=(-resize "x${MAX_HEIGHT}>")
+    fi
+
+    echo "Converting: $img"
+
+    magick "$img" \
+      -background white -alpha remove -alpha off \
+      "${resize_args[@]}" \
+      -strip -interlace Plane \
+      -quality "$QUALITY" \
+      "$out"
+
+    FINAL_IMAGES+=("$out")
+  else
+    # Keep original (no recompression)
+    FINAL_IMAGES+=("$img")
+  fi
+done
 
 echo "Creating PDF: $OUTPUT"
 img2pdf "${FINAL_IMAGES[@]}" -o "$OUTPUT"
 
-echo "PDF created: $OUTPUT"
-
-rm -rf "$TMPDIR"
+echo "Done: $OUTPUT"

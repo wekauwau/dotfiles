@@ -5,7 +5,6 @@
     <style>
       <class name="window"></class>
     </style>
-    <property name="resizable">true</property>
     <property name="title">Walker</property>
     <child>
       <object class="GtkBox" id="BoxWrapper">
@@ -16,8 +15,8 @@
         <property name="orientation">horizontal</property>
         <property name="valign">center</property>
         <property name="halign">center</property>
-        <property name="width-request">600</property>
-        <property name="height-request">570</property>
+        <property name="width-request">650</property>
+        <property name="height-request">700</property>
         <child>
           <object class="GtkBox" id="Box">
             <style>

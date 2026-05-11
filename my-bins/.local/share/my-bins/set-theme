@@ -55,6 +55,8 @@ fi
 # Update theme symlinks
 ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 
+# hyprctl keyword decoration:active_opacity 10
+
 # Restart components to apply new theme
 pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar &
 disown
@@ -65,7 +67,7 @@ pkill -SIGUSR2 btop
 makoctl reload
 
 # Kitty
-kitten themes --reload-in=all "$1"
+kitten themes --cache-age=-1 --reload-in=all "$1"
 set_theme_gnome
 # omarchy-theme-set-browser
 

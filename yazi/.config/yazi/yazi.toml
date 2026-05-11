@@ -6,60 +6,69 @@ show_hidden = true
 [preview]
 wrap = "yes"
 image_delay = 5
+image_filter = "triangle"
+image_quality = 50
 
 [opener]
 edit = [
-  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "linux" },
+  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
-ebook = [{ run = 'evince "$@"', desc = "Open", for = "linux" }]
-epub = [{ run = 'foliate "$@"', desc = "Open", for = "linux" }]
 
-imv = [{ run = 'imv "$@"', desc = "imv", for = "linux" }]
-imv-dir = [{ run = 'imv-dir "$@"', desc = "imv-dir", for = "linux" }]
-qview = [{ run = 'qview "$@"', desc = "qview", for = "linux" }]
+evince = [{ run = 'evince "$@"', desc = "evince", for = "unix" }]
+foliate = [{ run = 'foliate "$@"', desc = "foliate", for = "unix" }]
+zathura = [{ run = 'zathura "$@"', desc = "zathura", for = "unix" }]
 
-video = [{ run = 'mpv --force-window=yes "$@"', desc = "Open", for = "linux" }]
+imv = [{ run = 'imv "$@"', desc = "imv", for = "unix" }]
+imv-dir = [{ run = 'imv-dir "$@"', desc = "imv-dir", for = "unix" }]
+qview = [{ run = 'qview "$@"', desc = "qview", for = "unix" }]
+
+mpv = [{ run = 'mpv --force-window=yes "$@"', desc = "mpv", for = "unix" }]
+vlc = [{ run = 'vlc "$@"', desc = "vlc", for = "unix" }]
+
 extract = [
-  { run = 'ouch decompress "$1" -d "${1%.*}" -y', desc = "Extract to dir with ouch", for = "unix" },
+  { run = 'for f in "$@"; do ouch d -y "$f" -d "${f%.*}"; done', desc = "Extract to dir with ouch", for = "unix" },
 ]
 
 [open]
 prepend_rules = [
-  { name = "*.{cbz,pdf}", use = "ebook" },
-  { name = "*.epub", use = "epub" },
-  { mime = "image/*", use = "imv" },
-  { mime = "image/*", use = "qview" },
-  { mime = "video/*", use = "video" },
+  { mime = "application/pdf", use = [
+    "evince",
+    "zathura",
+  ] },
+  { mime = "*.cbz", use = "evince" },
+  { mime = "*.epub", use = "foliate" },
+  { mime = "image/*", use = [
+    "imv",
+    "qview",
+  ] },
+  { mime = "video/*", use = [
+    "mpv",
+    "vlc",
+  ] },
 ]
 
 # yazi-rs/plugins:git
 [[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
+url = "*"
 run = "git"
+group = "git"
 
 # yazi-rs/plugins:git
 [[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
+url = "*/"
 run = "git"
+group = "git"
 
 [plugin]
 prepend_previewers = [
-  # https://github.com/ndtoan96/ouch.yazi?tab=readme-ov-file#preview
-  # Archive previewer
-  { mime = "application/*zip", run = "ouch" },
-  { mime = "application/x-tar", run = "ouch" },
-  { mime = "application/x-bzip2", run = "ouch" },
-  { mime = "application/x-7z-compressed", run = "ouch" },
-  { mime = "application/x-rar", run = "ouch" },
-  { mime = "application/x-xz", run = "ouch" },
-
+  # Archive
+  # https://github.com/ndtoan96/ouch.yazi#preview
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch" },
   # Disable video
   { mime = "video/*", run = "noop" },
 ]
 
 prepend_preloaders = [
-  # Disable video
   { mime = "video/*", run = "noop" },
+  { mime = "application/pdf", run = "noop" },
 ]

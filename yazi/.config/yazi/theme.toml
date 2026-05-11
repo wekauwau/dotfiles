@@ -1,3 +1,6 @@
+[status]
+left = "[ {owner} ]"
+
 [flavor]
 dark = "catppuccin-mocha"
 light = "catppuccin-latte"
