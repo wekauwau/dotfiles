@@ -58,6 +58,7 @@ ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 # hyprctl keyword decoration:active_opacity 10
 
 # Restart components to apply new theme
+systemctl --user restart hyprpaper
 pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar &
 disown
 pkill -x swayosd-server && swayosd-server &

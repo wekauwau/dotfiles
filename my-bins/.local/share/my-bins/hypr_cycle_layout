@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+LAYOUTS=(dwindle scrolling monocle)
+
+ACTIVE=$(hyprctl activewindow -j)
+WORKSPACE_ID=$(printf '%s' "$ACTIVE" | jq -r '.workspace.id')
+WORKSPACE_NAME=$(printf '%s' "$ACTIVE" | jq -r '.workspace.name')
+
+# Use name for special workspaces, ID for normal
+if [ "$WORKSPACE_ID" -lt 0 ]; then
+  WORKSPACE_TARGET="$WORKSPACE_NAME"
+else
+  WORKSPACE_TARGET="$WORKSPACE_ID"
+fi
+
+LAYOUT=$(hyprctl workspaces -j | jq -r --argjson id "$WORKSPACE_ID" '.[] | select(.id == $id) | .tiledLayout')
+
+COUNT=${#LAYOUTS[@]}
+CURRENT=0
+for i in "${!LAYOUTS[@]}"; do
+  [[ "${LAYOUTS[i]}" == "$LAYOUT" ]] && CURRENT=$i && break
+done
+
+if [[ "$1" == "--prev" ]]; then
+  TARGET=$(((CURRENT - 1 + COUNT) % COUNT))
+else
+  TARGET=$(((CURRENT + 1) % COUNT))
+fi
+
+hyprctl eval "hl.workspace_rule({ workspace = \"$WORKSPACE_TARGET\", layout = \"${LAYOUTS[$TARGET]}\" })" >/dev/null
+
+if [[ "${LAYOUTS[$TARGET]}" == "monocle" ]]; then
+  hyprctl dispatch 'hl.dsp.window.fullscreen_state({ internal = 1, client = 0, action = "set" })'
+else
+  hyprctl dispatch 'hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" })'
+fi
+
+# notify-send --icon state-information \
+#   --app-name "$0" \
+#   -h "string:x-canonical-private-synchronous:$0" \
+#   "Workspace layout changed" \
+#   "${WORKSPACE_NAME}: ${LAYOUTS[$TARGET]}"
