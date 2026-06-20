@@ -37,8 +37,8 @@ empty = ["desktopapplications"]   # providers to be queried when query is empty
 ignore_preview = []               # providers that should not show previews
 max_results = 50                  # global max results
 
-[providers.argument_delimiter] # define the argument delimiter per provider
-runner = " "
+# [providers.argument_delimiter] # define the argument delimiter per provider
+# runner = " "
 
 [providers.sets] # define your own defaults/empty sets of providers
 [providers.max_results_provider] # define max results per provider in here
@@ -50,10 +50,6 @@ provider = "calc"
 [[providers.prefixes]]
 prefix = "!"
 provider = "todo"
-
-[[providers.prefixes]]
-prefix = ">"
-provider = "runner"
 
 [[providers.prefixes]]
 prefix = "/"

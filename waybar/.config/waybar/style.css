@@ -1,71 +1,145 @@
 @import "theme.css";
 
 * {
-  background-color: @background;
-  color: @foreground;
+  border: none;
+  border-radius: 0;
   padding: 0;
   margin: 0;
 
-  border: none;
-  border-radius: 0;
   min-height: 0;
-  font-family: 'JetBrainsMono Nerd Font Propo';
+  font-family: "JetBrainsMono Nerd Font Propo";
   font-size: 12px;
-  font-weight: 700;
+  font-weight: bold;
+  color: @text;
+}
+
+window#waybar {
+  background-color: transparent;
 }
 
 .hidden {
   opacity: 0;
 }
 
-.modules-left {
-  margin-left: 8px;
-}
-
+.modules-left,
+.modules-center,
 .modules-right {
-  margin-right: 8px;
+  background-color: @base;
 }
 
-#workspaces button {
-  all: initial;
-  padding: 0 7px;
-  min-width: 9px;
+#custom-os {
+  background-image: url("/home/wekauwau/.dotfiles/waybar/.config/waybar/CachyOS_48.png");
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* min-width: 25px; */
+  /* min-height: 25px; */
+  padding: 0 15px;
 }
 
-#workspaces button.active {
-  padding: 0;
+#workspaces button label {
+  border-top: 2px solid @surface_2;
+  padding: 0 10px;
 }
 
 #workspaces button.active label {
-  background-color: @blue;
-  color: @background;
-  min-width: 25px;
+  border-color: @red;
+  background-color: @red_70;
+  color: @red;
 }
 
-#tray,
-#network,
+#battery,
 #bluetooth,
-#pulseaudio,
-#battery.bat0,
-#battery.bat1 {
+#custom-swaync,
+#idle_inhibitor,
+#power-profiles-daemon,
+#privacy,
+#pulseaudio.out,
+#pulseaudio.in,
+#tray {
+  border-top: 2px solid @surface_2;
   min-width: 12px;
-  padding: 0 7.5px;
+  padding: 0 8.75px;
+  background-color: @base;
 }
 
-#battery.bat0.warning {
-  background-color: @yellow;
-  color: @background;
+#idle_inhibitor.activated {
+  border-color: @red;
+  background-color: @red_70;
+  color: @red;
 }
 
-#battery.bat0.critical {
-  background-color: @red;
-  color: @background;
+#pulseaudio.out {
+  border-color: @peach;
+  background-color: @peach_70;
+  color: @peach;
 }
 
-#battery.bat0.charging,
-#battery.bat1.charging {
-  background-color: @green;
-  color: @background;
+#pulseaudio.out.muted {
+  border-color: @surface_2;
+  background-color: @base;
+}
+
+#pulseaudio.in {
+  border-color: @red;
+  background-color: @red_70;
+  color: @red;
+}
+
+#pulseaudio.in.source-muted {
+  border-color: @surface_2;
+  background-color: @base;
+}
+
+#bluetooth {
+  color: @blue;
+}
+
+#bluetooth.on,
+#bluetooth.connected {
+  border-color: @blue;
+  background-color: @blue_70;
+  color: @blue;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.warning {
+  border-color: @yellow;
+  background-color: @yellow_70;
+  color: @yellow;
+}
+
+#battery.critical {
+  border-color: @red;
+  background-color: @red_70;
+  color: @red;
+}
+
+#battery.charging {
+  border-color: @green;
+  background-color: @green_70;
+  color: @green;
+}
+
+#power-profiles-daemon.balanced {
+  border-color: @blue;
+  background-color: @blue_70;
+  color: @blue;
+}
+
+#power-profiles-daemon.power-saver {
+  border-color: @green;
+  background-color: @green_70;
+  color: @green;
+}
+
+#power-profiles-daemon.performance {
+  border-color: @red;
+  background-color: @red_70;
+  color: @red;
 }
 
 tooltip {
@@ -80,5 +154,31 @@ tooltip label {
 }
 
 #clock {
-  margin-left: 8.75px;
+  margin: 0 8.75px;
 }
+
+#custom-swaync.dnd-none {
+  border-color: @mauve;
+  background-color: @mauve_70;
+  color: @mauve;
+}
+
+#custom-swaync.notification {
+  border-color: @sky;
+  background-color: @sky_70;
+  color: @sky;
+}
+
+#custom-swaync.dnd-notification {
+  border-color: @pink;
+  background-color: @pink_70;
+  color: @pink;
+}
+
+/* has notifications */
+/* #custom-swaync:not(.none) { */
+/*   color: @red; */
+/* } */
+/* #tray widget.active > image { */
+/*   border-color: @text; */
+/* } */

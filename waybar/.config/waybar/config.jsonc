@@ -1,42 +1,84 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 26,
+  "height": 30,
   "spacing": 0,
   "reload_style_on_change": true,
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-left": ["custom/os", "hyprland/workspaces"],
+  "modules-center": ["clock"],
   "modules-right": [
     "tray",
-    // "network",
+    "custom/swaync",
+    "privacy",
+    "pulseaudio#out",
+    "pulseaudio#in",
     "bluetooth",
-    "pulseaudio",
-    "battery#bat0",
-    "battery#bat1"
+    "battery",
+    "idle_inhibitor",
+    "power-profiles-daemon",
   ],
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
+  },
+  "custom/os": {
+    "format": " ",
+    "on-click": "nc -U /run/user/1000/walker/walker.sock",
+  },
+  "custom/swaync": {
+    "format": "{icon} {text}",
+    "format-icons": {
+      "none": "󰂚",
+      "dnd-none": "󰂛",
+      "notification": "󰂚",
+      "dnd-notification": "󰂛",
+    },
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+    "return-type": "json",
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
   "hyprland/workspaces": {
-    "format": "{id}"
+    "format": "{icon}",
+    "show-special": true,
+  },
+  "privacy": {
+    "modules": [
+      {
+        "type": "screenshare",
+        "icon-name": "screen-shared-symbolic",
+      },
+      {
+        "type": "audio-in",
+        "icon-name": "microphone-sensitivity-high-symbolic",
+      },
+    ],
   },
   "clock": {
     "format": "{:L%a %d %b %H:%M}",
-    "tooltip": false
+    "tooltip": false,
   },
   "tray": {
-    "icon-size": 12,
-    "spacing": 15
+    "icon-size": 14,
+    "spacing": 15,
   },
   "network": {
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format": "{icon}",
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
@@ -46,97 +88,59 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "kitty --class nmtui -e nmtui"
+    "on-click": "kitty --class impala -e impala",
   },
   "bluetooth": {
     "format": "",
-    "format-disabled": "󰂲",
-    "format-connected": "",
-    "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueberry"
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-on": " NC",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "kitty --class bluetuith -e bluetuith",
   },
-  "pulseaudio": {
+  "pulseaudio#out": {
     "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon}(B) {volume}%",
-    "format-muted": "",
-    "on-click": "kitty --class=wiremix -e wiremix",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "",
+    "on-click": "kitty --class wiremix -e wiremix",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
+      "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+      "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", "", ""],
+    },
   },
-  "battery#bat0": {
-    "bat": "BAT0",
+  "pulseaudio#in": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "kitty --class wiremix -e wiremix",
+    "scroll-step": 5,
+  },
+  "battery": {
     "states": {
       "warning": 30,
-      "critical": 20
+      "critical": 20,
     },
     "format": "{icon} {capacity}%",
     "format-plugged": " {capacity}%",
     "format-full": "󰂅",
     "format-icons": {
-      "charging": [
-        "󰢜",
-        "󰂆",
-        "󰂇",
-        "󰂈",
-        "󰢝",
-        "󰂉",
-        "󰢞",
-        "󰂊",
-        "󰂋",
-        "󰂅"
-      ],
-      "default": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
-    },
-    "tooltip-format": "{timeTo}\nHealth: {health}%",
-  },
-  "battery#bat1": {
-    "bat": "BAT1",
-    "format": "{icon} {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-full": "󰂅",
-    "format-icons": {
-      "charging": [
-        "󰢜",
-        "󰂆",
-        "󰂇",
-        "󰂈",
-        "󰢝",
-        "󰂉",
-        "󰢞",
-        "󰂊",
-        "󰂋",
-        "󰂅"
-      ],
-      "default": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     },
     "tooltip-format": "{timeTo}\nHealth: {health}%",
   },

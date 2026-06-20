@@ -1,0 +1,12 @@
+[Unit]
+Description=Battery low notifications
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/share/my-bins/battery-notify
+Restart=always
+RestartSec=5
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=graphical-session.target

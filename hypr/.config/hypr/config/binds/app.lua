@@ -1,50 +1,33 @@
 local cfg = require("config.binds.vars")
-local mainMod, browser, terminal, textEditorTUI, fileManagerTUI, passwordManager =
-	cfg.mainMod, cfg.browser, cfg.terminal, cfg.textEditorTUI, cfg.fileManagerTUI, cfg.passwordManager
+local mainMod, shiftMod, terminal, textEditorTUI, fileManagerTUI, passwordManager =
+	cfg.mainMod, cfg.shiftMod, cfg.terminal, cfg.textEditorTUI, cfg.fileManagerTUI, cfg.passwordManager
 
 -- ╔╦╗  ╦ ╦  ╦
 --  ║   ║ ║  ║
 --  ╩   ╚═╝  ╩
 
--- Terminal
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal), { description = "Terminal" })
-hl.bind(
-	mainMod .. " + SHIFT + RETURN",
-	hl.dsp.exec_cmd(terminal .. " --class float"),
-	{ description = "Floating Terminal" }
-)
+hl.bind(mainMod .. "RETURN", hl.dsp.exec_cmd(terminal), { description = "Terminal" })
+hl.bind(shiftMod .. "RETURN", hl.dsp.exec_cmd(terminal .. " --class float"), { description = "Floating Terminal" })
 
--- File manager
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. fileManagerTUI), { description = "File Manager" })
+hl.bind(mainMod .. "O", hl.dsp.exec_cmd(terminal .. fileManagerTUI), { description = "File manager" })
 hl.bind(
-	mainMod .. " + SHIFT + E",
+	shiftMod .. "O",
 	hl.dsp.exec_cmd(terminal .. " --class yazi " .. fileManagerTUI),
-	{ description = "File Manager" }
+	{ description = "Floating file manager" }
 )
 
--- Task manager
-hl.bind(
-	mainMod .. " + T",
-	hl.dsp.exec_cmd(terminal .. " --class htop -e htop"),
-	{ description = "Floating task manager" }
-)
-hl.bind(
-	mainMod .. " + SHIFT + T",
-	hl.dsp.exec_cmd(terminal .. " --class btop -e btop"),
-	{ description = "Task manager" }
-)
+hl.bind(mainMod .. "J", hl.dsp.exec_cmd(terminal .. " --class htop -e htop"), { description = "Task manager (htop)" })
+hl.bind(shiftMod .. "J", hl.dsp.exec_cmd(terminal .. " --class btop -e btop"), { description = "Task manager (btop)" })
 
--- Text editor
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(terminal .. textEditorTUI), { description = "Text editor" })
+hl.bind(mainMod .. "N", hl.dsp.exec_cmd(terminal .. textEditorTUI), { description = "Text editor" })
 hl.bind(
-	mainMod .. " + SHIFT + N",
+	shiftMod .. "N",
 	hl.dsp.exec_cmd(terminal .. " --class nvim " .. textEditorTUI),
-	{ description = "Text editor (nvim)" }
+	{ description = "Floating text editor" }
 )
 
 -- ╔═╗  ╦ ╦  ╦
 -- ║ ╦  ║ ║  ║
 -- ╚═╝  ╚═╝  ╩
 
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser), { description = "Browser" })
-hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(passwordManager), { description = "Password Manager" })
+hl.bind(mainMod .. "SLASH", hl.dsp.exec_cmd(passwordManager), { description = "Password manager" })

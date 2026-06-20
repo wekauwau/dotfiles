@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+LAST_NOTIFIED=""
+
+while true; do
+  LEVEL=$(cat /sys/class/power_supply/BAT0/capacity)
+  STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+  if [[ "$STATUS" == "Discharging" ]]; then
+    case "$LEVEL" in
+    20 | 15 | 10 | 5)
+      if [[ "$LAST_NOTIFIED" != "$LEVEL" ]]; then
+        notify-send -u critical "Battery Low" "${LEVEL}% remaining" -i battery-low
+        LAST_NOTIFIED="$LEVEL"
+      fi
+      ;;
+    *)
+      LAST_NOTIFIED=""
+      ;;
+    esac
+  else
+    LAST_NOTIFIED=""
+  fi
+
+  sleep 60
+done

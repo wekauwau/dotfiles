@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -z $1 ]]; then
   echo "Usage: set-theme <theme-name>"
@@ -17,30 +17,22 @@ set_theme_gnome() {
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
   fi
-
   GTK_THEME_FILE="$CURRENT_THEME_DIR/gtk"
   if [[ -f "$GTK_THEME_FILE" ]]; then
     THEME_NAME="$(tr -d '\n' <"$GTK_THEME_FILE")"
-
     # GTK3
     gsettings set org.gnome.desktop.interface gtk-theme "$THEME_NAME"
-
     # GTK4
     GTK4_SRC="$HOME/.themes/$THEME_NAME/gtk-4.0"
     GTK4_DEST="$HOME/.config/gtk-4.0"
-
     if [[ -d "$GTK4_SRC" ]]; then
-      # Remove old link or directory first
       if [[ -L "$GTK4_DEST" || -d "$GTK4_DEST" ]]; then
         rm -rf "$GTK4_DEST"
       fi
-
       ln -sf "$GTK4_SRC" "$GTK4_DEST"
-
     else
       echo "Warning: GTK4 directory not found for theme '$THEME_NAME'"
     fi
-
   else
     echo "Warning: GTK theme file not found"
   fi
@@ -52,24 +44,32 @@ if [[ ! -d "$THEME_PATH" ]]; then
   exit 1
 fi
 
-# Update theme symlinks
+# Update theme symlink
 ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 
-# hyprctl keyword decoration:active_opacity 10
+# Reload hyprland config
+hyprctl reload
 
-# Restart components to apply new theme
-systemctl --user restart hyprpaper
+# Reload hyprpaper (re-reads hyprpaper.conf which points into $CURRENT_THEME_DIR)
+pkill -x hyprpaper
+hyprpaper &
+disown
+
+# Reload or start waybar
 pgrep -x waybar >/dev/null && killall -SIGUSR2 waybar || waybar &
 disown
-pkill -x swayosd-server && swayosd-server &
+
+# Restart swayosd-server regardless of whether it was running
+pkill -x swayosd-server
+swayosd-server &
 disown
-hyprctl reload
+
 pkill -SIGUSR2 btop
-makoctl reload
+swaync-client -R -rs
 
 # Kitty
-kitten themes --cache-age=-1 --reload-in=all "$1"
+kill -SIGUSR1 $(pgrep -x kitty)
+
 set_theme_gnome
-# omarchy-theme-set-browser
 
 notify-send "Theme set to $1"

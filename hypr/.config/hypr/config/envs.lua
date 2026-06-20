@@ -18,3 +18,6 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("XCURSOR_SIZE", "24")
+hl.env("GDK_SCALE", "1")
+
+hl.env("HYPRSHOT_DIR", "/home/wekauwau/Pictures/screenshots")

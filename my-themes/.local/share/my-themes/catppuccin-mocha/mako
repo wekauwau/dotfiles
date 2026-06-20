@@ -1,5 +1,9 @@
 # vim:ft=dosini
 
-text-color=#cdd6f4
 border-color=#89b4fa
 background-color=#1e1e2e
+text-color=#cdd6f4
+
+[urgency=critical]
+border-color=#f38ba8
+background-color=#311c22

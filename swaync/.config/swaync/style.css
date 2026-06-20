@@ -1,0 +1,291 @@
+@import "colors/colors.css";
+
+* {
+  font-family: "JetBrainsMonoNL Nerd Font";
+  font-weight: 700;
+  all: unset;
+
+  /* Global style variables */
+  --border-radius: 5px;
+  --border-radius-s: 8px;
+  --border-radius-xl: 18px;
+
+  --shadow: 2px 4px 10px @overlay_1_shadow;
+}
+
+/* Notification popup */
+.notification-background {
+  background: @base;
+  border-radius: var(--border-radius);
+  margin: 8px;
+  padding: 0;
+  /* box-shadow: none; */
+}
+.notification-background .close-button {
+  margin: 6px;
+  padding: 2px;
+  border-radius: 6px;
+  background: transparent;
+  color: @text;
+}
+.notification-background .close-button:hover {
+  background: @hover;
+}
+
+/* Notification in NC */
+.notification {
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  padding: 5px;
+  background: @base;
+}
+.notification.critical {
+  border: 2px solid @red;
+  box-shadow: 2px 4px 10px @red_shadow;
+}
+.notification-content {
+  color: @text;
+  margin: 10px;
+  font-weight: 700;
+}
+.notification.critical .notification-content {
+  color: @red;
+}
+.notification-content .text-box {
+  margin: 0 0 0 15px;
+}
+.notification-content .time {
+  padding: 2px;
+  font-size: 0.95rem;
+}
+.notification-content .summary {
+  margin-bottom: 2px;
+  padding: 2px 0;
+  font-size: 1rem;
+}
+.notification-content .body {
+  color: @subtext_0;
+  font-size: 0.85rem;
+}
+
+/* Inline reply */
+.notification-row .inline-reply-entry,
+.notification-row .inline-reply-button {
+  margin: 5px -5px -5px -5px;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  background: @surface_1;
+}
+.notification-row .inline-reply-entry {
+  margin-right: 10px;
+}
+.notification-row .inline-reply-button:hover {
+  background: @selected;
+}
+
+.notification-alt-actions {
+  padding: 5px 0;
+}
+
+.notification-action {
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  background: @hover;
+  color: @text;
+  margin: 0 5px;
+  padding: 10px 0;
+}
+.notification-action:hover,
+.notification-action:active {
+  background: @selected;
+}
+
+.control-center {
+  background: @base_transparent;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  margin: 10px 0;
+  border-right: none;
+  padding: 10px;
+}
+
+.control-center .notification-background {
+  box-shadow: var(--shadow);
+}
+
+/* Remove close buttons in notification center */
+.control-center .notification-background .close-button,
+.notification-group-close-button {
+  opacity: 0;
+}
+
+/* Notification group */
+.notification-group {
+  transition: 200ms;
+}
+/* Notifications expanded-group extra margin */
+.notification-group:not(.collapsed) {
+  margin: 8px;
+}
+.notification-group-headers,
+.notification-group-buttons {
+  color: @blue;
+  font-weight: 700;
+  background: @base;
+  border-radius: var(--border-radius);
+  padding: 4px 8px;
+}
+.notification-group-headers > label {
+  margin: 0 3px;
+  font-size: 1rem;
+}
+.notification-group-icon {
+  color: @blue;
+}
+.notification-group-buttons .image-button {
+  background: transparent;
+  color: @blue;
+  padding: 4px;
+  border-radius: var(--border-radius);
+}
+.notification-group-buttons .image-button:hover {
+  background: @hover;
+}
+
+/* Widgets */
+.widget {
+  margin: 5px;
+  color: @text;
+}
+.widget-mpris-album-art {
+  border-radius: var(--border-radius);
+  margin: 6px 4px;
+}
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 3px;
+}
+.widget-mpris-subtitle {
+  color: @subtext_1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0 3px;
+}
+.mpris-background {
+  border-radius: 14px;
+  margin: 3px;
+}
+.widget-mpris {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.mpris-overlay {
+  border-radius: var(--border-radius);
+  padding: 10px;
+  background: @base;
+}
+
+/* Control buttons container  */
+.mpris-overlay > box:last-child {
+  border-radius: var(--border-radius-xl);
+  padding: 0 5px;
+  background: alpha(@hover, 0.6);
+}
+
+/* Control buttons */
+.widget-mpris-player button {
+  padding: 5px;
+  margin: 0 2.5px;
+}
+
+/* Hover for control buttons */
+.widget-mpris-player button:hover {
+  border-radius: var(--border-radius-s);
+  background: @hover;
+}
+
+/* Do not disturb */
+.widget-dnd {
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  background: @base;
+  box-shadow: var(--shadow);
+  color: @mauve;
+}
+.widget-dnd > label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.widget-dnd switch {
+  background: @surface_0;
+  border-radius: var(--border-radius-s);
+  box-shadow: none;
+  padding: 2px;
+  transition: 200ms;
+}
+.widget-dnd switch slider {
+  background: @mauve;
+  border-radius: var(--border-radius-s);
+}
+.widget-dnd switch:hover,
+.widget-dnd switch:checked {
+  background: @mauve;
+}
+.widget-dnd switch:checked slider {
+  background: @surface_0;
+}
+
+.widget-notifications {
+  margin: 0;
+}
+
+.widget-volume,
+.widget-backlight {
+  padding: 8px 14px;
+  margin: 5px 0;
+  border-radius: 12px;
+  color: @text;
+  font-weight: 800;
+  background: @surface_1;
+}
+
+.widget-volume label,
+.widget-backlight label {
+  font-size: 1.1rem;
+}
+
+.widget-volume slider,
+.widget-backlight slider {
+  border-radius: 24px;
+  margin: -8px;
+  background: @text;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+}
+
+.widget-volume trough,
+.widget-backlight trough {
+  background: @hover;
+  margin-left: 8px;
+  border-radius: 12px;
+}
+
+.widget-volume highlight,
+.widget-backlight highlight {
+  padding: 3.5px;
+  border-radius: 12px;
+  background: @text;
+}
+
+/* Change color for placeholder when no notifications */
+.control-center-list-placeholder {
+  color: @text;
+}
+
+/* Avoid 'annoying' backgroud */
+.blank-window {
+  background: transparent;
+}

@@ -1,4 +1,4 @@
-@define-color window_bg_color rgba(30, 30, 46, .9);
+@define-color window_bg_color #1e1e2e;
 @define-color accent_bg_color #585b70;
 @define-color theme_fg_color #cdd6f4;
 @define-color error_bg_color #f38ba8;

@@ -41,7 +41,7 @@ pacman -Qq | fzf \
   --preview-window 'down:80%:wrap' \
   --border \
   --ansi \
-  --bind "enter:execute(${SHELL} -lc \"pacman $MODE {} | ${PAGER:-less} -R\")" \
+  --bind "enter:execute(${SHELL} -lc \"pacman $MODE {} | ${PAGER:-nvim} -R\")" \
   --bind 'alt-k:preview-up,alt-j:preview-down' \
   --color 'pointer:green,marker:green' \
   --prompt="pkg> "

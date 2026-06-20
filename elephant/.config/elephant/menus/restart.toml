@@ -3,13 +3,19 @@ name_pretty = "Restart Apps"
 icon = "view-refresh"
 
 [[entries]]
-text = "Restart Waybar"
-icon = "top_bar-symbolic"
-keywords = ["restart", "waybar"]
-actions = { "restart" = "restart-waybar" }
+text = "Restart Mako"
+icon = "notification"
+keywords = ["restart", "mako", "notification"]
+actions = { "restart" = "makoctl reload" }
 
 [[entries]]
 text = "Restart Hypridle"
 icon = "user-idle"
 keywords = ["restart", "hypridle"]
 actions = { "restart" = "restart-hypridle" }
+
+[[entries]]
+text = "Restart Waybar"
+icon = "top_bar-symbolic"
+keywords = ["restart", "waybar"]
+actions = { "restart" = "restart-waybar" }

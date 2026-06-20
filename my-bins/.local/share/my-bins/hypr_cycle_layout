@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LAYOUTS=(dwindle scrolling monocle)
+LAYOUTS=(scrolling monocle)
 
 ACTIVE=$(hyprctl activewindow -j)
 WORKSPACE_ID=$(printf '%s' "$ACTIVE" | jq -r '.workspace.id')

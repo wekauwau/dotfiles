@@ -1,4 +1,11 @@
+-- DDS
+require("session"):setup({ sync_yanked = true })
+
+-- Plugin
+require("folder-rules"):setup()
 require("full-border"):setup()
+require("recycle-bin"):setup()
+require("starship"):setup()
 
 require("bookmarks"):setup({
 	last_directory = { enable = true, persist = false },
@@ -12,8 +19,6 @@ require("git"):setup({
 	-- Order of status signs showing in the linemode
 	order = 1500,
 })
-
-require("starship"):setup()
 
 Status:children_add(function(self)
 	local h = self._current.hovered

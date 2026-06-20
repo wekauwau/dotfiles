@@ -1,25 +1,13 @@
 local cfg = require("config.binds.vars")
-local mainMod, menu = cfg.mainMod, cfg.menu
+local mainMod, shiftMod, menu = cfg.mainMod, cfg.shiftMod, cfg.menu
 
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu), { description = "Menu" })
+hl.bind(mainMod .. "SPACE", hl.dsp.exec_cmd(menu), { description = "Menu" })
 
--- Notifications
-hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd("makoctl dismiss"), { description = "Dismiss last notification" })
-hl.bind(
-	mainMod .. " + SHIFT + COMMA",
-	hl.dsp.exec_cmd("makoctl dismiss --all"),
-	{ description = "Dismiss all notifications" }
-)
-local toggleSilencingNotification =
-	[[makoctl mode -t do-not-disturb && makoctl mode | grep -q "do-not-disturb" && notify-send "Silenced notifications" || notify-send "Enabled notifications"]]
-hl.bind(
-	mainMod .. " + CTRL + COMMA",
-	hl.dsp.exec_cmd(toggleSilencingNotification),
-	{ description = "Toggle silencing notifications" }
-)
+hl.bind(mainMod .. "I", hl.dsp.exec_cmd("swaync-client -t"), { description = "Open notification center" })
 
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("restart-walker"), { description = "Restart walker" })
+hl.bind("CTRL + ALT + SHIFT + W", hl.dsp.exec_cmd("restart-walker"), { description = "Restart walker" })
 
 -- Screenshot
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("screenshot full"), { description = "Screenshot (fullscreen)" })
-hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd("screenshot partial"), { description = "Screenshot (partial)" })
+hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"), { description = "Screenshot (monitor)" })
+hl.bind(mainMod .. "Print", hl.dsp.exec_cmd("hyprshot -m window"), { description = "Screenshot (window)" })
+hl.bind(shiftMod .. "Print", hl.dsp.exec_cmd("hyprshot -m region"), { description = "Screenshot (region)" })

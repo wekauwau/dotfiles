@@ -1,8 +1,9 @@
 #!/bin/bash
 
 pidof walker >/dev/null && killall walker
-pidof elephant >/dev/null && killall elephant
+# pidof elephant >/dev/null && killall elephant
 
-elephant &
+# elephant &
+systemctl --user restart elephant.service
 sleep 2
 walker --gapplication-service &

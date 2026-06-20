@@ -1,5 +1,11 @@
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
+# https://yazi-rs.github.io/docs/tips/#grid-view
+[[mgr.prepend_keymap]]
+on = "<C-g>"
+run = 'shell -- rofi -theme fullscreen-preview -show filebrowser -filebrowser-command "ya emit reveal" -filebrowser-directory "$(pwd)"'
+desc = "Grid view"
+
 # https://yazi-rs.github.io/docs/tips/#drag-and-drop
 [[mgr.prepend_keymap]]
 on = "<C-n>"
@@ -7,6 +13,11 @@ run = '''
 	shell 'dragon-drop -x -i -A -T "$@"'
 '''
 desc = "Drag and drop via dragon"
+
+[[mgr.prepend_keymap]]
+on = "<S-n>"
+run = "shell 'nautilus \"$@\"' --args '%d'"
+desc = "Open GUI file manager here"
 
 [[mgr.prepend_keymap]]
 on = "!"
@@ -34,7 +45,7 @@ desc = "Delete a bookmark"
 # https://github.com/ndtoan96/ouch.yazi#compression
 [[mgr.prepend_keymap]]
 on = ["C"]
-run = "plugin ouch"
+run = "plugin ouch 7z"
 desc = "Compress with ouch"
 
 # yazi-rs/plugins:smart-filter
@@ -80,6 +91,11 @@ run = "plugin chmod"
 desc = "Chmod on selected files"
 
 [[mgr.prepend_keymap]]
+on = ["g", "m"]
+run = "cd /run/media/$USER"
+desc = "Goto /media/$USER"
+
+[[mgr.prepend_keymap]]
 on = ["g", "r"]
 run = "cd /"
 desc = "Goto /"
@@ -94,6 +110,11 @@ desc = "Enter the child directory, or open the file"
 on = ["m", "c"]
 run = "shell 'makepdf \"${PWD##*/}.pdf\" --width=1366 -n'"
 desc = "Convert images to pdf"
+
+[[mgr.prepend_keymap]]
+on = ["m", "r"]
+run = "plugin recycle-bin"
+desc = "Open Recycle Bin menu"
 
 # https://yazi-rs.github.io/docs/tips/#selected-files-to-clipboard
 [[mgr.prepend_keymap]]

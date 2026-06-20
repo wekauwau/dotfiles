@@ -4,22 +4,24 @@
 # ├─┤│  │├─┤└─┐
 # ┴ ┴┴─┘┴┴ ┴└─┘
 
-# alias cat="bat --theme=base16"
-alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
-
+alias cd='z'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias cmd='cmake --preset debug'
-alias cmbd='cmake --build --preset debug'
-alias cmbdr='cmake --build --preset debug && ./build/debug/apps/App'
-alias cmr='cmake --preset release'
-alias cmbr='cmake --build --preset release'
-alias cmbrr='cmake --build --preset release && ./build/release/apps/App'
-alias cmrw='cmake --preset relwithdebinfo'
-alias cmbrw='cmake --build --preset relwithdebinfo'
-alias cmbrwr='cmake --build --preset relwithdebinfo && ./build/relwithdebinfo/apps/App'
+# alias cmd='cmake --preset debug'
+# alias cmbd='cmake --build --preset debug'
+# alias cmbdr='cmake --build --preset debug && ./build/debug/apps/App'
+# alias cmr='cmake --preset release'
+# alias cmbr='cmake --build --preset release'
+# alias cmbrr='cmake --build --preset release && ./build/release/apps/App'
+# alias cmrw='cmake --preset relwithdebinfo'
+# alias cmbrw='cmake --build --preset relwithdebinfo'
+# alias cmbrwr='cmake --build --preset relwithdebinfo && ./build/relwithdebinfo/apps/App'
+
+alias dce='docker compose exec'
+
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 # alias ls='eza -lh --group-directories-first --icons=auto'
 alias ls='eza --icons=always --color=always'
@@ -29,10 +31,18 @@ alias lla='ll -a'
 # alias lt='eza --tree --level=2 --long --icons --git'
 # alias lta='lt -a'
 
-alias pclean='paru -Sccd'
-alias pinstall='paru -S --needed'
-alias pupdate='paru -Syu --needed'
-alias premove='paru -Rns'
+alias lzd='lazydocker'
+alias lzg='lazygit'
+alias lzs='lazysql'
+
+alias pclean='$PACMAN -Sccd'
+alias pinstall='$PACMAN -S --needed'
+alias pupdate='$PACMAN -Syu --needed'
+alias premove='$PACMAN -Rns'
 # alias cleanup="sudo pacman -Rsn $(pacman -Qtdq)"
 
-alias zhist='nvim /home/wekauwau/.local/state/zsh/history'
+alias zhist='$EDITOR $HISTFILE'
+
+# Wayland type shi
+
+alias vlc='QT_SCALE_FACTOR=1.33 vlc'
